@@ -2047,6 +2047,7 @@
     <Content Include="Assets\Scripts\popper-utils.min.js.map" />
     <Content Include="Assets\Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
