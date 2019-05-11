@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj": {}
+    "D:\\DATH\\WebsiteHiringFootballYard\\Business\\Business.csproj": {}
   },
   "projects": {
-    "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj": {
+    "D:\\DATH\\WebsiteHiringFootballYard\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj",
+        "projectUniqueName": "D:\\DATH\\WebsiteHiringFootballYard\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj",
+        "projectPath": "D:\\DATH\\WebsiteHiringFootballYard\\Business\\Business.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\obj\\",
+        "outputPath": "D:\\DATH\\WebsiteHiringFootballYard\\Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj": {
-                "projectPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj"
+              "D:\\DATH\\WebsiteHiringFootballYard\\Model\\Model.csproj": {
+                "projectPath": "D:\\DATH\\WebsiteHiringFootballYard\\Model\\Model.csproj"
               }
             }
           }
@@ -64,12 +64,12 @@
         }
       }
     },
-    "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj": {
+    "D:\\DATH\\WebsiteHiringFootballYard\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj",
+        "projectUniqueName": "D:\\DATH\\WebsiteHiringFootballYard\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj"
+        "projectPath": "D:\\DATH\\WebsiteHiringFootballYard\\Model\\Model.csproj"
       },
       "frameworks": {
         "net472": {}
