@@ -242,11 +242,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DATH\\WebsiteHiringFootballYard\\Business\\Business.csproj",
+      "projectUniqueName": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj",
       "projectName": "Business",
-      "projectPath": "D:\\DATH\\WebsiteHiringFootballYard\\Business\\Business.csproj",
+      "projectPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\DATH\\WebsiteHiringFootballYard\\Business\\obj\\",
+      "outputPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -265,8 +265,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "D:\\DATH\\WebsiteHiringFootballYard\\Model\\Model.csproj": {
-              "projectPath": "D:\\DATH\\WebsiteHiringFootballYard\\Model\\Model.csproj"
+            "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj": {
+              "projectPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj"
             }
           }
         }
