@@ -316,3 +316,8 @@ D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\obj\Debug\admin.so
 D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\obj\Debug\admin.sonsport.com.csproj.CopyComplete
 D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\obj\Debug\admin.sonsport.com.dll
 D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\obj\Debug\admin.sonsport.com.pdb
+D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\bin\Business.dll
+D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\bin\Model.dll
+D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\bin\Business.pdb
+D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\bin\Model.pdb
+D:\Respositories\WebsiteHiringFootballYard\admin.sonsport.com\bin\Model.dll.config
