@@ -1,0 +1,33 @@
+﻿
+<div class="sporta-nav navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a id="logo-container" href="/KhachHang/Home/Index" class="brand-logo">
+                <img src="~/Assets/Images/image/logo-1.svg" alt="Logo cam" />
+            </a>
+            <div class="hide-on-med-and-down" style="position: absolute; left: 70px; width: 40%;">
+                <form id="venues-info-form" action="/san/tim" accept-char set="UTF-8" method="get">
+                    <input type="text" name="q" id="search" value="" class="autocomplete" placeholder="Nhập tên, địa chỉ để tìm sân">
+                    <i class="fa fa-search" id="nearby_search"></i>
+                    <input type="submit" hidden />
+                </form>
+            </div>
+            <ul class="nav-desktop right hide-on-med-and-down">
+                <li><a href="/KhachHang/Home/DanhChoChuSan" style="color: rgb(251, 140, 0);">Dành cho chủ sân</a></li>
+                @RenderPage("/Views/Shared/_LoginPartial.cshtml")
+            </ul>
+        </div>
+    </nav>
+</div>
+<ul id="usermenu" class="dropdown-content">
+    <li class="divider"></li>
+    <li>
+        <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+    </li>
+</ul>
+<ul id="nav-mobile" class="sidenav">
+    <li><a href="/san/tim"><i class="fas fa-search" style="margin-right: 0px;"></i> Tìm kiếm sân bóng</a></li>
+    <li><a href="/quan-ly-san-bong"><i class="fas fa-calendar" style="margin-right: 0px;"></i> Đăng ký sân bóng</a></li>
+    <li><a href="/chia-se-thong-tin-san-bong"><i class="fas fa-share" style="margin-right: 0px;"></i> Chia sẻ thông tin sân</a></li>
+    <li><a class="waves-effect waves-light" href="https://www.sporta.vn/users/sign_in"><i class="fas fa-sign-in-alt" style="margin-right: 0px;"></i> Đăng nhập</a></li>
+</ul>
