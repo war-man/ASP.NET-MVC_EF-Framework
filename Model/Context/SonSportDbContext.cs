@@ -10,8 +10,9 @@ namespace Model.Context
     public partial class SonSportDbContext : IdentityDbContext<ApplicationUser>
     {
         public SonSportDbContext()
-            : base("name=SonSportDbContext")
+            : base("name=SonSportDbContext", throwIfV1Schema: false)
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public static SonSportDbContext Create()

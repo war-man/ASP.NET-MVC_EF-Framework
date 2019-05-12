@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "admin.sonsport.com", "admin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonSport.Business", "SonSport.Business", "{321CE082-43E3-4CB7-AFED-7D9744705FB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{9325C097-49A4-46E4-A194-743CDE29451E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{9325C097-49A4-46E4-A194-743CDE29451E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -26,7 +26,7 @@
     <div id="wrapper">
 
         @RenderPage("~/Views/Shared/_Sidebar.cshtml")
-        
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -36,7 +36,6 @@
                 <!-- Topbar -->
                 @RenderPage("~/Views/Shared/_Header.cshtml")
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 @RenderBody()
                 <!-- /.container-fluid -->
@@ -49,7 +48,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -75,6 +73,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+    
     <script src="~/Assets/TemplateMaster/vendor/jquery/jquery.min.js"></script>
     <script src="~/Assets/TemplateMaster/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -90,7 +89,7 @@
     <!-- Page level custom scripts -->
     <script src="~/Assets/TemplateMaster/js/demo/chart-area-demo.js"></script>
     <script src="~/Assets/TemplateMaster/js/demo/chart-pie-demo.js"></script>
-    @RenderSection("scripts",false)
+    @RenderSection("scripts", false)
 </body>
 
 </html>

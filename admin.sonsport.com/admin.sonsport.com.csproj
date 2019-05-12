@@ -172,19 +172,23 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Global.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RoleViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ssh.js" />
     <Content Include="Assets\TemplateAdmin\404.html" />
     <Content Include="Assets\TemplateAdmin\blank.html" />
     <Content Include="Assets\TemplateAdmin\charts.html" />
@@ -1731,6 +1735,11 @@
     <Content Include="Assets\Scripts\umd\popper-utils.min.js" />
     <Content Include="Assets\Scripts\umd\popper.js" />
     <Content Include="Assets\Scripts\umd\popper.min.js" />
+    <Content Include="Assets\Scripts\bootbox.all.min.js" />
+    <Content Include="Assets\Scripts\bootbox.locales.min.js" />
+    <Content Include="Assets\Scripts\bootbox.min.js" />
+    <Content Include="Assets\Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Assets\Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1749,7 +1758,6 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
@@ -1762,7 +1770,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Assets\Scripts\umd\popper.min.js.map" />
     <Content Include="Assets\Scripts\umd\popper.js.map" />
     <Content Include="Assets\Scripts\umd\popper-utils.min.js.map" />
@@ -1774,6 +1781,10 @@
     <Content Include="Assets\Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_LogoutModal.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\_RoleForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
