@@ -172,7 +172,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Common\Global.cs" />
+    <Compile Include="Common\BusinessException.cs" />
+    <Compile Include="Common\GlobalConstans.cs" />
+    <Compile Include="Common\GlobalMethod.cs" />
+    <Compile Include="Common\SessionObject.cs" />
+    <Compile Include="Common\Utils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -188,7 +192,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\ssh.js" />
+    <Content Include="Assets\SonSiHoJS\arrUtils.js" />
+    <Content Include="Assets\SonSiHoJS\byteUtils.js" />
+    <Content Include="Assets\SonSiHoJS\dateUtilis.js" />
+    <Content Include="Assets\SonSiHoJS\formUtils.js" />
+    <Content Include="Assets\SonSiHoJS\numberUltils.js" />
+    <Content Include="Assets\SonSiHoJS\stringUtils.js" />
+    <Content Include="Assets\SonSiHoJS\validateUtils.js" />
+    <Content Include="Assets\SonSiHoJS\ssh.js" />
     <Content Include="Assets\TemplateAdmin\404.html" />
     <Content Include="Assets\TemplateAdmin\blank.html" />
     <Content Include="Assets\TemplateAdmin\charts.html" />
