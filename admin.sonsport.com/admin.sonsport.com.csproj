@@ -175,12 +175,15 @@
     <Compile Include="Common\BusinessException.cs" />
     <Compile Include="Common\GlobalConstans.cs" />
     <Compile Include="Common\GlobalMethod.cs" />
+    <Compile Include="Common\JsonMessage.cs" />
     <Compile Include="Common\SessionObject.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminAccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MasterAccountController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1796,6 +1799,12 @@
     <Content Include="Views\Shared\_LogoutModal.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\_RoleForm.cshtml" />
+    <Content Include="Views\AdminAccount\Index.cshtml" />
+    <Content Include="Views\AdminAccount\_CreateAdminAccount.cshtml" />
+    <Content Include="Views\AdminAccount\_EditAdminAccount.cshtml" />
+    <Content Include="Views\MasterAccount\Index.cshtml" />
+    <Content Include="Views\MasterAccount\_EditMasterAccount.cshtml" />
+    <Content Include="Views\MasterAccount\_CreateMasterAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

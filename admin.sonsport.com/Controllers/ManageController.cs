@@ -14,6 +14,8 @@ namespace admin.sonsport.com.Controllers
     public class ManageController : BaseController
     {
 
+        #region Quản lý tài khoản
+
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
@@ -296,7 +298,9 @@ namespace admin.sonsport.com.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #endregion
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
