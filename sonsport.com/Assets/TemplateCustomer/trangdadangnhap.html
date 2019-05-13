@@ -1,0 +1,288 @@
+﻿
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Sporta | Tìm kiếm, đặt sân bóng đá online</title>
+    <link href="css/site.css" rel="stylesheet" />
+    <script src="js/site-main.js"></script>
+    <link href="css/font-awesome4.7/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="sporta-nav navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a id="logo-container" href="/" class="brand-logo">
+                        <img src="/image/logo_1.svg" alt="Logo cam" />
+                    </a>
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <div class="hide-on-med-and-down" style="position: absolute; left: 70px; width: 40%;">
+                        <form id="venues-info-form" action="/san/tim" accept-charset="UTF-8" method="get">
+                            <input type="text" name="q" id="search" value="" class="autocomplete" placeholder="Nhập tên, địa chỉ để tìm sân">
+                            <i class="fas fa-location-arrow" style="font-size: 1.1em;" id="nearby_search"></i>
+                            <input type="submit" hidden />
+                        </form>
+                    </div>
+                    <ul class="nav-desktop right hide-on-med-and-down">
+                        <li><a href="/quan-ly-san-bong">Dành cho chủ sân</a></li>
+                        <li><a href="/user/booking_requests">Lịch đặt của tôi</a></li>
+                        <li>
+                            <a class="dropdown-trigger" data-target="usermenu">
+                                Ân Lê <i class='fas fa-chevron-down' style='font-size: 16px;'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul id="usermenu" class="dropdown-content">
+            <li><a href="/user/profile">Tài khoản của tôi</a></li>
+            <li><a href="/user/booking_requests">Quản lý lịch đặt</a></li>
+            <li class="divider"></li>
+            <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+            </li>
+        </ul>
+        <ul id="nav-mobile" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img class="brightness" src="/assets/default_venue_1_thumb-a447956d615cc7958aad7fdf48447dc77cafa2caccbf8fb7ad1099d6b8f8cd4f.jpg" alt="Default venue 1 thumb" />
+                    </div>
+                    <a href="/user/profile"><img class="circle" src="/assets/default_user_image-dcb329d73c09b2467c7254c49c1fca307467e8f1f541092e9e40eff9db7b2259.png" alt="Default user image" /></a>
+                    <a href="/user/profile">
+                        <span class="white-text name">Ân Lê</span>
+                    </a>
+                    <a href="/user/profile">
+                        <span class="white-text email">levanan03081997@gmail.com</span>
+                    </a>
+                </div>
+            </li>
+            <li><a href="/san/tim"><i class="fas fa-search" style="margin-right: 0px;"></i> Tìm kiếm sân bóng</a></li>
+            <li><a href="/chia-se-thong-tin-san-bong"><i class="fas fa-share" style="margin-right: 0px;"></i> Chia sẻ thông tin sân</a></li>
+            <li><a href="/user/booking_requests"><i class="fas fa-calendar" style="margin-right: 0px;"></i> Lịch đặt của tôi</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fas fa-sign-out-alt" style="margin-right: 0px;"></i> Đăng xuất</a>
+            </li>
+        </ul>
+
+        <main>
+            <div class="container-90" style="margin-top: 20px">
+                <div class="row">
+                    <div class="col m2 hide-on-small-only">
+                        <div id="page_section" style="display: none;" data-section="profile"></div>
+
+                        <div class="row">
+                            <div class="user-brief">
+                                <a class="user-brief_avatar" href="#">
+                                    <div class="sporta-avatar">
+                                        <img id="avatar" src="/image/avatar.png" alt="Default user image" />
+                                    </div>
+                                </a>
+
+                                <div class="user-brief_right">
+                                    <div class="user-brief-name">Ân lê</div>
+                                    <div>
+                                        <a href="/user/profile"><i class="fa fa-pencil-square"></i> Sửa hồ sơ</a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="user-sidebar-menu">
+
+                                <a href="/user/profile">
+                                    <div class="menu-item" id="edit_user_profile">
+                                        <i class="fa fa-user-circle-o" style="color: orange !important; margin-right: 5px;"></i>
+                                        Tài khoản của tôi
+                                    </div>
+                                </a>
+                                <a href="/user/booking_requests">
+                                    <div class="menu-item" id="booking_list">
+                                        <i class="fa fa-clock-o" style="color: #3DC3F3 !important; margin-right: 5px;"></i>
+                                        Lịch đặt của tôi
+                                    </div>
+                                </a>
+                                <a href="/user/announcements">
+                                    <div class="menu-item" id="announcements">
+                                        <i class="fa fa-bell" style="color: #F74B51 !important; margin-right: 5px;"></i>
+                                        Thông báo
+                                    </div>
+                                </a>
+                                <a href="/user/password">
+                                    <div class="menu-item" id="change_password">
+                                        <i class="fa fa-unlock-alt" style="color: #F74B51 !important; margin-right: 5px;"></i>
+                                        Đổi mật khẩu
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m10">
+                        <div class="user-page-content">
+                            <h5 class="ticket-title">Thông tin cá nhân</h5>
+                            Điền thông tin hồ sơ để sporta phục vụ bạn tốt hơn.
+                            <section>
+                                <div class="profile-update">
+                                    <div class="row">
+                                        <div class="col s12 m2">
+                                            <header class="profile-picture">
+                                                <form class="edit_user" id="edit_user_8126" enctype="multipart/form-data" action="/users/8126/avatar_upload" accept-charset="UTF-8" method="post">
+                                                    <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="+d0e6eNC3TnkCmUR0J+J6DJVFiDFuZvxJ6qKEGIl/3WlTiNjthIiRFBIHpO6b2bHIWX7S8KfpkRTwtTtG+9phQ==" />
+                                                    <div class="avatar">
+                                                        <img id="avatar" style="width: 100%" src="/assets/default_user_image-dcb329d73c09b2467c7254c49c1fca307467e8f1f541092e9e40eff9db7b2259.png" alt="Default user image" />
+                                                        <button class="btn-upload-avatar"><i class="fas fa-image fa-2x" aria-hidden="true"></i></button>
+                                                        <input onchange="this.form.submit()" type="file" name="user[avatar]" id="user_avatar" />
+                                                    </div>
+                                                </form>
+                                            </header>
+                                        </div>
+                                        <div class="col s12 m10">
+                                            <div class="profile-form">
+                                                <form class="edit_user" id="edit_user_8126" action="/users/8126" accept-charset="UTF-8" method="post">
+                                                    <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="mKTXGtHYfFuKCVswjQywOr/0CJJMCvlnw+zbDPzewojEN+qQhIiDJj5LILLn/F8VrMTl+UssxNK3hIXxhRRUeA==" />
+                                                    <div class="input-field col s12 m4">
+                                                        <label for="user_name">Tên</label>
+                                                        <input type="text" value="Ân Lê" name="user[name]" id="user_name" />
+                                                    </div>
+                                                    <div class="input-field col s12 m4">
+                                                        <label for="user_email">Email</label>
+                                                        <input type="text" value="levanan03081997@gmail.com" name="user[email]" id="user_email" />
+                                                    </div>
+                                                    <div class="input-field col s12 m4">
+
+                                                        <label for="user_phone_attributes_number">Số điện thoại</label>
+                                                        <input type="text" name="user[phone_attributes][number]" id="user_phone_attributes_number" />
+                                                        <a href="#" style="position: absolute; top: 15px; right: 12px;" onclick="smsLogin();">Xác nhận</a>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="input-field col s12 m4 l6 address_street">
+                                                            <label for="user_address_attributes_street">Địa chỉ</label>
+                                                            <input required="required" type="text" name="user[address_attributes][street]" id="user_address_attributes_street" />
+                                                        </div>
+                                                        <div class="col s6 m4 l3 address_district">
+                                                            <label class="active" for="user_address_attributes_district_id">Quận/Huyện</label>
+                                                            <select class="browser-default" name="user[address_attributes][district_id]" id="user_address_attributes_district_id">
+                                                                <option value="573">Huyện Bình Chánh</option>
+                                                                <option value="575">Huyện Cần Giờ</option>
+                                                                <option value="571">Huyện Củ Chi</option>
+                                                                <option value="572">Huyện Hóc Môn</option>
+                                                                <option value="574">Huyện Nhà Bè</option>
+                                                                <option value="552">Quận 1</option>
+                                                                <option value="563">Quận 10</option>
+                                                                <option value="564">Quận 11</option>
+                                                                <option value="553">Quận 12</option>
+                                                                <option value="561">Quận 2</option>
+                                                                <option value="562">Quận 3</option>
+                                                                <option value="565">Quận 4</option>
+                                                                <option value="566">Quận 5</option>
+                                                                <option value="567">Quận 6</option>
+                                                                <option value="570">Quận 7</option>
+                                                                <option value="568">Quận 8</option>
+                                                                <option value="555">Quận 9</option>
+                                                                <option value="569">Quận Bình Tân</option>
+                                                                <option value="557">Quận Bình Thạnh</option>
+                                                                <option value="556">Quận Gò Vấp</option>
+                                                                <option value="560">Quận Phú Nhuận</option>
+                                                                <option value="558">Quận Tân Bình</option>
+                                                                <option value="559">Quận Tân Phú</option>
+                                                                <option value="554">Quận Thủ Đức</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col s6 m4 l3 address_city">
+                                                            <label class="active" for="city">Thành phố/Tỉnh</label>
+                                                            <select name="city" id="city" required="required" class="browser-default">
+                                                                <option value="57">Tỉnh An Giang</option>
+                                                                <option value="15">Tỉnh Bắc Giang</option>
+                                                                <option value="4">Tỉnh Bắc Kạn</option>
+                                                                <option value="62">Tỉnh Bạc Liêu</option>
+                                                                <option value="18">Tỉnh Bắc Ninh</option>
+                                                                <option value="49">Tỉnh Bà Rịa-Vũng Tàu</option>
+                                                                <option value="53">Tỉnh Bến Tre</option>
+                                                                <option value="35">Tỉnh Bình Định</option>
+                                                                <option value="47">Tỉnh Bình Dương</option>
+                                                                <option value="45">Tỉnh Bình Phước</option>
+                                                                <option value="39">Tỉnh Bình Thuận</option>
+                                                                <option value="63">Tỉnh Cà Mau</option>
+                                                                <option value="3">Tỉnh Cao Bằng</option>
+                                                                <option value="42">Tỉnh Đắk Lắk</option>
+                                                                <option value="43">Tỉnh Đắk Nông</option>
+                                                                <option value="7">Tỉnh Điện Biên</option>
+                                                                <option value="48">Tỉnh Đồng Nai</option>
+                                                                <option value="56">Tỉnh Đồng Tháp</option>
+                                                                <option value="41">Tỉnh Gia Lai</option>
+                                                                <option value="2">Tỉnh Hà Giang</option>
+                                                                <option value="19">Tỉnh Hải Dương</option>
+                                                                <option value="23">Tỉnh Hà Nam</option>
+                                                                <option value="28">Tỉnh Hà Tĩnh</option>
+                                                                <option value="60">Tỉnh Hậu Giang</option>
+                                                                <option value="11">Tỉnh Hòa Bình</option>
+                                                                <option value="21">Tỉnh Hưng Yên</option>
+                                                                <option value="37">Tỉnh Khánh Hòa</option>
+                                                                <option value="58">Tỉnh Kiên Giang</option>
+                                                                <option value="40">Tỉnh Kon Tum</option>
+                                                                <option value="8">Tỉnh Lai Châu</option>
+                                                                <option value="44">Tỉnh Lâm Đồng</option>
+                                                                <option value="13">Tỉnh Lạng Sơn</option>
+                                                                <option value="6">Tỉnh Lào Cai</option>
+                                                                <option value="51">Tỉnh Long An</option>
+                                                                <option value="24">Tỉnh Nam Định</option>
+                                                                <option value="27">Tỉnh Nghệ An</option>
+                                                                <option value="25">Tỉnh Ninh Bình</option>
+                                                                <option value="38">Tỉnh Ninh Thuận</option>
+                                                                <option value="16">Tỉnh Phú Thọ</option>
+                                                                <option value="36">Tỉnh Phú Yên</option>
+                                                                <option value="29">Tỉnh Quảng Bình</option>
+                                                                <option value="33">Tỉnh Quảng Nam</option>
+                                                                <option value="34">Tỉnh Quảng Ngãi</option>
+                                                                <option value="14">Tỉnh Quảng Ninh</option>
+                                                                <option value="30">Tỉnh Quảng Trị</option>
+                                                                <option value="61">Tỉnh Sóc Trăng</option>
+                                                                <option value="9">Tỉnh Sơn La</option>
+                                                                <option value="46">Tỉnh Tây Ninh</option>
+                                                                <option value="22">Tỉnh Thái Bình</option>
+                                                                <option value="12">Tỉnh Thái Nguyên</option>
+                                                                <option value="26">Tỉnh Thanh Hóa</option>
+                                                                <option value="31">Tỉnh Thừa Thiên Huế</option>
+                                                                <option value="52">Tỉnh Tiền Giang</option>
+                                                                <option value="54">Tỉnh Trà Vinh</option>
+                                                                <option value="5">Tỉnh Tuyên Quang</option>
+                                                                <option value="55">Tỉnh Vĩnh Long</option>
+                                                                <option value="17">Tỉnh Vĩnh Phúc</option>
+                                                                <option value="10">Tỉnh Yên Bái</option>
+                                                                <option value="59">Tp Cần Thơ</option>
+                                                                <option value="32">Tp Đà Nẵng</option>
+                                                                <option value="20">Tp Hải Phòng</option>
+                                                                <option value="1">Tp Hà Nội</option>
+                                                                <option selected="selected" value="50">Tp Hồ Chí Minh</option>
+                                                            </select>
+                                                        </div>
+                                                        <input hidden="hidden" id="latitude" type="text" name="user[address_attributes][latitude]" />
+                                                        <input hidden="hidden" id="longitude" type="text" name="user[address_attributes][longitude]" />
+                                                        <input value="Việt Nam" hidden="hidden" readonly="readonly" type="text" name="user[address_attributes][country]" id="user_address_attributes_country" />
+                                                    </div>
+                                                    <div class="card-action center">
+                                                        <button name="button" type="submit" class="btn">Cập nhật</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+</body>
+</html>

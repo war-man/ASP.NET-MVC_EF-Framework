@@ -1,0 +1,347 @@
+﻿
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Sporta | Tìm kiếm, đặt sân bóng đá online</title>
+    <link href="css/site.css" rel="stylesheet" />
+    <script src="js/site-main.js"></script>
+    <link href="css/font-awesome4.7/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="sporta-nav navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a id="logo-container" href="/" class="brand-logo">
+                        <img src="/image/logo_1.svg" alt="Logo cam" />
+                    </a>
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <div class="hide-on-med-and-down" style="position: absolute; left: 70px; width: 40%;">
+                        <form id="venues-info-form" action="/san/tim" accept-charset="UTF-8" method="get">
+                            <input type="text" name="q" id="search" value="" class="autocomplete" placeholder="Nhập tên, địa chỉ để tìm sân">
+                            <i class="fas fa-location-arrow" style="font-size: 1.1em;" id="nearby_search"></i>
+                            <input type="submit" hidden />
+                        </form>
+                    </div>
+                    <ul class="nav-desktop right hide-on-med-and-down">
+                        <li><a href="/quan-ly-san-bong">Dành cho chủ sân</a></li>
+                        <li><a href="/user/booking_requests">Lịch đặt của tôi</a></li>
+                        <li>
+                            <a class="dropdown-trigger" data-target="usermenu">
+                                Ân Lê <i class='fas fa-chevron-down' style='font-size: 16px;'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul id="usermenu" class="dropdown-content">
+            <li><a href="/user/profile">Tài khoản của tôi</a></li>
+            <li><a href="/user/booking_requests">Quản lý lịch đặt</a></li>
+            <li class="divider"></li>
+            <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+            </li>
+        </ul>
+        <ul id="nav-mobile" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img class="brightness" src="/assets/default_venue_1_thumb-a447956d615cc7958aad7fdf48447dc77cafa2caccbf8fb7ad1099d6b8f8cd4f.jpg" alt="Default venue 1 thumb" />
+                    </div>
+                    <a href="/user/profile"><img class="circle" src="/assets/default_user_image-dcb329d73c09b2467c7254c49c1fca307467e8f1f541092e9e40eff9db7b2259.png" alt="Default user image" /></a>
+                    <a href="/user/profile">
+                        <span class="white-text name">Ân Lê</span>
+                    </a>
+                    <a href="/user/profile">
+                        <span class="white-text email">levanan03081997@gmail.com</span>
+                    </a>
+                </div>
+            </li>
+            <li><a href="/san/tim"><i class="fas fa-search" style="margin-right: 0px;"></i> Tìm kiếm sân bóng</a></li>
+            <li><a href="/chia-se-thong-tin-san-bong"><i class="fas fa-share" style="margin-right: 0px;"></i> Chia sẻ thông tin sân</a></li>
+            <li><a href="/user/booking_requests"><i class="fas fa-calendar" style="margin-right: 0px;"></i> Lịch đặt của tôi</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fas fa-sign-out-alt" style="margin-right: 0px;"></i> Đăng xuất</a>
+            </li>
+        </ul>
+
+        <main>
+            <div class="row section">
+                <div class="col s12 m4 l3">
+                    <form class="find_available_asset_form" action="/dat-san-online">
+                        <div class="row">
+                            <div class="col s6 l6">
+                                <label>Thành phố/Tỉnh</label>
+                                <select name="city" id="city" required="required" class="browser-default">
+                                    <option value="47">Tỉnh Bình Dương</option>
+                                    <option value="48">Tỉnh Đồng Nai</option>
+                                    <option value="51">Tỉnh Long An</option>
+                                    <option value="27">Tỉnh Nghệ An</option>
+                                    <option value="25">Tỉnh Ninh Bình</option>
+                                    <option value="33">Tỉnh Quảng Nam</option>
+                                    <option value="34">Tỉnh Quảng Ngãi</option>
+                                    <option value="46">Tỉnh Tây Ninh</option>
+                                    <option value="12">Tỉnh Thái Nguyên</option>
+                                    <option value="26">Tỉnh Thanh Hóa</option>
+                                    <option value="32">Tp Đà Nẵng</option>
+                                    <option value="1">Tp Hà Nội</option>
+                                    <option selected="selected" value="50">Tp Hồ Chí Minh</option>
+                                </select>
+                            </div>
+                            <div class="col s6 l6">
+                                <label>Quận/Huyện</label>
+                                <select name="district_id" id="district_id" required="required" class="browser-default">
+                                    <option value="573">Huyện Bình Chánh</option>
+                                    <option value="575">Huyện Cần Giờ</option>
+                                    <option value="571">Huyện Củ Chi</option>
+                                    <option value="572">Huyện Hóc Môn</option>
+                                    <option value="574">Huyện Nhà Bè</option>
+                                    <option value="552">Quận 1</option>
+                                    <option value="563">Quận 10</option>
+                                    <option value="564">Quận 11</option>
+                                    <option value="553">Quận 12</option>
+                                    <option value="561">Quận 2</option>
+                                    <option value="562">Quận 3</option>
+                                    <option value="565">Quận 4</option>
+                                    <option value="566">Quận 5</option>
+                                    <option value="567">Quận 6</option>
+                                    <option value="570">Quận 7</option>
+                                    <option value="568">Quận 8</option>
+                                    <option value="555">Quận 9</option>
+                                    <option value="569">Quận Bình Tân</option>
+                                    <option value="557">Quận Bình Thạnh</option>
+                                    <option value="556">Quận Gò Vấp</option>
+                                    <option value="560">Quận Phú Nhuận</option>
+                                    <option value="558">Quận Tân Bình</option>
+                                    <option value="559">Quận Tân Phú</option>
+                                    <option selected="selected" value="554">Quận Thủ Đức</option>
+                                </select>
+                            </div>
+                            <div class="col s6">
+                                <label>Loại sân</label>
+                                <select name="asset_category_name" id="asset_category_name" class="browser-default">
+                                    <option selected="selected" value="5">Sân 5 người</option>
+                                    <option value="7">Sân 7 người</option>
+                                    <option value="11">Sân 11 người</option>
+                                </select>
+                            </div>
+                            <div class="col s6">
+                                <label>Ngày đặt</label>
+                                <input type="text" name="date" id="booking_date" value="Thứ ba, 19-04-0029" required="true" placeholder="Chọn ngày">
+                            </div>
+                            <div class="col s6 m6">
+                                <label>Đặt từ</label>
+                                <select name="begin_time" id="begin_time" class="browser-default">
+                                    <option value="00:00">00:00</option>
+                                    <option value="00:30">00:30</option>
+                                    <option value="01:00">01:00</option>
+                                    <option value="01:30">01:30</option>
+                                    <option value="02:00">02:00</option>
+                                    <option value="02:30">02:30</option>
+                                    <option value="03:00">03:00</option>
+                                    <option value="03:30">03:30</option>
+                                    <option value="04:00">04:00</option>
+                                    <option value="04:30">04:30</option>
+                                    <option value="05:00">05:00</option>
+                                    <option value="05:30">05:30</option>
+                                    <option value="06:00">06:00</option>
+                                    <option value="06:30">06:30</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="07:30">07:30</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option selected="selected" value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="21:30">21:30</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="22:30">22:30</option>
+                                    <option value="23:00">23:00</option>
+                                    <option value="23:30">23:30</option>
+                                </select>
+                            </div>
+                            <div class="col s6 m6">
+                                <label>Đặt mấy giờ</label>
+                                <select name="how_long" id="how_long" class="browser-default">
+                                    <option selected="selected" value="1">1</option>
+                                    <option value="1.5">1.5</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                            <div class="col s12 center">
+                                <button style="margin-top: 15px;" class="waves-effect waves-light btn btn-raised">Tìm sân trống</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="center">
+                        <div class="col s12 m12 l12" id="search_loader">
+                            <div class="preloader-wrapper small active">
+                                <div class="spinner-layer spinner-green-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="available_venues_results" class="col s12 m8 l9">
+                    <div class="row">
+                        <h5>Chắc chắn có sân trống</h5>
+                        <ul class="collection">
+                            <li class="collection-item available_venue-item row">
+                                <div class="col s12 m8 l7">
+                                    <a href="/dhnonglam">
+                                        <h5>Sân bóng Đại học Nông Lâm</h5>
+                                    </a>
+                                    <span class="grey-text text-darken-2">Đại học Nông Lâm, khu phố 6, P. Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh</span>
+                                </div>
+                                <div class="col s12 m2 l4 price">
+                                    <span style="font-size: 35px;">180.000 VNĐ /  1h</span>
+                                </div>
+                                <div class="col s12 m2 l1 book-btn">
+                                    <a class="waves-effect waves-light btn btn-raised" href="/dat-san?asset_id=77&amp;begin_use_time=0019-04-29+16%3A00%3A00+%2B0642&amp;end_use_time=0019-04-29+17%3A00%3A00+%2B0642&amp;how_long=1&amp;price=180000&amp;venue=135">Đặt sân</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="right">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h5>
+                            Có thể có sân trống
+                        </h5>
+                        <ul class="collection">
+                            <li class="collection-item available_venue-item row">
+                                <div class="col s12 m8 l7">
+                                    <a href="/dai-hoc-tdtt-hcm">
+                                        <h5>Sân bóng Đại học TDTT HCM</h5>
+                                    </a>
+                                    <span class="grey-text text-darken-2"><i class="fas fa-map-marker-alt"></i> Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh</span><br>
+                                </div>
+                                <div class="col s12 m2 l1 book-btn">
+                                    <a class="waves-effect waves-light btn btn-raised" id="call-venues" data-event="84 - Sân bóng Đại học TDTT HCM" href="tel:0972944200"><i class='fa fa-phone'></i></a>
+                                </div>
+                            </li>
+                            <li class="collection-item available_venue-item row">
+                                <div class="col s12 m8 l7">
+                                    <a href="/muoitho">
+                                        <h5>Sân bóng Mười Thọ</h5>
+                                    </a>
+                                    <span class="grey-text text-darken-2"><i class="fas fa-map-marker-alt"></i> 20/83 QL1A, khu phố 6, Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh</span><br>
+                                </div>
+                                <div class="col s12 m2 l1 book-btn">
+                                    <a class="waves-effect waves-light btn btn-raised" id="call-venues" data-event="82 - Sân bóng Mười Thọ" href="tel:0933863379"><i class='fa fa-phone'></i></a>
+                                </div>
+                            </li>
+                            <li class="collection-item available_venue-item row">
+                                <div class="col s12 m8 l7">
+                                    <a href="/namnho">
+                                        <h5>Sân bóng Năm Nhỏ</h5>
+                                    </a>
+                                    <span class="grey-text text-darken-2"><i class="fas fa-map-marker-alt"></i> Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh</span><br>
+                                </div>
+                                <div class="col s12 m2 l1 book-btn">
+                                    <a class="waves-effect waves-light btn btn-raised" id="call-venues" data-event="81 - Sân bóng Năm Nhỏ" href="tel:0909269269"><i class='fa fa-phone'></i></a>
+                                </div>
+                            </li>
+                            <li class="collection-item available_venue-item row">
+                                <div class="col s12 m8 l7">
+                                    <a href="/san-bong-dai-hoc-quoc-gia-tp--hcm">
+                                        <h5>Sân bóng Đại học quốc gia TP. HCM</h5>
+                                    </a>
+                                    <span class="grey-text text-darken-2"><i class="fas fa-map-marker-alt"></i> Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh</span><br>
+                                </div>
+                                <div class="col s12 m2 l1 book-btn">
+                                    <a class="waves-effect waves-light btn btn-raised" id="call-venues" data-event="85 - Sân bóng Đại học quốc gia TP. HCM" href="tel:0909702718"><i class='fa fa-phone'></i></a>
+                                </div>
+                            </li>
+                            <li class="collection-item available_venue-item row">
+                                <div class="col s12 m8 l7">
+                                    <a href="/thongnhat">
+                                        <h5>Sân bóng Thống Nhất</h5>
+                                    </a>
+                                    <span class="grey-text text-darken-2"><i class="fas fa-map-marker-alt"></i> 20/93 Tổ 10, Khu phố 6, P. Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh</span><br>
+                                </div>
+                                <div class="col s12 m2 l1 book-btn">
+                                    <a class="waves-effect waves-light btn btn-raised" id="call-venues" data-event="83 - Sân bóng Thống Nhất" href="tel:0963066366"><i class='fa fa-phone'></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="right">
+                            <ul class="pagination">
+                                <!--   -->
+
+                                <li class="active orange darken-2">
+                                    <a href="/dat-san-online?asset_category_name=5&amp;begin_time=16%3A00&amp;city=50&amp;date=Th%E1%BB%A9+Hai%2C+29%2F04%2F19&amp;district_id=554&amp;how_long=1">1</a>
+                                </li>
+
+                                <li class="">
+                                    <a rel="next" href="/dat-san-online?asset_category_name=5&amp;begin_time=16%3A00&amp;city=50&amp;date=Th%E1%BB%A9+Hai%2C+29%2F04%2F19&amp;district_id=554&amp;how_long=1&amp;page=2">2</a>
+                                </li>
+
+                                <li class="">
+                                    <a href="/dat-san-online?asset_category_name=5&amp;begin_time=16%3A00&amp;city=50&amp;date=Th%E1%BB%A9+Hai%2C+29%2F04%2F19&amp;district_id=554&amp;how_long=1&amp;page=3">3</a>
+                                </li>
+
+                                <li class="">
+                                    <a href="/dat-san-online?asset_category_name=5&amp;begin_time=16%3A00&amp;city=50&amp;date=Th%E1%BB%A9+Hai%2C+29%2F04%2F19&amp;district_id=554&amp;how_long=1&amp;page=4">4</a>
+                                </li>
+
+                                <li class="">
+                                    <a href="/dat-san-online?asset_category_name=5&amp;begin_time=16%3A00&amp;city=50&amp;date=Th%E1%BB%A9+Hai%2C+29%2F04%2F19&amp;district_id=554&amp;how_long=1&amp;page=5">5</a>
+                                </li>
+
+                                <li class="waves-effect">
+                                    <a rel="next" href="/dat-san-online?asset_category_name=5&amp;begin_time=16%3A00&amp;city=50&amp;date=Th%E1%BB%A9+Hai%2C+29%2F04%2F19&amp;district_id=554&amp;how_long=1&amp;page=2"><i class="fas fa-chevron-right"></i></a>
+                                </li>
+
+                                <!-- <li class="waves-effect">
+                                  <a href="/dat-san-online?asset_category_name=5&amp;begin_time=16%3A00&amp;city=50&amp;date=Th%E1%BB%A9+Hai%2C+29%2F04%2F19&amp;district_id=554&amp;how_long=1&amp;page=5">Trang cuối</a>
+                                </li>
+                                 -->
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+</body>
+</html>

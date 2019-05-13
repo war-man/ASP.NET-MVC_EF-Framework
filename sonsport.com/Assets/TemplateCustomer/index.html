@@ -1,0 +1,342 @@
+﻿
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Sporta | Tìm kiếm, đặt sân bóng đá online</title>
+    <link href="css/site.css" rel="stylesheet" />
+    <script src="js/site-main.js"></script>
+    <link href="css/font-awesome4.7/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="sporta-nav navbar-fixed">
+            <nav>                
+                <div class="nav-wrapper">
+                    <a id="logo-container" href="/" class="brand-logo">
+                        <img src="image/logo_1.svg" alt="Logo main" />
+                    </a>
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <div class="hide-on-med-and-down" style="position: absolute; left: 70px; width: 40%;">
+                        <form id="venues-info-form" action="/san/tim" accept-charset="UTF-8" method="get">
+                            <input type="text" name="q" id="search" value="" class="autocomplete" placeholder="Nhập tên, địa chỉ để tìm sân">
+                            <i class="fas fa-location-arrow" style="font-size: 1.1em;" id="nearby_search"></i>
+                            <input type="submit" hidden />
+                        </form>
+                    </div>
+                    <ul class="nav-desktop right hide-on-med-and-down">
+                        <li><a href="/quan-ly-san-bong">Dành cho chủ sân</a></li>
+                        <li><a href="https://www.sporta.vn/users/sign_in">Đăng nhập</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul id="usermenu" class="dropdown-content">
+            <li class="divider"></li>
+            <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+            </li>
+        </ul>
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="/san/tim"><i class="fas fa-search" style="margin-right: 0px;"></i> Tìm kiếm sân bóng</a></li>
+            <li><a href="/quan-ly-san-bong"><i class="fas fa-calendar" style="margin-right: 0px;"></i> Đăng ký sân bóng</a></li>
+            <li><a href="/chia-se-thong-tin-san-bong"><i class="fas fa-share" style="margin-right: 0px;"></i> Chia sẻ thông tin sân</a></li>
+            <li><a class="waves-effect waves-light" href="https://www.sporta.vn/users/sign_in"><i class="fas fa-sign-in-alt" style="margin-right: 0px;"></i> Đăng nhập</a></li>
+        </ul>
+
+        <main>
+            <div id="find_available_asset">
+                <div class="row find_available_asset_form_is_center">
+                    <div class="col s12 m6 l4 orange" style="opacity: 0.95">
+                        <h5 class="white-text text-center">ĐẶT SÂN ONLINE</h5>
+                        <div class="divider" style="margin-bottom: 15px;"></div>
+                        <form action="/dat-san-online" accept-charset="UTF-8" method="get">
+                            <input name="utf8" type="hidden" value="&#x2713;" />
+                            <div class="row">
+                                <div class="input-field col s12 l6 browser-default">
+                                    <select name="city" id="city" required="required" class="browser-default">
+                                        <option value="47">Tỉnh Bình Dương</option>
+                                        <option value="48">Tỉnh Đồng Nai</option>
+                                        <option value="51">Tỉnh Long An</option>
+                                        <option value="27">Tỉnh Nghệ An</option>
+                                        <option value="25">Tỉnh Ninh Bình</option>
+                                        <option value="33">Tỉnh Quảng Nam</option>
+                                        <option value="34">Tỉnh Quảng Ngãi</option>
+                                        <option value="46">Tỉnh Tây Ninh</option>
+                                        <option value="12">Tỉnh Thái Nguyên</option>
+                                        <option value="26">Tỉnh Thanh Hóa</option>
+                                        <option value="32">Tp Đà Nẵng</option>
+                                        <option value="1">Tp Hà Nội</option>
+                                        <option selected="selected" value="50">Tp Hồ Chí Minh</option>
+                                    </select>
+                                    <label class="white-text">Khu vực</label>
+                                </div>
+                                <div class="input-field col s12 l6">
+                                    <select name="district_id" id="district_id" required="required" class="browser-default">
+                                        <option value="573">Huyện Bình Chánh</option>
+                                        <option value="575">Huyện Cần Giờ</option>
+                                        <option value="571">Huyện Củ Chi</option>
+                                        <option value="572">Huyện Hóc Môn</option>
+                                        <option value="574">Huyện Nhà Bè</option>
+                                        <option value="552">Quận 1</option>
+                                        <option value="563">Quận 10</option>
+                                        <option value="564">Quận 11</option>
+                                        <option value="553">Quận 12</option>
+                                        <option value="561">Quận 2</option>
+                                        <option value="562">Quận 3</option>
+                                        <option value="565">Quận 4</option>
+                                        <option value="566">Quận 5</option>
+                                        <option value="567">Quận 6</option>
+                                        <option value="570">Quận 7</option>
+                                        <option value="568">Quận 8</option>
+                                        <option value="555">Quận 9</option>
+                                        <option value="569">Quận Bình Tân</option>
+                                        <option value="557">Quận Bình Thạnh</option>
+                                        <option value="556">Quận Gò Vấp</option>
+                                        <option value="560">Quận Phú Nhuận</option>
+                                        <option value="558">Quận Tân Bình</option>
+                                        <option value="559">Quận Tân Phú</option>
+                                        <option selected="selected" value="554">Quận Thủ Đức</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12 l6">
+                                    <select name="asset_category_name" class="browser-default" required>
+                                        <option value="5" selected>Sân 5 người</option>
+                                        <option value="7">Sân 7 người</option>
+                                        <option value="11">Sân 11 người</option>
+                                    </select>
+                                    <label class="white-text">Loại sân</label>
+                                </div>
+                                <div class="input-field col s12 l6">
+                                    <input type="text" name="date" id="booking_date" value="Chủ nhật, 28-04-2019" placeholder="Chọn ngày" required="true">
+                                    <label class="white-text" for="booking_date" style="top: -3px;">Ngày</label>
+                                </div>
+                                <div class="input-field col s12 l6">
+                                    <select name="begin_time" id="begin_time" required="required" class="browser-default">
+                                        <option value="00:00">00:00</option>
+                                        <option value="00:30">00:30</option>
+                                        <option value="01:00">01:00</option>
+                                        <option value="01:30">01:30</option>
+                                        <option value="02:00">02:00</option>
+                                        <option value="02:30">02:30</option>
+                                        <option value="03:00">03:00</option>
+                                        <option value="03:30">03:30</option>
+                                        <option value="04:00">04:00</option>
+                                        <option value="04:30">04:30</option>
+                                        <option value="05:00">05:00</option>
+                                        <option value="05:30">05:30</option>
+                                        <option value="06:00">06:00</option>
+                                        <option value="06:30">06:30</option>
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:30">15:30</option>
+                                        <option selected="selected" value="16:00">16:00</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="18:30">18:30</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="20:30">20:30</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="21:30">21:30</option>
+                                        <option value="22:00">22:00</option>
+                                        <option value="22:30">22:30</option>
+                                        <option value="23:00">23:00</option>
+                                        <option value="23:30">23:30</option>
+                                    </select>
+                                    <label class="white-text">Đặt từ</label>
+                                </div>
+                                <div class="input-field col s12 l6">
+                                    <select name="how_long" class="browser-default" required>
+                                        <option value="1" selected>1 giờ</option>
+                                        <option value="1.5">1.5 giờ</option>
+                                        <option value="2">2 giờ</option>
+                                    </select>
+                                    <label class="white-text">Đặt bao lâu</label>
+                                </div>
+                                <div class="col s12 m12 l12 center">
+                                    <button class="btn btn-raised">TÌM SÂN TRỐNG</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col m6 l7 hide-on-small-only">
+                        <h1 class="big_title">
+                            ĐẶT SÂN BÓNG ONLINE <br />
+                            NHANH CHÓNG VÀ DỄ DÀNG
+                        </h1>
+                    </div>
+                </div>
+                <img class="brightness" src="image/banner-1.jpg" alt="Sporta đặt sân bóng đá mini online" />
+
+            </div>
+            <div class="container" id="intro">
+                <div class="white z-depth-3">
+                    <div class="row" style="margin-bottom: 0px">
+                        <div class="col s12 m3">
+                            <p class='text-center'>
+                                <a href="#top_venues">
+                                    <img src="image/icon-info.svg" />
+                                </a>
+                            </p>
+                            <h5 class="text-center orange-text">Thông tin sân bóng</h5>
+                            <p class="text-center" style="color: #78909c">Địa điểm, giá sân, giờ mở cửa,... các sân bóng trong khu vực gần nơi bạn ở</p>
+                        </div>
+                        <div class="col s12 m3">
+                            <p class='text-center'><a href="/"><img src="image/banner-2.svg" alt="Book" /></a></p>
+                            <h5 class="text-center orange-text">Đặt sân online</h5>
+                            <p class="text-center" style="color: #78909c">Lựa chọn sân gần vị trí của bạn nhất, đặt sân online, tiện lợi, dễ dàng</p>
+                        </div>
+                        <div class="col s12 m3">
+                            <p class='text-center'><a href="/quan-ly-san-bong"><img src="image/banner-3.svg" alt="Reg" /></a></p>
+                            <h5 class="text-center orange-text">Quản lý sân online</h5>
+                            <p class="text-center" style="color: #78909c">Quản lý lịch đặt đơn giản, tiếp nhận đặt sân online dễ dàng, lấp đầy sân trống</p>
+                        </div>
+                        <div class="col s12 m3">
+                            <p class='text-center'><a href="/chia-se-thong-tin-san-bong"><img src="image/banner-4.svg" alt="Pr" /></a></p>
+                            <h5 class="text-center orange-text">Quảng bá sân bóng</h5>
+                            <p class="text-center" style="color: #78909c">Đăng thông tin sân bóng của bạn lên website, quảng bá hình ảnh sân bóng tốt hơn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="top-venues"></div>
+            <div id="top_venues">
+                <div class="row">
+                    <div class="col s12">
+                        <h3 class="text-center orange-text top_venues_title">ĐỊA ĐIỂM HÀNG ĐẦU</h3>
+                        <h6 class="text-center" style="color: #78909c">Nhanh tay đặt sân ngay hôm nay để được trải nghiệm sân bóng chất lượng cao cùng ưu đãi hấp dẫn!</h6>
+                    </div>
+                    <div class="col s12 m4 l3">
+                        <div class="card-panel venue_item hoverable" style="height: 350px !important;">
+                            <div class="venue_pic" style="height: 63%;">
+                                <div style="height: 100%">
+                                    <div class="venue_pic_cover" style="height: 93%">
+                                        <a href="/dhnonglam">
+                                            <img class="responsive-img top_venues_pic" src="image/image-1.jpg" />           
+                                        </a>
+                                    </div>
+                                    <div class="venue_pic_district">
+                                        <div class="district_div text-center">
+                                            <a class="white-text district_title" href="/san-bong/tp-ho-chi-minh/quan-thu-duc">Quận Thủ Đức</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="venue-details">
+                                <h5><a class="venue_title" href="/dhnonglam">Sân bóng Đại học Nông Lâm</a></h5>
+                                <p class="address_text">
+                                    <i class="fa fa-map-marker"></i>
+                                 
+                                    Đại học Nông Lâm, khu phố 6, P. Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="center row">
+                    <a id="load-more-venues" class="btn btn-raised" href="/san/tim">XEM TẤT CẢ SÂN BÓNG</a>
+                </div>
+            </div>
+            <div class="row" style="position: relative; padding: 25px 0px;">
+                
+                <img class="brightness" src="image/banner_hoptac.jpg" style="width: 100%; height: 400px;"  />
+                <div style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); width: 80% !important;" class="center">
+                    <h2 class="coop_title">HỢP TÁC VỚI SPORTA?</h2>
+                    <h6 class="coop_info">Bạn là chủ sân? Bạn lo lắng khi sân còn trống? Sporta hỗ trợ bạn lấp đầy lịch đặt sân với chi phí thấp nhất!</h6>
+                    <a class="waves-effect waves-light btn orange btn-raised" href="/quan-ly-san-bong">TÌM HIỂU NGAY</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h4 class="text-center customer_title">KHÁCH HÀNG CỦA SPORTA</h4>
+                    <h6 class="text-center customer_info">Tham gia cộng đồng người yêu thích thể thao lớn nhất Việt Nam</h6>
+                </div>
+                <div class="container">
+                    <div class="row" style="position: relative;">
+                        <div style="position: absolute;" class="tag_up"></div>
+                        <div style="position: absolute;" class="tag_down"></div>
+                        <div style="position: absolute;" class="triangle_div"></div>
+                        <div class="carousel carousel-slider comment_item" data-indicators="true">
+                            <div class="carousel-item" href="#one!">
+                                <div class="comment_div">
+                                    <div class="col s12 m4 l4 comment_pic_cover">
+                                        <div>
+                                            <img class="comment_pic" src="image/image-2.jpg" alt="Long review" />
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m8 l8 " style="padding-top: 50px; padding-left: 40px;">
+                                        <h5 style="font-weight: bold;">Anh Trương Đình Long</h5>
+                                        <p>Chủ sân bóng đá ĐH Nông Lâm</p>
+                                        <p>"Tính năng hữu ích, hỗ trợ tôi quản lý sân hiệu quả hơn. Doanh thu cũng tăng lên rõ rệt. Không còn tình trạng trống sân."</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item" href="#two!">
+                                <div class="comment_div">
+                                    <div class="col s12 m4 l4 comment_pic_cover">
+                                        <div>
+                                            <img class="comment_pic" src="/image/image-3.jpg" alt="Vuong review" />
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m8 l8" style="padding-top: 70px; padding-left: 40px;">
+                                        <h5>Nguyễn Minh Vương</h5>
+                                        <p>"Phần mềm hữu ích thích hợp với anh em mê bóng đá. Giá cả và điều kiện sân bãi rõ ràng."</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item" href="#three!">
+                                <div class="comment_div">
+                                    <div class="col s12 m4 l4 comment_pic_cover">
+                                        <div>
+                                            <img class="comment_pic" src="image/image-4.jpg" alt="Cuong review" />
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m8 l8" style="padding-top: 80px; padding-left: 40px;">
+                                        <h5>Trần Thế Cường</h5>
+                                        <p>"Hữu ích, tiện lợi cho mọi người!!!"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+                <h4 class="text-center orange-text">ĐỐI TÁC CỦA CHÚNG TÔI</h4>
+                <div class="col s12 m4 center">
+                    <img style="height: 80px;" src="/image/aws.png" alt="Aws logo smile" />
+                </div>
+                <div class="col s12 m4">
+                    <p class="text-center"><a target="_blank" href="http://foba.vn?ref=sporta.vn"><img style="height: 80px;" src="/image/foba.jpg" alt="Partner foba" /></a></p>
+                    <p class="text-center">FOBA là thương hiệu của Thanh Thịnh, là công ty số #1 về ngành cỏ nhân tạo sân bóng, cỏ nhân tạo sân vườn và phụ kiện. Được thành lập từ 2008, chúng tôi đã cung cấp và lắp đặt gần 1000 sân bóng ở 45 tỉnh/TP tại Việt Nam và Cambodia.</p>
+                </div>
+                <div class="col s12 m4 center">
+                    <img style="height: 80px;" src="/image/linnode.svg" alt="Linode logo" />
+                </div>
+            </div>
+
+        </main>
+       
+
+    </div>
+</body>
+</html>

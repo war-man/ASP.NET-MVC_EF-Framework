@@ -1,0 +1,90 @@
+﻿
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Sporta | Tìm kiếm, đặt sân bóng đá online</title>
+    <link href="css/site.css" rel="stylesheet" />
+    <script src="js/site-main.js"></script>
+    <link href="css/font-awesome4.7/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="sporta-nav navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a id="logo-container" href="/" class="brand-logo">
+                        <img src="/image/logo_1.svg" alt="Logo cam" />
+                    </a>
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <div class="hide-on-med-and-down" style="position: absolute; left: 70px; width: 40%;">
+                        <form id="venues-info-form" action="/san/tim" accept-charset="UTF-8" method="get">
+                            <input type="text" name="q" id="search" value="" class="autocomplete" placeholder="Nhập tên, địa chỉ để tìm sân">
+                            <i class="fas fa-location-arrow" style="font-size: 1.1em;" id="nearby_search"></i>
+                            <input type="submit" hidden />
+                        </form>
+                    </div>
+                    <ul class="nav-desktop right hide-on-med-and-down">
+                        <li><a href="/quan-ly-san-bong">Dành cho chủ sân</a></li>
+                        <li><a href="https://www.sporta.vn/users/sign_in">Đăng nhập</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul id="usermenu" class="dropdown-content">
+            <li class="divider"></li>
+            <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+            </li>
+        </ul>
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="/san/tim"><i class="fas fa-search" style="margin-right: 0px;"></i> Tìm kiếm sân bóng</a></li>
+            <li><a href="/quan-ly-san-bong"><i class="fas fa-calendar" style="margin-right: 0px;"></i> Đăng ký sân bóng</a></li>
+            <li><a href="/chia-se-thong-tin-san-bong"><i class="fas fa-share" style="margin-right: 0px;"></i> Chia sẻ thông tin sân</a></li>
+            <li><a class="waves-effect waves-light" href="https://www.sporta.vn/users/sign_in"><i class="fas fa-sign-in-alt" style="margin-right: 0px;"></i> Đăng nhập</a></li>
+        </ul>
+
+        <main>
+            <div class="container">
+                <div class="row center">
+                    <h3 class="orange-text">Sporta</h3>
+                    <p>Đặt sân, cáp kèo dễ dàng hơn</p>
+                </div>
+                <div class="row center">
+                    <button class="btn-flat white-text col s12 m4 offset-m4 orange" onclick="smsLogin();">Đăng nhập bằng số ĐT <i class="fa fa-mobile"></i></button>
+                    <a class="btn-flat white-text col s12 m4 offset-m4" style="background-color: #3f51b5; margin-top: 10px;" href="/users/auth/facebook">Đăng nhập với <i class="fa fa-facebook"></i></a>
+                    <a class="btn-flat white-text col s12 m4 offset-m4" style="background-color: #f44336; margin-top: 10px;" href="/users/auth/google_oauth2">Đăng nhập với <i class="fa fa-google"></i></a>
+                </div>
+
+                <div class="center row" style="margin-bottom: 0px;">
+                    <span>Hoặc</span>
+                </div>
+
+                <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="nvnTgu4echtIja41W1YzIH906ZwzXhNenrg4gArQtC06+DPiCT2fNC5Ood2mqrA5bdO71HkAQDRxasg1nqxLEA==" />
+                    <div class="row">
+                        <div class="col s8 offset-s2">
+                            <div class="input-field">
+                                <label for="user_email">Email</label>
+                                <input autofocus="autofocus" required="required" type="email" value="" name="user[email]" id="user_email" />
+                            </div>
+                            <div class="input-field">
+                                <label for="user_password">Password</label>
+                                <input autocomplete="off" type="password" name="user[password]" id="user_password" />
+                            </div>
+                            <div class="field">
+                                <input name="user[remember_me]" type="hidden" value="0" /><input class="filled-in" type="checkbox" value="1" checked="checked" name="user[remember_me]" id="user_remember_me" />
+                                <label for="user_remember_me">Ghi nhớ tài khoản?</label>
+                            </div>
+                            <a class=" left" href="/users/password/new">Quên mật khẩu?</a>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <button name="button" type="submit" class="btn lighten-1">Đăng nhập</button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
+     </div>   
+</body>
+</html>

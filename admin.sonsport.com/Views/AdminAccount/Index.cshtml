@@ -1,0 +1,152 @@
+﻿@using admin.sonsport.com.Models;
+@using admin.sonsport.com.Common;
+@model IEnumerable<AccountViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Quản lý tài khoản Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Danh sách</li>
+</ol>
+<div id="alert-result"></div>
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Danh sách tài khoản
+        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#AddOrEditModal" data-whatever="add">Thêm tài khoản Admin</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên tài khoản</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Tên tài khoản</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th class="w-25">Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                            <td>
+                                <a class="btn btn-success" data-toggle="modal" data-target="#AddOrEditModal" data-whatever="@item.Id">Sửa tài khoản</a>
+                                <a class="btn btn-danger" onclick="DeleteConfirm('@item.Id')">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+<div class="modal fade" id="AddOrEditModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" id="btnAddOrEditConfirm"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.content-wrapper -->
+@section scripts{
+    <script src="~/Assets/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+    $(function () {
+        $('#AddOrEditModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('whatever');
+            var modal = $(this);
+            if (action == "add") {
+                $.get('@Url.Action("Create","AdminAccount")', function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Thêm tài khoản');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận thêm').on('click', function () {
+                    modal.find('.modal-body form[id="admin-account-form"]').submit();
+                });
+            }
+            else {
+                $.post('@Url.Action("Edit","AdminAccount")?AdminId='+action, function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Sửa tài khoản');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận sửa').on('click', function () {
+                    modal.find('.modal-body form[id="admin-account-form"]').submit();
+                });
+            }
+        });
+
+        @if(TempData[GlobalConstans.MessageSuccess]!=null)
+        {
+            @Html.Raw($"ssh.ShowAlertSuccess('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
+        }
+        @if(TempData[GlobalConstans.MessageFail]!=null)
+        {
+            @Html.Raw($"ssh.ShowAlertError('{TempData[GlobalConstans.MessageFail].ToString()}')");
+        }
+    });
+
+    function DeleteConfirm(id) {
+        bootbox.confirm('Bạn có chắc muốn xóa ko?', function (result) {
+            if (result) {
+                $.get('@Url.Action("Delete","AdminAccount")?AdminId=' + id, function (success) {
+                    if (success) {
+                        location.reload();
+                    }
+                });
+            }
+        });
+            }
+
+    function OnCreateSuccess(response) {
+        var success = response.success;
+        var data = response;
+        if (response.success) {
+            location.reload();
+        }
+        $('#AddOrEditModal').find('.modal-body').html(response);
+            }
+
+    function OnEditSuccess(response) {
+        var success = response.success;
+        var data = response;
+        if (response.success) {
+            location.reload();
+        }
+        
+        $('#AddOrEditModal').find('.modal-body').html(response);
+    }
+    </script>
+}

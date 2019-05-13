@@ -1,0 +1,28 @@
+﻿@using admin.sonsport.com.Models;
+@model RegisterViewModel
+@using (Ajax.BeginForm("Create", "MasterAccount",
+            ajaxOptions: new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "OnCreateSuccess",
+                OnFailure = "OnFailure"
+            },
+            htmlAttributes: new { @id = "master-account-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(n => n.Email, htmlAttributes: new { @class = "col-form-label" })
+        @Html.TextBoxFor(n => n.Email, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Email, null, htmlAttributes: new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(n => n.Password, htmlAttributes: new { @class = "col-form-label" })
+        @Html.PasswordFor(n => n.Password, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Password, null, htmlAttributes: new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(n => n.ConfirmPassword, htmlAttributes: new { @class = "col-form-label" })
+        @Html.PasswordFor(n => n.ConfirmPassword, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.ConfirmPassword, null, htmlAttributes: new { @class = "text-danger" })
+    </div>
+}

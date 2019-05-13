@@ -1,0 +1,233 @@
+﻿
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Sporta | Tìm kiếm, đặt sân bóng đá online</title>
+    <link href="css/site.css" rel="stylesheet" />
+    <script src="js/site-main.js"></script>
+    <link href="css/font-awesome4.7/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="sporta-nav navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a id="logo-container" href="/" class="brand-logo">
+                        <img src="/image/logo_1.svg" alt="Logo cam" />
+                    </a>
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <div class="hide-on-med-and-down" style="position: absolute; left: 70px; width: 40%;">
+                        <form id="venues-info-form" action="/san/tim" accept-charset="UTF-8" method="get">
+                            <input type="text" name="q" id="search" value="" class="autocomplete" placeholder="Nhập tên, địa chỉ để tìm sân">
+                            <i class="fas fa-location-arrow" style="font-size: 1.1em;" id="nearby_search"></i>
+                            <input type="submit" hidden />
+                        </form>
+                    </div>
+                    <ul class="nav-desktop right hide-on-med-and-down">
+                        <li><a href="/quan-ly-san-bong">Dành cho chủ sân</a></li>
+                        <li><a href="https://www.sporta.vn/users/sign_in">Đăng nhập</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul id="usermenu" class="dropdown-content">
+            <li class="divider"></li>
+            <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+            </li>
+        </ul>
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="/san/tim"><i class="fas fa-search" style="margin-right: 0px;"></i> Tìm kiếm sân bóng</a></li>
+            <li><a href="/quan-ly-san-bong"><i class="fas fa-calendar" style="margin-right: 0px;"></i> Đăng ký sân bóng</a></li>
+            <li><a href="/chia-se-thong-tin-san-bong"><i class="fas fa-share" style="margin-right: 0px;"></i> Chia sẻ thông tin sân</a></li>
+            <li><a class="waves-effect waves-light" href="https://www.sporta.vn/users/sign_in"><i class="fas fa-sign-in-alt" style="margin-right: 0px;"></i> Đăng nhập</a></li>
+        </ul>
+
+        <main>
+            <div class="venue_image">
+                <img src='/assets/default_venue_0-40de2f230f228302cb76d0d4a0fb686af210acbb0bd45107adfedfca772a19b4.jpg'>
+                <div class="venue_info">
+                    <h1 class="venue_name">
+                        Sân bóng Đại học TDTT HCM
+                        <i class="fas fa-info-circle yellow-text tooltipped" data-position="bottom" data-tooltip="Thông tin được đăng bởi người chơi" style="font-size: 0.5em"></i>
+                    </h1>
+                    <p>
+                        <i class="fa fa-map-marker" style="font-size: 20px"></i>
+                        Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh&nbsp;
+                        <a target="_blank" href='https://www.google.com/maps/dir//10.8715154717314,106.795287796571'>
+                            <i class="fa fa-location-arrow" style="font-size: 20px;"></i>
+                        </a>
+                    </p>
+                    <p>
+                        <i class="fa fa-phone-square" style="font-size: 20px"></i>
+                        <a class="waves-effect waves-orange btn-flat view_phones" href="https://www.sporta.vn/users/sign_in">
+                            ĐĂNG NHẬP ĐỂ XEM SỐ ĐIỆN THOẠI
+                        </a>
+                    </p>
+                    <p>
+                        <i class="fa fa-clock-o"></i>&nbsp;06:00 - 24:00
+                    </p>
+                    <p style="margin-bottom: 10px;">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        <a href="https://www.sporta.vn/users/sign_in" class="orange-text" onclick="M.toast({html: 'Bạn cần đăng nhập để báo lỗi!', displayLength:3000});" aria-pressed="true">Báo lỗi</a>
+                    </p>
+                    <div class="fb-like hide-on-med-and-up col s12" data-href="https://www.sporta.vn/dai-hoc-tdtt-hcm" data-layout="standard" data-action="like" data-width="250" data-size="small" data-show-faces="true" data-share="true" colorscheme="dark" style="margin-top: 5px;"></div>
+                    <div class="fb-like hide-on-small-only col s12" data-href="https://www.sporta.vn/dai-hoc-tdtt-hcm" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true" colorscheme="dark" style="margin-top: 5px;"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="container-90">
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <div class="content-header">
+                                <span class="content-title">
+                                    Đăng ký nhận thông báo khi có sân trống
+                                </span>
+                            </div>
+                            <div class="row">
+                                <form action="/booking_requests" accept-charset="UTF-8" data-remote="true" method="post">
+                                    <input name="utf8" type="hidden" value="&#x2713;" />
+                                    <div class="col s6">
+                                        <label>Loại sân</label>
+                                        <select name="asset_category_name" class="browser-default" required>
+                                            <option value="5" selected>Sân 5 người</option>
+                                            <option value="7">Sân 7 người</option>
+                                            <option value="11">Sân 11 người</option>
+                                        </select>
+                                    </div>
+                                    <div class="col s6">
+                                        <label>Ngày</label>
+                                        <select name="begin_use_time" id="begin_use_time" required="required" class="browser-default">
+                                            <option value="2019-04-27">Thứ bảy</option>
+                                            <option value="2019-04-28">Chủ nhật</option>
+                                            <option value="2019-04-29">Thứ hai</option>
+                                            <option value="2019-04-30">Thứ ba</option>
+                                            <option value="2019-05-01">Thứ tư</option>
+                                            <option value="2019-05-02">Thứ năm</option>
+                                            <option value="2019-05-03">Thứ sáu</option>
+                                        </select>
+                                    </div>
+                                    <input type="text" name="venue_id" value="84" hidden>
+                                    <div class="col s12 center" style="margin-top: 10px;">
+                                        <button class="waves-effect btn-raised btn">Đăng ký</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <div class="content-header">
+                                <span class="content-title">
+                                    Bảng giá
+                                </span>
+                            </div>
+                            <div style="min-height: 250px;">
+                                <div class="common_infos">
+                                    <p>Có <strong>1</strong> sân 11 người.</p>
+                                    <p>Mức giá: 800k/giờ <i class='fa fa-arrow-right'></i> 1200k/giờ</p>
+                                    <div>
+                                        <p><i class="fa fa-exclamation-circle red-text text-darken-3"></i> Cần đặt cọc.</p>
+                                        <p><i class="fa fa-check-circle blue-text text-darken-3"></i> Bóng dùng miễn phí.</p>
+                                        <p><i class="fa fa-check-circle blue-text text-darken-3"></i> Nước uống miễn phí.</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 ratings">
+                            <ul class="tabs">
+                                <li class="tab normal_case"><a href="#">Đánh giá</a></li>
+                            </ul>
+                            <p>Sân này chưa có đánh giá nào</p>
+                        </div>
+
+
+                        <div class="col s12">
+                            <ul class="tabs">
+                                <li class="tab normal_case"><a href="#venue_gallery">Hình ảnh</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="venue_gallery" class="col s12">
+                            <p>Là sân 11 người, chuyên dùng để đào tạo và huấn luyện. Để đặt sân thường phải làm hợp đồng.</p>
+                            <div class="my-gallery">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <ul class="tabs">
+                                    <li class="tab normal_case"><a href="#venue_gallery">Bản đồ</a></li>
+                                    <li class="tab normal_case"><a target="_blank" href='https://www.google.com/maps/dir//10.8715154717314,106.795287796571'>Tìm đường tới sân</a></li>
+                                </ul>
+                                <div id="venue_map" style="margin-top: 10px;" lat="10.8715154717314" lng="106.795287796571" name="Sân bóng Đại học TDTT HCM"></div>
+                            </div>
+                        </div>
+                        <div class="fb-comments" data-href="https://www.sporta.vn/san/84" data-width="100%" data-numposts="5">
+                        </div>
+                    </div>
+                    <div class="row center">
+                    </div>
+                </div>
+                <!-- Root element of PhotoSwipe. Must have class pswp. -->
+                <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                    <!-- Background of PhotoSwipe.
+                    It's a separate element, as animating opacity is faster than rgba(). -->
+                    <div class="pswp__bg"></div>
+                    <!-- Slides wrapper with overflow:hidden. -->
+                    <div class="pswp__scroll-wrap">
+                        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+                        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+                        <div class="pswp__container">
+                            <div class="pswp__item"></div>
+                            <div class="pswp__item"></div>
+                            <div class="pswp__item"></div>
+                        </div>
+                        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                        <div class="pswp__ui pswp__ui--hidden">
+                            <div class="pswp__top-bar">
+                                <!--  Controls are self-explanatory. Order can be changed. -->
+                                <div class="pswp__counter"></div>
+                                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                <button class="pswp__button pswp__button--share" title="Share"></button>
+                                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                                <!-- element will get class pswp__preloader--active when preloader is running -->
+                                <div class="pswp__preloader">
+                                    <div class="pswp__preloader__icn">
+                                        <div class="pswp__preloader__cut">
+                                            <div class="pswp__preloader__donut"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                <div class="pswp__share-tooltip"></div>
+                            </div>
+                            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                            <div class="pswp__caption">
+                                <div class="pswp__caption__center"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="report_venue_modal" class="modal">
+                    <div class="modal-content">
+                        <h5>Báo lỗi địa điểm</h5>
+                        <form class="new_venue_report" id="new_venue_report" action="/venue_reports" accept-charset="UTF-8" data-remote="true" method="post">
+                            <input name="utf8" type="hidden" value="&#x2713;" />
+                            <textarea class="materialize-textarea" name="venue_report[reason]" id="venue_report_reason">
+</textarea>
+                            <input type="hidden" value="84" name="venue_report[venue_id]" id="venue_report_venue_id" />
+                            <input type="submit" name="commit" value="Gửi thông tin" class="btn" data-disable-with="Gửi thông tin" />
+                        </form>
+                    </div>
+                </div>
+
+        </main>
+</body>
+</html>
