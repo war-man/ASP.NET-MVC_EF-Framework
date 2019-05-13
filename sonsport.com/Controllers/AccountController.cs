@@ -13,9 +13,8 @@ namespace sonsport.com.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-
-        // GET: /Account/Login
         [AllowAnonymous]
+        [Route("dang-nhap")]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -98,6 +97,7 @@ namespace sonsport.com.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
+        [Route("dang-ky")]
         public ActionResult Register()
         {
             return View();

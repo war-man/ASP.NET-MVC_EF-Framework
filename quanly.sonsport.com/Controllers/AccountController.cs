@@ -37,10 +37,15 @@ namespace quanly.sonsport.com.Controllers
             {
                 return View(model);
             }
-
+            var user = await UserManager.FindByEmailAsync(model.Email);
+            if(user==null || !UserManager.IsInRole(user.Id,"CHUSAN"))
+            {
+                ModelState.AddModelError("", "Sai tên tài khoản hoặc mật khẩu!");
+                return View(model);
+            }
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(user.UserName,model.Password,model.RememberMe,shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:

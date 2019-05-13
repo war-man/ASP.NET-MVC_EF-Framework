@@ -201,8 +201,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Common\BusinessException.cs" />
+    <Compile Include="Common\GlobalConstans.cs" />
+    <Compile Include="Common\GlobalMethod.cs" />
+    <Compile Include="Common\JsonMessage.cs" />
+    <Compile Include="Common\SessionObject.cs" />
+    <Compile Include="Common\Utils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ForMasterYardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,7 +225,7 @@
     <Content Include="Assets\Content\fontawesome.css" />
     <Content Include="Assets\Content\materialize.css" />
     <Content Include="Assets\Content\pswd.css" />
-    <Content Include="Assets\Content\SiteCSS\site.css" />
+    <Content Include="Assets\Content\Site.css" />
     <Content Include="Assets\Content\steper.css" />
     <Content Include="Assets\Images\image\avatar.png" />
     <Content Include="Assets\Images\image\icon-aws.png" />
@@ -239,9 +246,40 @@
     <Content Include="Assets\Images\image\icon-momo.png" />
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Content\bootstrap.min.css" />
-    <Content Include="Assets\Scripts\SiteJS\site-main.js" />
+    <Content Include="Assets\Scripts\bootbox.all.min.js" />
+    <Content Include="Assets\Scripts\bootbox.locales.min.js" />
+    <Content Include="Assets\Scripts\bootbox.min.js" />
+    <Content Include="Assets\TemplateCustomer\chusan.html" />
+    <Content Include="Assets\TemplateCustomer\css\font-awesome4.7\font-awesome.css" />
+    <Content Include="Assets\TemplateCustomer\css\font-awesome4.7\font-awesome.min.css" />
+    <Content Include="Assets\TemplateCustomer\css\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\TemplateCustomer\css\site.css" />
+    <Content Include="Assets\TemplateCustomer\dangnhap.html" />
+    <Content Include="Assets\TemplateCustomer\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\TemplateCustomer\footer.html" />
+    <Content Include="Assets\TemplateCustomer\image\avatar.png" />
+    <Content Include="Assets\TemplateCustomer\image\aws.png" />
+    <Content Include="Assets\TemplateCustomer\image\banner-1.jpg" />
+    <Content Include="Assets\TemplateCustomer\image\banner-2.svg" />
+    <Content Include="Assets\TemplateCustomer\image\banner-3.svg" />
+    <Content Include="Assets\TemplateCustomer\image\banner-4.svg" />
+    <Content Include="Assets\TemplateCustomer\image\banner_hoptac.jpg" />
+    <Content Include="Assets\TemplateCustomer\image\foba.jpg" />
+    <Content Include="Assets\TemplateCustomer\image\hinhden.jpg" />
+    <Content Include="Assets\TemplateCustomer\image\icon-info.svg" />
+    <Content Include="Assets\TemplateCustomer\image\image-1.jpg" />
+    <Content Include="Assets\TemplateCustomer\image\image-2.jpg" />
+    <Content Include="Assets\TemplateCustomer\image\image-3.jpg" />
+    <Content Include="Assets\TemplateCustomer\image\image-4.jpg" />
+    <Content Include="Assets\TemplateCustomer\image\linnode.svg" />
+    <Content Include="Assets\TemplateCustomer\image\logo_1.svg" />
+    <Content Include="Assets\TemplateCustomer\image\momo.png" />
+    <Content Include="Assets\TemplateCustomer\index.html" />
+    <Content Include="Assets\TemplateCustomer\js\site-main.js" />
+    <Content Include="Assets\TemplateCustomer\trangdadangnhap.html" />
+    <Content Include="Assets\TemplateCustomer\trangtimsan.html" />
+    <Content Include="Assets\TemplateCustomer\Xemsan.html" />
     <Content Include="favicon.ico" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Scripts\bootstrap.js" />
     <Content Include="Assets\Scripts\bootstrap.min.js" />
@@ -260,6 +298,14 @@
     <Content Include="Assets\Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Assets\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Assets\Scripts\modernizr-2.8.3.js" />
+    <Content Include="Assets\SonSiHoJS\arrUtils.js" />
+    <Content Include="Assets\SonSiHoJS\byteUtils.js" />
+    <Content Include="Assets\SonSiHoJS\dateUtilis.js" />
+    <Content Include="Assets\SonSiHoJS\formUtils.js" />
+    <Content Include="Assets\SonSiHoJS\numberUltils.js" />
+    <Content Include="Assets\SonSiHoJS\ssh.js" />
+    <Content Include="Assets\SonSiHoJS\stringUtils.js" />
+    <Content Include="Assets\SonSiHoJS\validateUtils.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -294,15 +340,22 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\ForMasterYard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\TemplateCustomer\css\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\TemplateCustomer\css\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\TemplateCustomer\css\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\TemplateCustomer\css\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\TemplateCustomer\css\fonts\FontAwesome.otf" />
+    <Content Include="Assets\TemplateCustomer\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\TemplateCustomer\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\TemplateCustomer\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\TemplateCustomer\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\TemplateCustomer\fonts\FontAwesome.otf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -4,11 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="~/Assets/Images/Icon-logo/shorcut-icon.ico" />
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/site.css")
-    <link href="~/Assets/font-awesome.css" rel="stylesheet" />
-
+    <title>@ViewBag.Title - Tìm kiếm, đặt sân bóng Online</title>
+    <link href="~/Assets/TemplateCustomer/css/site.css" rel="stylesheet" />
+    <link href="~/Assets/TemplateCustomer/css/font-awesome4.7/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
     <!--Header-->
@@ -19,8 +17,7 @@
     <!--Footer-->
     @RenderPage("~/Views/Shared/_Footer.cshtml")
 
-    @Scripts.Render("~/Scripts/js")
-    @Scripts.Render("~/Scripts/site.js")
+    <script src="~/Assets/TemplateCustomer/js/site-main.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,41 +1,54 @@
 ﻿@model sonsport.com.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Đăng ký tài khoản";
 }
 
-<h2>@ViewBag.Title.</h2>
+    <main>
+        <div class="container">
+            <div class="row center">
+                <h3 class="orange-text">Sơn Sport</h3>
+                <p>Đặt sân, cáp kèo dễ dàng hơn</p>
+                <h3>Đăng ký tài khoản Sơn Sport</h3>
+            </div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+            <div class="row center">
+                <a class="btn-flat white-text col s12 m4 offset-m4" style="background-color: #3f51b5; margin-top: 10px;" href="/users/auth/facebook">Đăng ký với <i class="fa fa-facebook"></i></a>
+                <a class="btn-flat white-text col s12 m4 offset-m4" style="background-color: #f44336; margin-top: 10px;" href="/users/auth/google_oauth2">Đăng ký với <i class="fa fa-google"></i></a>
+            </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            <div class="center row" style="margin-bottom: 0px;">
+                <span>Hoặc</span>
+            </div>
+
+            <section id="loginForm">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "new_user", @id = "new_user", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col s8 offset-s2">
+                            <div class="input-field">
+                                @Html.LabelFor(m => m.Email)
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required", autofocus = "autofocus" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "red-text" })
+                            </div>
+                            <div class="input-field">
+                                @Html.LabelFor(m => m.Password)
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
+                            </div>
+                            <div class="input-field">
+                                @Html.LabelFor(m => m.ConfirmPassword)
+                                @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "red-text" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <input name="button" type="submit" class="btn lighten-1" value="Đăng ký" />
+                    </div>
+                }
+            </section>
+        </div>
+
+    </main>
