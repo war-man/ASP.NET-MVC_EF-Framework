@@ -17,6 +17,8 @@ namespace quanly.sonsport.com
 
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IPlaceYardFootballBusiness, PlaceYardFootballBusiness>();
+            container.RegisterType<IYardFootballOfPlaceBusiness, YardFootballOfPlaceBusiness>();
+            container.RegisterType<IPriceOfYardFootBallBusiness, PriceOfYardFootBallBusiness>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

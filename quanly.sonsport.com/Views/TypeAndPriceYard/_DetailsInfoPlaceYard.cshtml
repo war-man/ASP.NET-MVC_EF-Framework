@@ -1,0 +1,57 @@
+﻿@using Model.Context
+@model DIADIEMSANBONG
+<hr />
+<h1 class="h3 mb-0 text-gray-800">Loại sân và giá</h1>
+<p class="mb-4">Thông tin chung về sân bóng và giá sân!</p>
+
+<!--Thông tin chung -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#collapseCardInfo" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardInfo">
+        <h6 class="m-0 font-weight-bold text-primary">Thông tin chung</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="collapseCardInfo" style="">
+        <div class="card-body">
+            <dl class="row">
+                <shadow class="col">
+                    <dl>
+                        <dt>Mô tả địa điểm: </dt>
+                        <dd>@Model.TenDiaDiem</dd>
+                    </dl>
+                    <dl>
+                        <dt>Số điện thoại 1:  </dt>
+                        <dd>@Model.Sdt1</dd>
+                    </dl>
+                    <dl>
+                        <dt>Giờ mở cửa:</dt>
+                        <dd>@Model.GioMoCua</dd>
+                    </dl>
+                    <dl>
+                        <dt>Mô tả địa điểm:  </dt>
+                        <dd>@Model.MoTaDiaDiem</dd>
+                    </dl>
+                </shadow>
+                <shadow class="col">
+                    <dl>
+                        <dt>Địa chỉ: </dt>
+                        <dd>@Model.DiaChi</dd>
+                    </dl>
+                    <dl>
+                        <dt>Số điện thoại 2:  </dt>
+                        <dd>@Model.Sdt2</dd>
+                    </dl>
+                    <dl>
+                        <dt>Giờ đóng cửa:</dt>
+                        <dd>@Model.GioDongCua</dd>
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd></dd>
+                    </dl>
+
+                </shadow>
+            </dl>
+        </div>
+    </div>
+</div>

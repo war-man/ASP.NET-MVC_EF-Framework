@@ -106,6 +106,10 @@
         {
             @Html.Raw($"ssh.ShowAlertSuccess('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
         }
+        @if(TempData[GlobalConstans.MessageFail]!=null)
+        {
+            @Html.Raw($"ssh.ShowAlertError('{TempData[GlobalConstans.MessageFail].ToString()}')");
+        }
     });
 
     function DeleteConfirm(id) {

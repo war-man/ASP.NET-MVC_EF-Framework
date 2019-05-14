@@ -1,0 +1,137 @@
+﻿@using Model.Context
+@using quanly.sonsport.com.Common
+@model List<SANBONG>
+@{
+    int PlaceId = (int)ViewData[GlobalConstans.MaDiaDiem];
+}
+<!-- Các sân bóng -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
+        <h6 class="m-0 font-weight-bold text-primary">Các sân bóng</h6>
+        <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text text-white">Thêm sân bóng mới</span>
+        </a>
+    </div>
+    <div class="card-body">
+        @if (Model.Count > 0)
+        {
+            <div class="card-columns">
+                @foreach (var item in Model)
+                {
+                    <div class="card border-bottom-primary shadow h-100 py-2">
+                        <img src="~/Assets/Images/Image/image-1.jpg" class="card-img-top" width="100%" height="200px" alt="...">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <a href="#" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        @item.TenSanBong
+                                    </a>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Loại sân: @item.LOAISANBONG.TenLoaiSan</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <a data-whatever="" class="btn btn-info btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fa fa-money-check"></i>
+                                </span>
+                                <span class="text text-white">Bảng giá</span>
+                            </a>
+                            <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="@item.MaSanBong" class="btn btn-success btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                                <span class="text text-white">Sửa</span>
+                            </a>
+                            <a class="btn btn-danger btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                                <span class="text text-white">Xóa</span>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <h4 class="text-warning">Chưa có sân bóng cho địa điểm này!</h4>
+        }
+    </div>
+</div>
+<div class="modal fade" id="AddOrEditModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" id="btnAddOrEditConfirm"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+    $(function () {
+        $('#AddOrEditModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('whatever');
+            var modal = $(this);
+            var PlaceId = '@PlaceId';
+            if (action == "add") {
+                $.get('@Url.Action("AddOrEdit","TypeAndPriceYard")?PlaceId=' + PlaceId+'&YardId=null', function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Thêm sân bong');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận thêm').on('click', function () {
+                    modal.find('.modal-body form[id="yard-form"]').submit();
+                });
+            }
+            else {
+                $.get('@Url.Action("AddOrEdit","TypeAndPriceYard")?PlaceId='+PlaceId+'&YardId='+action, function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Sửa sân bóng');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận sửa').on('click', function () {
+                    modal.find('.modal-body form[id="yard-form"]').submit();
+                });
+            }
+        });
+
+        @if(TempData[GlobalConstans.MessageSuccess]!=null)
+        {
+            @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
+        }
+        @if(TempData[GlobalConstans.MessageFail]!=null)
+        {
+            @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageFail].ToString()}')");
+        }
+    });
+
+    function DeleteConfirm(id) {
+        bootbox.confirm('Bạn có chắc muốn xóa ko?', function (result) {
+            if (result) {
+                $.get('@Url.Action("Delete","TypeAndPriceYard")?YardId=' + id, function (success) {
+                    if (success) {
+                        location.reload();
+                    }
+                });
+            }
+        });
+            }
+
+</script>

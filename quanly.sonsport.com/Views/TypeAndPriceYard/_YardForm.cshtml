@@ -1,0 +1,38 @@
+﻿@using Business.BusinessViewModels
+@model YardViewModels
+    <div class="container-fluid">
+        @using (Ajax.BeginForm("AddOrEdit", "TypeAndPriceYard",
+                    ajaxOptions: new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        OnSuccess = "OnSuccess",
+                        OnFailure = "OnFailure"
+                    },
+                    htmlAttributes: new { @id = "yard-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(n => n.MaDiaDiem)
+            @Html.HiddenFor(n => n.MaSanBong)
+            <div class="form-group">
+                @Html.LabelFor(n => n.TenSanBong, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.TenSanBong, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.TenSanBong, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(n => n.MaLoai, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.MaLoai, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.MaLoai, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        }
+
+    </div>
+<script>
+    function OnSuccess(response) {
+        var success = response.success;
+        var data = response;
+        if (response.success) {
+            location.reload();
+        }
+        $('#AddOrEditModal').find('.modal-body').html(response);
+    }
+</script>

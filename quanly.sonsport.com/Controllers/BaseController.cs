@@ -81,5 +81,25 @@ namespace quanly.sonsport.com.Controllers
                 return master;
             }  
         }
+
+        public ApplicationUser UserAccount
+        {
+            get
+            {
+                return UserManager.FindById(User.Identity.GetUserId()); 
+            }
+        }
+
+        public CHUSANQUANLY MasterOfPlace
+        {
+            get
+            {
+                var user = GetUser();
+                using (_dbContext = new SonSportDbContext())
+                {
+                    return _dbContext.CHUSANQUANLY.FirstOrDefault(n => n.MaChuSan == user.MaChuSan);
+                }   
+            }
+        }
     }
 }

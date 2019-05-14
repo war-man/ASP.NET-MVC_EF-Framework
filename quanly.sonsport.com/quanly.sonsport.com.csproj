@@ -2101,6 +2101,9 @@
     <Content Include="Views\PlaceYardFootball\Index.cshtml" />
     <Content Include="Views\PlaceYardFootball\_YardPlaceForm.cshtml" />
     <Content Include="Views\TypeAndPriceYard\Index.cshtml" />
+    <Content Include="Views\TypeAndPriceYard\_DetailsInfoPlaceYard.cshtml" />
+    <Content Include="Views\TypeAndPriceYard\_ListYards.cshtml" />
+    <Content Include="Views\TypeAndPriceYard\_YardForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

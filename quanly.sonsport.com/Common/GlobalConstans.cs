@@ -12,5 +12,9 @@ namespace quanly.sonsport.com.Common
 
         public const string MessageFail = "MessageFail";
 
+        public const string ViewDataLstPlaceYard = "ViewDataLstPlaceYard";
+        public const string MaDiaDiem = "MaDiaDiem";
+        public const string TenDiaDiem = "TenDiaDiem";
+
     }
 }
