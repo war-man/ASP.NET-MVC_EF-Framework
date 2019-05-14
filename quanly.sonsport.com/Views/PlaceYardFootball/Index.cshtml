@@ -1,0 +1,132 @@
+﻿@using Model.Context;
+@using quanly.sonsport.com.Common;
+@model IEnumerable<DIADIEMSANBONG>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Địa điểm sân bóng</h1>
+    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#AddOrEditRoleModal" data-whatever="add">
+        <i class="fas fa-plus fa-sm text-white-50"></i>
+        Thêm địa điểm mới
+    </a>
+</div>
+<div id="alert-result"></div>
+<!-- Content Row -->
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-bottom-primary shadow h-100 py-2">
+                <img src="~/Assets/Images/Image/@item.HINHANHDIADIEM.Code" style="padding: 5px;" class="card-img-top" width="100%" height="200px" alt="...">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <a href="@Url.Action("Edit","DiaDiemSanBong",new { @id=item.MaDiaDiem})" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                @item.TenDiaDiem
+                            </a>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@item.DiaChi</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <a data-toggle="modal" data-target="#AddOrEditRoleModal" data-whatever="@item.MaDiaDiem" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span class="text">Sửa</span>
+                    </a>
+                    <a href="XoaDiaDiem(@item.MaDiaDiem)" class="btn btn-danger btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                        <span class="text">Xóa</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+<div class="modal fade" id="AddOrEditModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" id="btnAddOrEditConfirm"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.content-wrapper -->
+@section scripts{
+    <script src="~/Assets/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+    $(function () {
+        $('#AddOrEditRoleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('whatever');
+            var modal = $(this);
+            if (action == "add") {
+                $.get('@Url.Action("AddOrEdit","PlaceYardFootball")?Action=' + action, function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Thêm địa điểm sân bong');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận thêm').on('click', function () {
+                    modal.find('.modal-body form[id="role-form"]').submit();
+                });
+            }
+            else {
+                $.get('@Url.Action("AddOrEdit","PlaceYardFootball")?Action=' + action, function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Sửa địa điểm sân bóng');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận sửa').on('click', function () {
+                    modal.find('.modal-body form[id="role-form"]').submit();
+                });
+            }
+        });
+
+        @if(TempData[GlobalConstans.MessageSuccess]!=null)
+        {
+            @Html.Raw($"ssh.ShowAlertSuccess('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
+        }
+    });
+
+    function DeleteConfirm(id) {
+        bootbox.confirm('Bạn có chắc muốn xóa ko?', function (result) {
+            if (result) {
+                $.get('@Url.Action("Delete","PlaceYardFootball")?PlaceId=' + id, function (success) {
+                    if (success) {
+                        location.reload();
+                    }
+                });
+            }
+        });
+            }
+
+    function OnSuccess(response) {
+        var success = response.success;
+        var data = response;
+        if (response.success) {
+            location.reload();
+        }
+        $('#AddOrEditRoleModal').find('.modal-body').html(response);
+    }
+    </script>
+}

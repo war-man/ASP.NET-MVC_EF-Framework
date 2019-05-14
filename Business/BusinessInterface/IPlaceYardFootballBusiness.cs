@@ -8,6 +8,12 @@ namespace Business.BusinessInterface
 {
     public interface IPlaceYardFootballBusiness
     {
+        void Create(DIADIEMSANBONG placeYard);
+
         List<DIADIEMSANBONG> GetAllPlaceYardFootball();
+
+        DIADIEMSANBONG SearchInfoPlace(int? MaDiaDiem);
+
+        List<DIADIEMSANBONG> SearchByMaster(int? MaChuSan);
     }
 }

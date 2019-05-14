@@ -203,6 +203,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Common\BusinessException.cs" />
     <Compile Include="Common\GlobalConstans.cs" />
+    <Compile Include="Common\GlobalInfo.cs" />
     <Compile Include="Common\GlobalMethod.cs" />
     <Compile Include="Common\JsonMessage.cs" />
     <Compile Include="Common\SessionObject.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Controllers\ForMasterYardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlaceYardFootballController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -341,6 +343,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\ForMasterYard\Index.cshtml" />
+    <Content Include="Views\PlaceYardFootball\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

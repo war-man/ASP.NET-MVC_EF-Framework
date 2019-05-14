@@ -1,6 +1,10 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
+using System.Web.SessionState;
+using sonsport.com.Common;
+using System.Threading.Tasks;
+using Model.Application;
 
 namespace sonsport.com.Controllers
 {
@@ -15,7 +19,8 @@ namespace sonsport.com.Controllers
         {
         }
 
-        public BaseController(ApplicationRoleManager roleManager,
+        public BaseController(
+            ApplicationRoleManager roleManager,
             ApplicationUserManager userManager, 
             ApplicationSignInManager signInManager)
         {
@@ -23,6 +28,7 @@ namespace sonsport.com.Controllers
             SignInManager = signInManager;
             RoleManager = roleManager;
         }
+
         public ApplicationSignInManager SignInManager
         {
             get
@@ -57,6 +63,17 @@ namespace sonsport.com.Controllers
             {
                 _roleManager = value;
             }
+        }
+
+        public async Task<ApplicationUser> GetUser()
+        {
+            if(User.Identity.IsAuthenticated)
+            {
+               
+                var user = await UserManager.FindByNameAsync(User.Identity.Name);
+                return user;
+            }
+            return null;
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using Business.BusinessInterface;
 using Model.Context;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Data.Entity;
 
 namespace Business.BusinessExtension
 {
@@ -18,6 +17,34 @@ namespace Business.BusinessExtension
         public List<DIADIEMSANBONG> GetAllPlaceYardFootball()
         {
             return dbContext.DIADIEMSANBONG.ToList();
+        }
+
+        public DIADIEMSANBONG SearchInfoPlace(int? MaDiaDiem)
+        {
+            DIADIEMSANBONG Place = new DIADIEMSANBONG();
+            if(MaDiaDiem!=null)
+            {
+                Place = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY)
+                                                .Include(d => d.HINHANHDIADIEM)
+                                                .ToList()
+                                                .FirstOrDefault(n=>n.MaDiaDiem==MaDiaDiem);
+            }
+            return Place;
+        }
+
+        public List<DIADIEMSANBONG> SearchByMaster(int? MaChuSan)
+        {
+            var lstPlace = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY).Include(d => d.HINHANHDIADIEM).ToList();
+            if (MaChuSan!=null)
+            {
+                lstPlace = lstPlace.Where(n => n.MaChuSan == MaChuSan).ToList();
+            }
+            return lstPlace;
+        }
+
+        public void Create(DIADIEMSANBONG placeYard)
+        {
+            
         }
     }
 }

@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Model.Application;
+using Model.Context;
 
 namespace quanly.sonsport.com.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         protected ApplicationSignInManager _signInManager;
         protected ApplicationUserManager _userManager;
         protected ApplicationRoleManager _roleManager;
+        protected SonSportDbContext _dbContext;
 
         public BaseController()
         {
@@ -59,6 +64,20 @@ namespace quanly.sonsport.com.Controllers
             {
                 _roleManager = value;
             }
+        }
+
+        public ApplicationUser GetUser()
+        {
+            return UserManager.FindById(User.Identity.GetUserId());
+        }
+
+        public CHUSANQUANLY GetMaster()
+        {
+            using (_dbContext = new SonSportDbContext())
+            {
+                var master = _dbContext.CHUSANQUANLY.FirstOrDefault(n => n.MaChuSan == GetUser().MaChuSan);
+                return master;
+            }  
         }
     }
 }
