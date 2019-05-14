@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<label class="my-1 mr-2" for="inlineFormCustomSelectPref">Chọn địa điểm</label>
+<select class="custom-select bg-primary my-1 mr-sm-2 text-white" id="inlineFormCustomSelectPref">
+    <option selected>Choose...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+</select>
+<hr />
+<h1 class="h3 mb-0 text-gray-800">Loại sân và giá</h1>
+<p class="mb-4">Thông tin chung về sân bóng và giá sân!</p>
+
+<div id="alert-result"></div>
+<!--Thông tin chung -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#collapseCardInfo" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardInfo">
+        <h6 class="m-0 font-weight-bold text-primary">Thông tin chung</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="collapseCardInfo" style="">
+        <div class="card-body">
+            This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand!
+        </div>
+    </div>
+</div>
+<!-- Basic Card Example -->
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
+        <h6 class="m-0 font-weight-bold text-primary">Các sân bóng</h6>
+        <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text text-white">Thêm sân bóng mới</span>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="card-columns">
+            <div class="card border-bottom-primary shadow h-100 py-2">
+                <img src="~/Assets/Images/Image/image-1.jpg" class="card-img-top" width="100%" height="200px" alt="...">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <a href="#" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Tên sấn
+                            </a>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Loại sân:</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="" class="btn btn-info btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fa fa-money-check"></i>
+                        </span>
+                        <span class="text text-white">Bảng giá</span>
+                    </a>
+                    <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span class="text text-white">Sửa</span>
+                    </a>
+                    <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="" class="btn btn-danger btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                        <span class="text text-white">Xóa</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

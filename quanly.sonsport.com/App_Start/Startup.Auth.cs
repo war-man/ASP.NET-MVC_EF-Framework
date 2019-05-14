@@ -3,11 +3,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Model.Application;
 using Model.Context;
 using Owin;
-using quanly.sonsport.com.Models;
 
 namespace quanly.sonsport.com
 {

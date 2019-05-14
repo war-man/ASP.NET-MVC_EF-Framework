@@ -1,70 +1,77 @@
-﻿@using quanly.sonsport.com.Models
+﻿@using Business.BusinessViewModels
 @model PlaceYardViewModel
-@using (Ajax.BeginForm("AddOrEdit", "PlaceYardFootball",
-            ajaxOptions: new AjaxOptions
-            {
-                HttpMethod = "POST",
-                OnSuccess = "OnSuccess",
-                OnFailure = "OnFailure"
-            },
-            htmlAttributes: new { @id = "yard-place-form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(n => n.MaDiaDiem)
-    <div class="form-group">
-        @Html.LabelFor(n => n.TenDiaDiem, htmlAttributes: new { @class = "col-form-label" })
-        @Html.TextBoxFor(n => n.TenDiaDiem, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(n => n.TenDiaDiem, null, htmlAttributes: new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(n => n.MoTaDiaDiem, htmlAttributes: new { @class = "col-form-label" })
-        @Html.TextBoxFor(n => n.MoTaDiaDiem, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(n => n.MoTaDiaDiem, null, htmlAttributes: new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(n => n.Sdt1, htmlAttributes: new { @class = "col-form-label" })
-        @Html.TextBoxFor(n => n.Sdt1, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(n => n.Sdt1, null, htmlAttributes: new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(n => n.Sdt2, htmlAttributes: new { @class = "col-form-label" })
-        @Html.TextBoxFor(n => n.Sdt2, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(n => n.Sdt2, null, htmlAttributes: new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(n => n.DiaChi, htmlAttributes: new { @class = "col-form-label" })
-        @Html.TextBoxFor(n => n.DiaChi, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(n => n.DiaChi, null, htmlAttributes: new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
+<div class="container-fluid">
+    @using (Ajax.BeginForm("AddOrEdit", "PlaceYardFootball",
+                ajaxOptions: new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "OnSuccess",
+                    OnFailure = "OnFailure"
+                },
+                htmlAttributes: new { @id = "yard-place-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(n => n.MaDiaDiem)
+        @Html.HiddenFor(n=>n.MaChuSan)
         <div class="form-group">
-            @Html.LabelFor(n => n.GioMoCua, htmlAttributes: new { @class = "col-form-label" })
-            @Html.TextBoxFor(n => n.GioMoCua, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(n => n.GioMoCua, null, htmlAttributes: new { @class = "text-danger" })
+            @Html.LabelFor(n => n.TenDiaDiem, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.TenDiaDiem, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.TenDiaDiem, null, htmlAttributes: new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(n => n.GioDongCua, htmlAttributes: new { @class = "col-form-label" })
-            @Html.TextBoxFor(n => n.GioDongCua, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(n => n.GioDongCua, null, htmlAttributes: new { @class = "text-danger" })
+        <div class="form-group ">
+            @Html.LabelFor(n => n.MoTaDiaDiem, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.MoTaDiaDiem, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.MoTaDiaDiem, null, htmlAttributes: new { @class = "text-danger" })
         </div>
-    </div>
+        
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.Sdt1, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.Sdt1, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.Sdt1, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.Sdt2, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.Sdt2, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.Sdt2, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+        
 
-    <div class="form-group row">
-        <label class="control-label col-md-2">Tùy chọn</label>
-        <div class="form-check form-check-inline col-3">
-            @Html.CheckBoxFor(model => model.CoPhiNuocUongTrenSan, htmlAttributes: new { @class = "form-check-input" })
-            @Html.LabelFor(model => model.CoPhiNuocUongTrenSan, htmlAttributes: new { @class = "form-check-label" })
+        <div class="form-group ">
+            @Html.LabelFor(n => n.DiaChi, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.DiaChi, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.DiaChi, null, htmlAttributes: new { @class = "text-danger" })
         </div>
-        <div class="form-check form-check-inline col-3">
-            @Html.CheckBoxFor(model => model.CoPhiMuonBong, htmlAttributes: new { @class = "form-check-input" })
-            @Html.LabelFor(model => model.CoPhiMuonBong, htmlAttributes: new { @class = "form-check-label" })
-        </div>
-        <div class="form-check form-check-inline col-3">
-            @Html.CheckBoxFor(model => model.CanDatCocKhiDatSan, htmlAttributes: new { @class = "form-check-input" })
-            @Html.LabelFor(model => model.CanDatCocKhiDatSan, htmlAttributes: new { @class = "form-check-label" })
-        </div>
-    </div>
-}
 
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.GioMoCua, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.GioMoCua, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.GioMoCua, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.GioDongCua, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.GioDongCua, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.GioDongCua, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-check col-4">
+                @Html.CheckBoxFor(model => model.CoPhiNuocUongTrenSan, htmlAttributes: new { @class = "form-check-input" })
+                @Html.LabelFor(model => model.CoPhiNuocUongTrenSan, htmlAttributes: new { @class = "form-check-label" })
+            </div>
+            <div class="form-check col-4">
+                @Html.CheckBoxFor(model => model.CoPhiMuonBong, htmlAttributes: new { @class = "form-check-input" })
+                @Html.LabelFor(model => model.CoPhiMuonBong, htmlAttributes: new { @class = "form-check-label" })
+            </div>
+            <div class="form-check col-4">
+                @Html.CheckBoxFor(model => model.CanDatCocKhiDatSan, htmlAttributes: new { @class = "form-check-input" })
+                @Html.LabelFor(model => model.CanDatCocKhiDatSan, htmlAttributes: new { @class = "form-check-label" })
+            </div>
+        </div>
+
+    }
+
+</div>

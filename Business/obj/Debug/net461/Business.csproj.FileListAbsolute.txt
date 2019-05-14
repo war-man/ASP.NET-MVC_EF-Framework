@@ -1,0 +1,4 @@
+D:\Respositories\WebsiteHiringFootballYard\Business\obj\Debug\net461\Business.csprojAssemblyReference.cache
+D:\Respositories\WebsiteHiringFootballYard\Business\obj\Debug\net461\Business.csproj.CoreCompileInputs.cache
+D:\Respositories\WebsiteHiringFootballYard\Business\obj\Debug\net461\Business.AssemblyInfoInputs.cache
+D:\Respositories\WebsiteHiringFootballYard\Business\obj\Debug\net461\Business.AssemblyInfo.cs

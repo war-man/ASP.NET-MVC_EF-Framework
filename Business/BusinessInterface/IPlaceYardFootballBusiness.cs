@@ -1,4 +1,5 @@
-﻿using Model.Context;
+﻿using Business.BusinessViewModels;
+using Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,11 @@ namespace Business.BusinessInterface
 {
     public interface IPlaceYardFootballBusiness
     {
-        void Create(DIADIEMSANBONG placeYard);
+        void CreatePlace(PlaceYardViewModel placeYardViewModel);
+
+        void DeletePlace(int MaDiaDiem);
+
+        void UpdatePlace(PlaceYardViewModel placeYardViewModel);
 
         List<DIADIEMSANBONG> GetAllPlaceYardFootball();
 

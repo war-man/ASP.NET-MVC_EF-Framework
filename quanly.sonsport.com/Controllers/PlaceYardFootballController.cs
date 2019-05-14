@@ -1,24 +1,23 @@
-﻿using Business.BusinessInterface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+﻿using System.Web.Mvc;
 using Model.Context;
-using quanly.sonsport.com.Models;
 using quanly.sonsport.com.Common;
+using Business.BusinessInterface;
+using Business.BusinessViewModels;
 
 namespace quanly.sonsport.com.Controllers
 {
+    [Authorize]
+    [RoutePrefix("chu-san")]
     public class PlaceYardFootballController : BaseController
     {
-        private readonly IPlaceYardFootballBusiness PlaceYardFootballBusiness;
+        private IPlaceYardFootballBusiness PlaceYardFootballBusiness;
 
         public PlaceYardFootballController(IPlaceYardFootballBusiness placeYardFootballBusiness)
         {
             this.PlaceYardFootballBusiness = placeYardFootballBusiness;
         }
+
+        [Route("dia-diem-san-bong")]
         // GET: PlaceYardFootball
         public ActionResult Index()
         {
@@ -26,13 +25,16 @@ namespace quanly.sonsport.com.Controllers
             return View(lstPlace);
         }
 
-        public ActionResult AddOrEdit(string Action)
+        public ActionResult AddOrEdit(string PlaceId)
         {
-            if(Action.Equals("add"))
+            if (PlaceId.Equals("add"))
             {
-                return PartialView("_YardPlaceForm", new PlaceYardViewModel());
+                var user = GetMaster();
+                int MasterId = user.MaChuSan;
+                var model = new PlaceYardViewModel() { MaChuSan = MasterId };
+                return PartialView("_YardPlaceForm",model);
             }
-            int MaDiaDiem = int.Parse(Action);
+            int MaDiaDiem = int.Parse(PlaceId);
             DIADIEMSANBONG placeYard = PlaceYardFootballBusiness.SearchInfoPlace(MaDiaDiem);
             var place = new PlaceYardViewModel
             {
@@ -48,44 +50,35 @@ namespace quanly.sonsport.com.Controllers
                 Sdt1 = placeYard.Sdt1,
                 Sdt2 = placeYard.Sdt2,
                 TenDiaDiem = placeYard.TenDiaDiem,
-                MaChuSan= placeYard.MaChuSan
+                MaChuSan = placeYard.MaChuSan
             };
-            return PartialView("_YardPlaceForm",place);
+            return PartialView("_YardPlaceForm", place);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrEdit(PlaceYardViewModel placeYard)
+        public ActionResult AddOrEdit(PlaceYardViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (placeYard.MaDiaDiem==null)
+                if (model.MaDiaDiem == null)
                 {
-                    var placeAdd = new DIADIEMSANBONG
-                    {
-                        CanDatCocKhiDatSan = placeYard.CanDatCocKhiDatSan,
-                        CoPhiMuonBong = placeYard.CoPhiMuonBong,
-                        CoPhiNuocUongTrenSan = placeYard.CoPhiNuocUongTrenSan,
-                        DiaChi = placeYard.DiaChi,
-                        GioDongCua = placeYard.GioDongCua,
-                        GioMoCua = placeYard.GioMoCua,
-                        MoTaDiaDiem = placeYard.MoTaDiaDiem,
-                        Quan = placeYard.Quan,
-                        Sdt1 = placeYard.Sdt1,
-                        Sdt2 = placeYard.Sdt2,
-                        TenDiaDiem = placeYard.TenDiaDiem,
-                        MaChuSan= placeYard.MaChuSan
-                    };
-                    
-                    TempData[GlobalConstans.MessageSuccess] = "Thêm quyền thành công!";
+                    PlaceYardFootballBusiness.CreatePlace(model);
+                    TempData[GlobalConstans.MessageSuccess] = "Thêm địa điểm thành công!";
                     return Json(new { success = true }, JsonRequestBehavior.AllowGet);
                 }
-                var role = new ApplicationRole() { Id = model.Id, Name = model.Name };
-                await RoleManager.UpdateAsync(role);
-                TempData[GlobalConstans.MessageSuccess] = "Sửa quyền thành công!";
+                PlaceYardFootballBusiness.UpdatePlace(model);
+                TempData[GlobalConstans.MessageSuccess] = "Sửa địa điểm thành công!";
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
-            return PartialView("_RoleForm", model);
+            return PartialView("_YardPlaceForm", model);
+        }
+
+        public JsonResult Delete(int PlaceId)
+        {
+            PlaceYardFootballBusiness.DeletePlace(PlaceId);
+            TempData[GlobalConstans.MessageSuccess] = "Xóa thành công!";
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
     }
 }

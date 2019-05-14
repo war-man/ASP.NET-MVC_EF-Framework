@@ -68,14 +68,16 @@ namespace quanly.sonsport.com.Controllers
 
         public ApplicationUser GetUser()
         {
-            return UserManager.FindById(User.Identity.GetUserId());
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            return user;
         }
 
         public CHUSANQUANLY GetMaster()
         {
             using (_dbContext = new SonSportDbContext())
             {
-                var master = _dbContext.CHUSANQUANLY.FirstOrDefault(n => n.MaChuSan == GetUser().MaChuSan);
+                var user = GetUser();
+                var master = _dbContext.CHUSANQUANLY.FirstOrDefault(n => n.MaChuSan == user.MaChuSan);
                 return master;
             }  
         }

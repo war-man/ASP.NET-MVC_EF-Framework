@@ -38,8 +38,8 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản lý sân bóng:</h6>
-                <a class="collapse-item" href="@Url.Action("Index","PlaceYardFootball")">Địa điểm</a>
-                @*<a class="collapse-item" href="cards.html">Cards</a>*@
+                <a class="collapse-item @Html.IsMenuActive("Index","PlaceYardFootball")" href="@Url.Action("Index","PlaceYardFootball")">Địa điểm</a>
+                <a class="collapse-item @Html.IsMenuActive("Index","TypeAndPriceYard")" href="@Url.Action("Index","TypeAndPriceYard")">Loại sân và giá</a>
             </div>
         </div>
     </li>
