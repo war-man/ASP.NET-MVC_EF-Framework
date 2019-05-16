@@ -77,6 +77,12 @@ namespace Business.BusinessExtension
             return Place;
         }
 
+        public DIADIEMSANBONG SearchInfoPlaceByYardId(int YardId)
+        {
+            var yard = dbContext.SANBONG.FirstOrDefault(n => n.MaSanBong == YardId);
+            return dbContext.DIADIEMSANBONG.FirstOrDefault(n => n.MaDiaDiem == yard.MaDiaDiem);
+        }
+
         public void UpdatePlace(PlaceYardViewModel model)
         {
             var place = new DIADIEMSANBONG

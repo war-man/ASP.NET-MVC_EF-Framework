@@ -3,6 +3,7 @@
 @model List<SANBONG>
 @{
     int PlaceId = (int)ViewData[GlobalConstans.MaDiaDiem];
+
 }
 <!-- Các sân bóng -->
 <div class="card shadow mb-4">
@@ -26,15 +27,15 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <a href="#" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    <a href="#" class="h5 mb-0 font-weight-bold text-primary-800">
                                         @item.TenSanBong
                                     </a>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Loại sân: @item.LOAISANBONG.TenLoaiSan</div>
+                                    <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Loại sân: @item.LOAISANBONG.TenLoaiSan</div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <a data-whatever="" class="btn btn-info btn-icon-split">
+                            <a class="btn btn-info btn-icon-split" onclick="ShowPriceTable(@item.MaSanBong)">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-money-check"></i>
                                 </span>
@@ -46,7 +47,7 @@
                                 </span>
                                 <span class="text text-white">Sửa</span>
                             </a>
-                            <a class="btn btn-danger btn-icon-split">
+                            <a class="btn btn-danger btn-icon-split" onclick="DeleteConfirm(@item.MaSanBong)">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-trash"></i>
                                 </span>
@@ -63,6 +64,9 @@
         }
     </div>
 </div>
+
+<div id="price-table"></div>
+
 <div class="modal fade" id="AddOrEditModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -85,6 +89,7 @@
 
 <script src="~/Assets/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Assets/SonSiHoJS/ssh.js"></script>
 <script>
     $(function () {
         $('#AddOrEditModal').on('show.bs.modal', function (event) {
@@ -111,15 +116,6 @@
                 });
             }
         });
-
-        @if(TempData[GlobalConstans.MessageSuccess]!=null)
-        {
-            @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
-        }
-        @if(TempData[GlobalConstans.MessageFail]!=null)
-        {
-            @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageFail].ToString()}')");
-        }
     });
 
     function DeleteConfirm(id) {
@@ -127,11 +123,26 @@
             if (result) {
                 $.get('@Url.Action("Delete","TypeAndPriceYard")?YardId=' + id, function (success) {
                     if (success) {
+                       var PlaceId = $('#PlaceId').val();
+                        sessionStorage.setItem('PlaceIdSelected', PlaceId);
                         location.reload();
                     }
                 });
             }
-        });
-            }
+        });  
+    }
 
+   function LoadRowPrice(YardId) {
+       $.get('@Url.Action("LoadRowPrice","TypeAndPriceYard")?YardId='+YardId, function (response) {
+            $('#tblBodyPrice').empty().html(response);
+        });
+    }
+
+    function ShowPriceTable(YardId) {
+        $.get('@Url.Action("LoadPriceOfYard","TypeAndPriceYard")?YardId='+YardId, function (response) {
+            $('#price-table').empty().html(response);
+            LoadRowPrice(YardId);
+            ssh.ScollToBottom('slow');
+        });
+    }
 </script>

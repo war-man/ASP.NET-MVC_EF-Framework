@@ -208,6 +208,7 @@
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlaceYardFootballController.cs" />
@@ -2085,7 +2086,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Assets\Scripts\umd\popper.min.js.map" />
     <Content Include="Assets\Scripts\umd\popper.js.map" />
     <Content Include="Assets\Scripts\umd\popper-utils.min.js.map" />
@@ -2104,6 +2104,10 @@
     <Content Include="Views\TypeAndPriceYard\_DetailsInfoPlaceYard.cshtml" />
     <Content Include="Views\TypeAndPriceYard\_ListYards.cshtml" />
     <Content Include="Views\TypeAndPriceYard\_YardForm.cshtml" />
+    <Content Include="Views\TypeAndPriceYard\_PriceTable.cshtml" />
+    <Content Include="Views\TypeAndPriceYard\_RowPrice.cshtml" />
+    <Content Include="Views\TypeAndPriceYard\_RowPriceAdd.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

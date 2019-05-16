@@ -1,0 +1,88 @@
+﻿@using Model.Context
+@using quanly.sonsport.com.Common
+@model List<BANGGIALOAISAN>
+@{
+    int index = 1;
+    int YardId = (int)ViewData[GlobalConstans.ViewDataYard];
+}
+@foreach (var item in Model)
+{
+    <tr data-PriceId="@item.MaBangGiaLoaiSan">
+        <td style="color:black;" class="text-center">@(index++)</td>
+        <td><input data-edit-timestart="@item.MaBangGiaLoaiSan" readonly type="number" value="@item.GioBatDau" min = "0" max = "24"/><span style="color:black;">giờ</span></td>
+        <td><input data-edit-timeend="@item.MaBangGiaLoaiSan" readonly type="number" value="@item.GioKetThuc" min = "0" max = "24"/><span style="color:black;">giờ</span></td>
+        <td><input data-edit-price="@item.MaBangGiaLoaiSan" style="width:100px;" type="number" readonly value="@item.GiaTien" min = "0" max = "10000000"/> <span style="color:black;">VND / 1 giờ</span></td>
+        <td id="action-price">
+            <a class="btn btn-success btn-icon-split" onclick="EditPrice(@item.MaBangGiaLoaiSan)"><span class="icon text-white-50"><i class="fas fa-edit"></i></span></a>
+            <a class="btn btn-danger btn-icon-split" onclick="DeletePriceConfirm(@item.MaBangGiaLoaiSan)"><span class="icon text-white-50"><i class="fas fa-trash"></i></span></a>
+        </td>
+    </tr>
+}
+<script>
+    function DeletePriceConfirm(id) {
+        bootbox.confirm('Bạn có chắc muốn xóa ko?', function (result) {
+            if (result) {
+                $.get('@Url.Action("DeletePrice","TypeAndPriceYard")?PriceId=' + id, (success) => {
+                    if (success) {
+                       LoadRowPrice(@YardId);
+                    }
+                });
+            }
+        });  
+        }
+
+    function UnlockInput(id) {
+        var input = $('#tblBodyPrice > tr[data-PriceId="' + id + '"]');
+        input.find('td input[data-edit-timestart="' + id + '"]').removeAttr('readonly').focus();
+        input.find('td input[data-edit-timeend="' + id + '"]').removeAttr('readonly');
+        input.find('td input[data-edit-price="' + id + '"]').removeAttr('readonly');
+
+    }
+
+    function ResetEditInput(id) {
+        var input = $('#tblBodyPrice > tr[data-PriceId="' + id + '"]');
+        input.find('td input[data-edit-timestart="' + id + '"]').val('').focus();
+        input.find('td input[data-edit-timeend="' + id + '"]').val('');
+        input.find('td input[data-edit-price="' + id + '"]').val('');
+    }
+
+    function EditPrice(id) {
+        var action = $('#tblBodyPrice > tr[data-PriceId="' + id + '"] > td[id="action-price"]');
+        html = '<a class="btn btn-success btn-icon-split" onclick="ConfirmEditPrice('+id+')"><span class="icon text-gray-900"><i class="fas fa-check"></i></span></a>' +
+            '<a class="btn btn-info btn-icon-split" onclick="ResetEditInput('+id+')"><span class="icon text-gray-900"><i class="fas fa-redo"></i></span></a>' +
+            '<a class="btn btn-danger btn-icon-split" onclick="CancelEditPrice()"><span class="icon text-gray-900"><i class="fas fa-ban"></i></span></a>';
+        action.empty().html(html);
+        UnlockInput(id);
+    }
+
+    function ConfirmEditPrice(id) {
+        var input = $('#tblBodyPrice > tr[data-PriceId="' + id + '"]');
+        var start =  input.find('td input[data-edit-timestart="' + id + '"]').val();
+        var end = input.find('td input[data-edit-timeend="' + id + '"]').val();
+        var price = input.find('td input[data-edit-price="' + id + '"]').val();
+        var model = {
+            MaBangGiaLoaiSan:id,
+            GioBatDau:start,
+            GioKetThuc:end,
+            GiaTien: price,
+            MaSanBong:@YardId,
+        };
+
+        $.post('@Url.Action("EditPrice","TypeAndPriceYard")', model, function(response){
+            if (response.success) {
+                CancelEditPrice();
+            }
+            else {
+                bootbox.alert({
+                        message: response.messageError,
+                        className: 'rubberBand animated',
+                        backdrop: true,
+                    });
+            }
+        });
+    }
+
+    function CancelEditPrice() {
+        LoadRowPrice(@YardId);
+    }
+</script>

@@ -19,6 +19,8 @@ namespace quanly.sonsport.com
             container.RegisterType<IPlaceYardFootballBusiness, PlaceYardFootballBusiness>();
             container.RegisterType<IYardFootballOfPlaceBusiness, YardFootballOfPlaceBusiness>();
             container.RegisterType<IPriceOfYardFootBallBusiness, PriceOfYardFootBallBusiness>();
+            container.RegisterType<ITypeOfYardBusiness, TypeOfYardBusiness>();
+            container.RegisterType<IEmployeeOfPlaceBusiness, EmployeeOfPlaceBusiness>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

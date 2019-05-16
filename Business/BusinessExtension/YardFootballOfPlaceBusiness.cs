@@ -3,6 +3,8 @@ using Model.Context;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using Business.BusinessViewModels;
+
 namespace Business.BusinessExtension
 {
     public class YardFootballOfPlaceBusiness : GenericBusiness,IYardFootballOfPlaceBusiness
@@ -11,6 +13,31 @@ namespace Business.BusinessExtension
         public YardFootballOfPlaceBusiness(SonSportDbContext database) : base(database)
         {
             dbContext = database;
+        }
+
+        public void CreateYard(YardViewModels model)
+        {
+            var yard = new SANBONG
+            {
+                MaLoai = model.MaLoai, 
+                TenSanBong= model.TenSanBong,
+                MaDiaDiem= model.MaDiaDiem
+            };
+            using (dbContext = new SonSportDbContext())
+            {
+                dbContext.SANBONG.Add(yard);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void DeleteYard(int YardId)
+        {
+            var Yard = this.SearchDetails(YardId);
+            using (dbContext = new SonSportDbContext())
+            {
+                dbContext.Entry(Yard).State = EntityState.Deleted;
+                dbContext.SaveChanges();
+            }
         }
 
         public List<SANBONG> GetAllYardFooballByPlace(int? PlaceId)
@@ -23,6 +50,28 @@ namespace Business.BusinessExtension
         {
             var Yard = dbContext.SANBONG.FirstOrDefault(n => n.MaSanBong == YardId && n.MaDiaDiem==PlaceId);
             return Yard;
+        }
+
+        public SANBONG SearchDetails(int? YardId)
+        {
+            var Yard = dbContext.SANBONG.FirstOrDefault(n => n.MaSanBong == YardId);
+            return Yard;
+        }
+
+        public void UpdateYard(YardViewModels model)
+        {
+            var yard = new SANBONG
+            {
+                MaSanBong = (int)model.MaSanBong,
+                MaLoai = model.MaLoai,
+                TenSanBong = model.TenSanBong,
+                MaDiaDiem = model.MaDiaDiem
+            };
+            using (dbContext = new SonSportDbContext())
+            {
+                dbContext.Entry(yard).State = EntityState.Modified;
+                dbContext.SaveChanges();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Model.Context;
+﻿using Business.BusinessViewModels;
+using Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,13 @@ namespace Business.BusinessInterface
         List<SANBONG> GetAllYardFooballByPlace(int? PlaceId);
 
         SANBONG SearchDetails(int? YardId,int? PlaceId);
+
+        SANBONG SearchDetails(int? YardId);
+
+        void CreateYard(YardViewModels yard);
+
+        void DeleteYard(int YardId);
+
+        void UpdateYard(YardViewModels yard);
     }
 }

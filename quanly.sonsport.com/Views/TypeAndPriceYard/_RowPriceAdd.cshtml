@@ -1,0 +1,65 @@
+﻿@using Model.Context
+@using Business.BusinessViewModels
+@using quanly.sonsport.com.Common
+@model PriceOfYardViewModels
+<tr id="RowAddNew">
+    <td>@Html.HiddenFor(n => n.MaSanBong)</td>
+    <td>
+        @Html.TextBoxFor(n => n.GioBatDau, htmlAttributes: new { required = "required", @type = "number", @min = "0", @max = "24" }) <span style="color:black;">giờ</span>
+    </td>
+    <td>
+        @Html.TextBoxFor(n => n.GioKetThuc, new { @required = "required", @type = "number", @min = "0", @max = "24" }) <span style="color:black;">giờ</span>
+    </td>
+    <td>
+        @Html.TextBoxFor(n => n.GiaTien, new { @required = "required", @type = "number", @min = "0", @max = "10000000", @style = "width:100px;" }) <span style="color:black;">VND / 1 giờ</span>
+    </td>
+    <td>
+        <a class="btn btn-success btn-icon-split" onclick="ConfirmAdd()"><span class="icon text-gray-900"><i class="fas fa-check"></i></span></a>
+        <a class="btn btn-info btn-icon-split" onclick="ResetInput()"><span class="icon text-gray-900"><i class="fas fa-redo"></i></span></a>
+        <a class="btn btn-danger btn-icon-split" onclick="CancelAdd()"><span class="icon text-gray-900"><i class="fas fa-ban"></i></span></a>
+    </td>
+</tr>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+
+<script>
+
+    function ResetInput() {
+        $('#GioBatDau').val('');
+        $('#GioKetThuc').val('');
+        $('#GiaTien').val('');
+        $('#GioBatDau').focus();
+    }
+
+    function CancelAdd() {
+        $('#RowAddNew').remove();
+        $('#btnThemGiaSanMoi').removeClass('disabled');
+        }
+
+    function ConfirmAdd() {
+        var start = parseInt($('#GioBatDau').val());
+            var end = parseInt($('#GioKetThuc').val());
+            var price = parseInt($('#GiaTien').val());
+            var yardid = $('#MaSanBong').val();
+            var model = {
+                GioBatDau : start,
+                GioKetThuc : end,
+                GiaTien : price,
+                MaSanBong : yardid
+            };
+            $.post('@Url.Action("CreatePrice","TypeAndPriceYard")', model, function(response){
+                if (response.success) {
+                    CancelAdd();
+                    LoadRowPrice(yardid);
+                }
+                else {
+                    bootbox.alert({
+                        message: response.messageError,
+                        className: 'rubberBand animated',
+                        backdrop: true,
+                    });
+                }
+            });
+    }
+
+</script>

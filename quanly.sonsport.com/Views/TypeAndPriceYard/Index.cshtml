@@ -8,7 +8,7 @@
 
 <label class="my-1 mr-2" for="PlaceId">Chọn địa điểm</label>
 <select class="custom-select bg-primary my-1 mr-sm-2 text-white" id="PlaceId" onchange="LoadYardOfPlace();">
-    <option selected>Lựa chọn địa điểm sân bóng...</option>
+    <option value="0">Lựa chọn địa điểm sân bóng...</option>
     @foreach (var item in lstPlaceYard)
     {
         <option value="@item.MaDiaDiem">@item.TenDiaDiem</option>
@@ -21,26 +21,50 @@
 @section scripts{
     <script>
     $(function () {
+
        @if(TempData[GlobalConstans.MessageSuccess]!=null)
         {
-            @Html.Raw($"ssh.ShowAlertSuccess('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
+            @Html.Raw($"ssh.ShowAlertSuccess('{TempData[GlobalConstans.MessageSuccess].ToString()}');");
         }
         @if(TempData[GlobalConstans.MessageFail]!=null)
         {
-            @Html.Raw($"ssh.ShowAlertError('{TempData[GlobalConstans.MessageFail].ToString()}')");
+            @Html.Raw($"ssh.ShowAlertError('{TempData[GlobalConstans.MessageFail].ToString()}');");
         }
+        @if(TempData[GlobalConstans.MessageSuccessBootBox]!=null)
+        {
+            @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageSuccessBootBox].ToString()}');");
+        }
+        @if(TempData[GlobalConstans.MessageFailBootBox]!=null)
+        {
+            @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageFailBootBox].ToString()}');");
+        }
+        ReOnLoad();
+
     })
+
+    function ReOnLoad() {
+        var value = sessionStorage.getItem('PlaceIdSelected');
+        if (value!=null) {
+            $('#PlaceId').val(value);
+            LoadYardOfPlace();
+            ssh.ScollToBottom(0);
+            sessionStorage.removeItem('PlaceIdSelected');
+        }
+    }
+
      function LoadYardOfPlace() {
-            var madiadiem = $('#PlaceId').val();
-            $.post('@Url.Action("LoadDetailsInfoPlaceYard","TypeAndPriceYard")?PlaceId='+madiadiem, function (response) {
+         var madiadiem = $('#PlaceId').val();
+         $.post('@Url.Action("LoadDetailsInfoPlaceYard","TypeAndPriceYard")?PlaceId='+madiadiem, function (response) {
                 $('#DetailsInfoPlaceYard').empty().html(response);
                 if (response.error) {
                     location.reload();
                 }
                 $.post('@Url.Action("LoadListYardsOfPlace","TypeAndPriceYard")?PlaceId='+madiadiem, function (data) {
                     $('#ListYards').empty().html(data);
+                    ssh.ScollToBottom('slow');
                 });
             });
-        };
+            };
+    
     </script>
 }

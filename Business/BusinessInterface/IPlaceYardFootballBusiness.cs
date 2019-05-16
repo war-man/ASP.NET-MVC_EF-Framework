@@ -19,6 +19,8 @@ namespace Business.BusinessInterface
 
         DIADIEMSANBONG SearchInfoPlace(int? MaDiaDiem);
 
+        DIADIEMSANBONG SearchInfoPlaceByYardId(int YardId);
+
         List<DIADIEMSANBONG> SearchByMaster(int? MaChuSan);
     }
 }
