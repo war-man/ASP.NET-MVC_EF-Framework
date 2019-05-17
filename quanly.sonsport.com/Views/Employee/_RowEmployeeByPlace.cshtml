@@ -1,0 +1,20 @@
+﻿@using Model.Context
+@using quanly.sonsport.com.Common
+@model List<NHANVIEN>
+@{
+    int index = 1;
+    //int YardId = (int)ViewData[GlobalConstans.ViewDataYard];
+}
+@foreach (var item in Model)
+{
+    <tr data-EmpId="@item.MaNhanVien">
+        <td class="text-center">@(index++)</td>
+        <td>@item.Email</td>
+        <td>@item.TenNhanVien</td>
+        <td>@item.SoDienThoai</td>
+        <td>@item.DIADIEMSANBONG.TenDiaDiem</td>
+        <td id="action-price">
+            <a class="btn btn-success btn-icon-split"><span class="icon text-gray-900"><i class="fas fa-user"></i>Lịch làm việc</span></a>
+        </td>
+    </tr>
+}

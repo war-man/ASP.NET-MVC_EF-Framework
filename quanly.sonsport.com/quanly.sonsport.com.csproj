@@ -2108,6 +2108,11 @@
     <Content Include="Views\TypeAndPriceYard\_RowPrice.cshtml" />
     <Content Include="Views\TypeAndPriceYard\_RowPriceAdd.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\_ListEmployee.cshtml" />
+    <Content Include="Views\Employee\_ListAllEmployee.cshtml" />
+    <Content Include="Views\Employee\_RowEmployeeByMaster.cshtml" />
+    <Content Include="Views\Employee\_RowEmployeeByPlace.cshtml" />
+    <Content Include="Views\Employee\_EmployeeForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

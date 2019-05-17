@@ -41,6 +41,11 @@
                 <a class="collapse-item @Html.IsMenuActive("Index","PlaceYardFootball")" href="@Url.Action("Index","PlaceYardFootball")">Địa điểm</a>
                 <a class="collapse-item @Html.IsMenuActive("Index","TypeAndPriceYard")" href="@Url.Action("Index","TypeAndPriceYard")">Loại sân và giá</a>
             </div>
+            <hr />
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quản lý nhân viên:</h6>
+                <a class="collapse-item @Html.IsMenuActive("Index","Employee")" href="@Url.Action("Index","Employee")">Nhân viên</a>
+            </div>
         </div>
     </li>
 </ul>

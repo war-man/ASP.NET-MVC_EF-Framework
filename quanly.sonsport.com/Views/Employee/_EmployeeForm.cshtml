@@ -1,0 +1,59 @@
+﻿@using Business.BusinessViewModels
+@using quanly.sonsport.com.Common
+@using Model.Context
+@model NHANVIEN
+@{
+    var selectListPlace = ViewData[GlobalConstans.ViewDataLstPlaceYard] as List<DIADIEMSANBONG>;
+}
+<div class="container-fluid">
+    @using (Ajax.BeginForm("AddOrEdit", "Employee",
+                ajaxOptions: new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "OnSuccess",
+                    OnFailure = "OnFailure"
+                },
+                htmlAttributes: new { @id = "employee-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(n=>n.MaNhanVien)
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.TenNhanVien, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.TenNhanVien, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.TenNhanVien, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.SoDienThoai, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.SoDienThoai, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.SoDienThoai, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.Email, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.Email, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.Email, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.MaDiaDiem, htmlAttributes: new { @class = "col-form-label" })
+                @Html.DropDownListFor(n => n.MaDiaDiem, new SelectList(selectListPlace, "MaDiaDiem", "TenDiaDiem", "TenDiaDiem"), "Chọn sau", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.MaDiaDiem, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+
+    }
+</div>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+    function OnSuccess(response) {
+        var success = response.success;
+        var data = response;
+        if (response.success) {
+            location.reload();
+            
+        }
+        $('#AddOrEditModal').find('.modal-body').html(data);
+    }
+</script>

@@ -78,6 +78,14 @@
     <Compile Include="Migrations\201905110401025_test1.Designer.cs">
       <DependentUpon>201905110401025_test1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905161253218_Add colum IsHaveAccount in NHANVIEN.cs" />
+    <Compile Include="Migrations\201905161253218_Add colum IsHaveAccount in NHANVIEN.Designer.cs">
+      <DependentUpon>201905161253218_Add colum IsHaveAccount in NHANVIEN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161718099_aaaa.cs" />
+    <Compile Include="Migrations\201905161718099_aaaa.Designer.cs">
+      <DependentUpon>201905161718099_aaaa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sysdiagrams.cs" />
@@ -92,6 +100,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905110401025_test1.resx">
       <DependentUpon>201905110401025_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161253218_Add colum IsHaveAccount in NHANVIEN.resx">
+      <DependentUpon>201905161253218_Add colum IsHaveAccount in NHANVIEN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161718099_aaaa.resx">
+      <DependentUpon>201905161718099_aaaa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

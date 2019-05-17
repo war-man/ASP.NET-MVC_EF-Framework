@@ -13,12 +13,15 @@ namespace quanly.sonsport.com.Common
         public const string MessageSuccessBootBox = "MESSAGE_SUCCESS_BOOTBOX";
         public const string MessageFailBootBox = "MESSAGE_FAIL_BOOTBOX";
 
+        public const string ViewDataMaster = "ViewDataMaster";
+        public const string ViewDataPlace = "ViewDataPlace";
         public const string ViewDataYard = "ViewDataYard";
         public const string ViewDataLstPriceOfYard = "ViewDataLstPriceOfYard";
         public const string ViewDataLstTypeOfYard = "ViewDataLstTypeOfYard";
         public const string ViewDataLstPlaceYard = "ViewDataLstPlaceYard";
         public const string MaDiaDiem = "MaDiaDiem";
         public const string TenDiaDiem = "TenDiaDiem";
-        
+        public const string MasterId = "MasterId";
+
     }
 }

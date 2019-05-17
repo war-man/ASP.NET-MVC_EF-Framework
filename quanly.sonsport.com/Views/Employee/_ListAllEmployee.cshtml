@@ -1,0 +1,155 @@
+﻿@using Model.Context
+@using quanly.sonsport.com.Common
+@model List<NHANVIEN>
+@{
+    var lstPlace = ViewData[GlobalConstans.ViewDataLstPlaceYard] as List<DIADIEMSANBONG>;
+    int MasterId = (int)ViewData[GlobalConstans.MasterId];
+}
+
+
+<style>
+    #tblBodyPrice input {
+        border: none;
+        width: 50px;
+    }
+
+        #tblBodyPrice input span {
+            color: black;
+        }
+</style>
+<!-- DataTales Example -->
+<div class="card shadow mb-4 ">
+    <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
+        <h6 class="m-0 font-weight-bold text-primary"><b>Tất cả nhân viên </b> </h6>
+        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#AddOrEditModal" data-whatever="add">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus-square"></i>
+            </span>
+            <span class="text text-white">Thêm nhân viên</span>
+        </a>
+    </div>
+    @if (Model.Count == 0)
+    {
+        <h4 class="text-warning text-center">Chưa có nhân viên nào trong hệ thống!</h4>
+    }
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableEmployee" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Email</th>
+                        <th>Họ tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa điểm làm việc</th>
+                        <th>Tài khoản</th>
+                        <th class="w-25"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>STT</th>
+                        <th>Email</th>
+                        <th>Họ tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa điểm làm việc</th>
+                        <th>Tài khoản</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody id="tblBodyPrice"></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="AddOrEditModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" id="btnAddOrEditConfirm"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page level plugins -->
+<script src="~/Assets/TemplateMaster/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Assets/TemplateMaster/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="~/Assets/SonSiHoJS/ssh.js"></script>
+<script>
+    $(function () {
+        AlertMessage();
+        OnShowModal();
+        LoadRowEmployeeByMaster();
+    })
+
+    function AlertMessage() {
+         @if(TempData[GlobalConstans.MessageSuccess]!=null)
+        {
+            @Html.Raw($"ssh.ShowAlertSuccess('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
+        }
+        @if(TempData[GlobalConstans.MessageFail]!=null)
+        {
+            @Html.Raw($"ssh.ShowAlertError('{TempData[GlobalConstans.MessageFail].ToString()}')");
+        }
+    }
+
+    function OnShowModal() {
+        $('#AddOrEditModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('whatever');
+            var modal = $(this);
+            if (action == "add") {
+                $.get('@Url.Action("AddOrEdit","Employee")?EmployeeId=0', function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Thêm nhân viên mới');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận thêm').on('click', function () {
+                    modal.find('.modal-body form[id="employee-form"]').submit();
+                });
+            }else if (action.split("-")[0] == "edit") {
+                var EmployeeIdEdit = action.split("-")[1];
+                $.get('@Url.Action("AddOrEdit","Employee")?EmployeeId=' + EmployeeIdEdit, function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Sửa địa điểm sân bóng');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận sửa').on('click', function () {
+                    modal.find('.modal-body form[id="employee-form"]').submit();
+                });
+            }
+            else if (action == "editaccount") {
+                var btnEditAccountEmployee = $('#btnEditAccountEmployee');
+                var EmployeeId = btnEditAccountEmployee.data('EmployeeId');
+                $.get('@Url.Action("AddOrEditAccount","Employee")?EmployeeId=' + EmployeeId, function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Sửa tài khoản nhân viên');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận sửa').on('click', function () {
+                    modal.find('.modal-body form[id="employee-account-edit-form"]').submit();
+                });
+            }
+            else if (action == "addaccount") {
+
+            }
+        });
+    }
+
+    function LoadRowEmployeeByMaster() {
+        var MasterId = @MasterId;
+        $.get('@Url.Action("LoadRowEmployeeByMaster","Employee")?MasterId=' + MasterId, (response) => {
+            $('#tblBodyPrice').empty().html(response);
+        });
+        }
+
+
+</script>

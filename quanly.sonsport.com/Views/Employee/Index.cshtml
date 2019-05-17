@@ -5,17 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var lstPlaceYard = (IEnumerable<DIADIEMSANBONG>)ViewData[GlobalConstans.ViewDataLstPlaceYard];
 }
-<label class="my-1 mr-2" for="PlaceId">Chọn địa điểm</label>
-<select class="custom-select bg-primary my-1 mr-sm-2 text-white" id="PlaceId" onchange="LoadYardOfPlace();">
-    <option value="0">Lựa chọn địa điểm sân bóng...</option>
+<label class="my-1 mr-2" for="PlaceId">Xem tất cả nhân viên hoặc chọn địa điểm để xem nhân viên</label>
+<select class="custom-select bg-primary my-1 mr-sm-2 text-white" id="PlaceId" onchange="LoadEmployeeOfPlace();">
+    <option value="0">Tất cả nhân viên...</option>
     @foreach (var item in lstPlaceYard)
     {
         <option value="@item.MaDiaDiem">@item.TenDiaDiem</option>
     }
 </select>
 <div id="alert-result"></div>
-<div id="DetailsInfoPlaceYard"></div>
-<div id="ListYards"></div>
+<div id="list-employee-of-place"></div>
+
 
 @section scripts{
     <script>
@@ -38,30 +38,26 @@
             @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageFailBootBox].ToString()}');");
         }
         ReOnLoad();
-
+        LoadEmployeeOfPlace();
     })
 
     function ReOnLoad() {
         var value = sessionStorage.getItem('PlaceIdSelected');
         if (value!=null) {
             $('#PlaceId').val(value);
-            LoadYardOfPlace();
+            LoadEmployeeOfPlace();
             ssh.ScollToBottom(0);
             sessionStorage.removeItem('PlaceIdSelected');
         }
     }
 
-     function LoadYardOfPlace() {
+     function LoadEmployeeOfPlace() {
          var madiadiem = $('#PlaceId').val();
-         $.post('@Url.Action("LoadDetailsInfoPlaceYard","TypeAndPriceYard")?PlaceId='+madiadiem, function (response) {
-                $('#DetailsInfoPlaceYard').empty().html(response);
+         $.get('@Url.Action("LoadListEmployeeOfPlace","Employee")?PlaceId='+madiadiem, function (response) {
+                $('#list-employee-of-place').empty().html(response);
                 if (response.error) {
                     location.reload();
                 }
-                $.post('@Url.Action("LoadListYardsOfPlace","TypeAndPriceYard")?PlaceId='+madiadiem, function (data) {
-                    $('#ListYards').empty().html(data);
-                    ssh.ScollToBottom('slow');
-                });
             });
             };
 
