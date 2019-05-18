@@ -127,10 +127,9 @@
                     modal.find('.modal-body form[id="employee-form"]').submit();
                 });
             }
-            else if (action == "editaccount") {
-                var btnEditAccountEmployee = $('#btnEditAccountEmployee');
-                var EmployeeId = btnEditAccountEmployee.data('EmployeeId');
-                $.get('@Url.Action("AddOrEditAccount","Employee")?EmployeeId=' + EmployeeId, function (data) {
+            else if ((action.split("-")[0] == "editaccount") {
+                var EmployeeIEditAccount = action.split("-")[1];
+                $.get('@Url.Action("EditAccountEmployee","Employee")?EmployeeId=' + EmployeeId, function (data) {
                     modal.find('.modal-body').html(data);
                 });
                 modal.find('.modal-title').text('Sửa tài khoản nhân viên');
@@ -138,8 +137,15 @@
                     modal.find('.modal-body form[id="employee-account-edit-form"]').submit();
                 });
             }
-            else if (action == "addaccount") {
-
+            else if ((action.split("-")[0] == "addaccount")) {
+                var EmployeeIdAddAccount = action.split("-")[1];
+                $.get('@Url.Action("CreateAccountEmployee","Employee")?EmployeeId='+EmployeeIdAddAccount, function (data) {
+                    modal.find('.modal-body').html(data);
+                });
+                modal.find('.modal-title').text('Thêm tài khoản cho nhân viên');
+                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận thêm').on('click', function () {
+                    modal.find('.modal-body form[id="employee-account-form"]').submit();
+                });
             }
         });
     }

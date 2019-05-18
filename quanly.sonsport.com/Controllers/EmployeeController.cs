@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using Microsoft.AspNet.Identity;
 namespace quanly.sonsport.com.Controllers
 {
 
@@ -123,29 +123,50 @@ namespace quanly.sonsport.com.Controllers
             return PartialView("_EmployeeForm",model);
         }
 
-        public ActionResult CreateAccountEmployee()
+        public ActionResult CreateAccountEmployee(int EmployeeId)
         {
-            return PartialView("_CreateEmployeeForm", new RegisterViewModel());
+            var emp = EmployeeOfPlaceBusiness.SearchEmployeeById(EmployeeId);
+            var acc = new RegisterEmployeeViewModel
+            {
+                Email = emp.Email,
+                MasterId = MasterOfPlace.MaChuSan,
+                EmployeeId = EmployeeId
+            };
+            return PartialView("_CreateEmployeeForm", acc);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAccountEmployee(RegisterViewModel model)
+        public async Task<ActionResult> CreateAccountEmployee(RegisterEmployeeViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var EmailOfAccount = await UserManager.FindByEmailAsync(model.Email);
+                if(EmailOfAccount!=null)
+                {
+                    if (EmailOfAccount.UserName.Equals(model.UserName))
+                    {
+                        ModelState.AddModelError("UserName", "Tên đăng nhập đã tồn tại trong hệ thống!");
+                        return PartialView("_CreateEmployeeForm", model);
+                    }
+                    ModelState.AddModelError("Email", "Email đã tồn tại trong hệ thống!");
+                    return PartialView("_CreateEmployeeForm", model);
+                }
+                var nv = EmployeeOfPlaceBusiness.SearchEmployeeById(model.EmployeeId);
+                nv.IsHaveAccount = true;
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email,MaChuSan=model.MasterId };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(user.Id, "ADMIN");
+                    EmployeeOfPlaceBusiness.UpdateEmployee(nv);
+                    await UserManager.AddToRoleAsync(user.Id, "CHUSAN_NHANVIEN");
                     TempData[GlobalConstans.MessageSuccess] = "Tạo tài khoản thành công!";
                     return Json(new { success = true }, JsonRequestBehavior.AllowGet);
                 }
                 TempData[GlobalConstans.MessageFail] = "Tạo tài khoản thất bại!";
-                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
-            return PartialView("_CreateAdminAccount", model);
+            return PartialView("_CreateEmployeeForm", model);
         }
     }
 }
