@@ -56,3 +56,7 @@ D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.dll
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.pdb
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddcolumIsHaveAccountinNHANVIEN.resources
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.aaaa.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddMasterIdToCHITIETSANBONG.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.abc.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.NotNullDatetime.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.NotNullInt.resources

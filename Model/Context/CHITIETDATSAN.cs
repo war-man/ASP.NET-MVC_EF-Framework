@@ -20,11 +20,11 @@ namespace Model.Context
         public int MaDatSan { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? DaVaoNgay { get; set; }
+        public DateTime DaVaoNgay { get; set; }
 
-        public int? ThoiGianBatDau { get; set; }
+        public int ThoiGianBatDau { get; set; }
 
-        public int? ThoiGianKetThuc { get; set; }
+        public int ThoiGianKetThuc { get; set; }
 
         public double? GiaTien { get; set; }
 
@@ -32,6 +32,10 @@ namespace Model.Context
 
         public bool? TrangThaiThanhToan { get; set; }
 
+        public int? MaChuSan { get; set; }
+
         public virtual DATSAN DATSAN { get; set; }
+
+        public virtual CHUSANQUANLY CHUSANQUANLY { get; set; }
     }
 }

@@ -18,5 +18,14 @@ namespace quanly.sonsport.com.Common
             }
             return "";
         }
+
+        public static string ConvertIntToHour(int Hour)
+        {
+            if(Hour>=10)
+            {
+                return $"{Hour}:00:00";
+            }
+            return $"0{Hour}:00:00";
+        }
     }
 }

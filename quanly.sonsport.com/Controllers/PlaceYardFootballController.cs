@@ -12,6 +12,7 @@ namespace quanly.sonsport.com.Controllers
     {
         private IPlaceYardFootballBusiness PlaceYardFootballBusiness;
 
+
         public PlaceYardFootballController(IPlaceYardFootballBusiness placeYardFootballBusiness)
         {
             this.PlaceYardFootballBusiness = placeYardFootballBusiness;

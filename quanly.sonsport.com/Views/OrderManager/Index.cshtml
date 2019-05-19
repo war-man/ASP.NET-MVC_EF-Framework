@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href='~/Assets/fullcalendar-4.1.0/packages/core/main.css' rel='stylesheet' />
+<link href='~/Assets/fullcalendar-4.1.0/packages/bootstrap/main.css' rel='stylesheet' />
+<link href='~/Assets/fullcalendar-4.1.0/packages/daygrid/main.css' rel='stylesheet' />
+<link href='~/Assets/fullcalendar-4.1.0/packages/timegrid/main.css' rel='stylesheet' />
+<link href='~/Assets/fullcalendar-4.1.0/packages/list/main.css' rel='stylesheet' />
+<script src='~/Assets/fullcalendar-4.1.0/packages/core/main.js'></script>
+<script src='~/Assets/fullcalendar-4.1.0/packages/interaction/main.js'></script>
+<script src='~/Assets/fullcalendar-4.1.0/packages/daygrid/main.js'></script>
+<script src='~/Assets/fullcalendar-4.1.0/packages/timegrid/main.js'></script>
+<script src='~/Assets/fullcalendar-4.1.0/packages/list/main.js'></script>
+<script src='~/Assets/fullcalendar-4.1.0/packages/bootstrap/main.js'></script>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Quản lý lịch đặt</h1>
+    @*<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#AddOrEditModal" data-whatever="add">
+            <i class="fas fa-plus fa-sm text-white-50"></i>
+            <span class="text text-white">Thêm địa điểm mới</span>
+        </a>*@
+</div>
+
+<div id='calendar-container'>
+    <div id='calendar'></div>
+</div>
+<script>
+    function DayOnClick() {
+        bootbox.alert('ok');
+    }
+
+    function EventOnClick() {
+        bootbox.alert('events click');
+    }
+</script>
+@section scripts{
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['interaction', 'dayGrid', 'timeGrid', 'list', 'bootstrap'],
+                themeSystem: 'bootstrap',
+                selectable: true,
+                height: 'parent',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                titleFormat: {
+                    month: '2-digit',
+                    year: 'numeric',
+                },
+                columnHeaderText: function (date) {
+                    if (date.getDay() === 1) {
+                      return 'Thứ 2';
+                    } 
+                    if (date.getDay() === 2) {
+                      return 'Thứ 3';
+                    } 
+                    if (date.getDay() === 3) {
+                      return 'Thứ 4';
+                    } 
+                    if (date.getDay() === 4) {
+                      return 'Thứ 5';
+                    } 
+                    if (date.getDay() === 5) {
+                      return 'Thứ 6';
+                    } 
+                    if (date.getDay() === 6) {
+                      return 'Thứ 7';
+                    } 
+                    if (date.getDay() === 0) {
+                      return 'Chủ nhật';
+                    } 
+                },
+                defaultView: 'dayGridMonth',
+                defaultDate: '@DateTime.Now.Date.ToString("yyyy-MM-dd")',
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                //Bắt sự kiện khi click vào ngày
+                dateClick: function (info) {
+                    DayOnClick();
+                },
+                events: '@Url.Action("LoadOrderYard","OrderManager")',
+                eventClick: function () {
+                    EventOnClick();
+                }
+        });
+        calendar.render();
+    });
+    </script>
+}
