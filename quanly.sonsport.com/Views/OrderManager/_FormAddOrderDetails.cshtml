@@ -1,0 +1,86 @@
+﻿<script src="~/Assets/Scripts/jquery.validate.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using quanly.sonsport.com.Common
+@using Model.Context
+@using Business.BusinessViewModels
+@model OrderDetailsViewModels
+@{
+    var lstYardOfPlace = ViewData[GlobalConstans.ViewDataLstYardOfPlace] as List<SANBONG>;
+}
+@using (Ajax.BeginForm("CreateOrderDetails", "OrderManager",
+            ajaxOptions: new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "OnAddOrderSuccess",
+                OnFailure = "OnFailure",
+            }
+            , htmlAttributes: new { @id = "form-add-od" }))
+{
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(n => n.MasterId)
+        @Html.HiddenFor(n => n.PlaceId)
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.CustomerName, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.CustomerName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.CustomerName, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.PhoneNumber, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.PhoneNumber, htmlAttributes: new { @class = "form-control", type = "tel" })
+                @Html.ValidationMessageFor(n => n.PhoneNumber, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.KickAtDate, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.KickAtDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", @type = "date" })
+                @Html.ValidationMessageFor(n => n.KickAtDate, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-2">
+                @Html.LabelFor(n => n.StartTime, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.StartTime, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.StartTime, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-2">
+                @Html.LabelFor(n => n.EndTime, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.EndTime, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.EndTime, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-2">
+                @Ajax.ActionLink("$$$","CaculatorPrice","OrderManager",new AjaxOptions { UpdateTargetId = "Price",HttpMethod="GET",InsertionMode = InsertionMode.Replace})
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.YardId, htmlAttributes: new { @class = "col-form-label" })
+                @Html.DropDownListFor(n => n.YardId, new SelectList(lstYardOfPlace, "MaSanBong", "TenSanBong", "TenSanBong"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.YardId, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.CheckBoxFor(n => n.IsEditPrice, htmlAttributes: new { @class = "col-form-label", @onclick = "document.getElementById('Price').disabled=!this.checked;" })
+                @Html.LabelFor(n => n.Price, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.Price, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                @Html.ValidationMessageFor(n => n.Price, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+        <button type="submit" class="btn btn-primary">Xác nhận thêm</button>
+    </div>
+}
+<script>
+    function OnAddOrderSuccess(response) {
+        if (!response.success) {
+            bootbox.alert(response.message);
+        }
+        else {
+            $('#sonsihomodal').modal('hide');
+            bootbox.alert('Đã thêm');
+            LoadOrderOfYard();
+        }
+    }
+</script>

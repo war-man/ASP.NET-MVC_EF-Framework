@@ -61,8 +61,10 @@
     @RenderPage("~/Views/Shared/_LogoutModal.cshtml")
 
     <!-- Bootstrap core JavaScript-->
-
+    <script src="~/Assets/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Assets/TemplateMaster/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Assets/Scripts/umd/popper.js"></script>
+    <script src="~/Assets/Scripts/bootstrap.min.js"></script>
     <script src="~/Assets/TemplateMaster/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -73,13 +75,12 @@
 
     <!-- Page level plugins -->
     <script src="~/Assets/TemplateMaster/vendor/chart.js/Chart.min.js"></script>
-
     <!-- Page level custom scripts -->
-    <script src="~/Assets/TemplateMaster/js/demo/chart-area-demo.js"></script>
-    <script src="~/Assets/TemplateMaster/js/demo/chart-pie-demo.js"></script>
     <script src="~/Assets/SonSiHoJS/ssh.js"></script>
     <script src="~/Assets/Scripts/bootbox.all.min.js"></script>
+    <script src="~/Assets/Scripts/tooltips.js"></script>
     @RenderSection("scripts", false)
+
 </body>
 
 </html>

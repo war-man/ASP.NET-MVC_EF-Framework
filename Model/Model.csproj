@@ -70,37 +70,9 @@
     <Compile Include="Context\NHANVIEN.cs" />
     <Compile Include="Context\SANBONG.cs" />
     <Compile Include="Context\SonSportDbContext.cs" />
-    <Compile Include="Migrations\201905110352201_test.cs" />
-    <Compile Include="Migrations\201905110352201_test.Designer.cs">
-      <DependentUpon>201905110352201_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905110401025_test1.cs" />
-    <Compile Include="Migrations\201905110401025_test1.Designer.cs">
-      <DependentUpon>201905110401025_test1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905161253218_Add colum IsHaveAccount in NHANVIEN.cs" />
-    <Compile Include="Migrations\201905161253218_Add colum IsHaveAccount in NHANVIEN.Designer.cs">
-      <DependentUpon>201905161253218_Add colum IsHaveAccount in NHANVIEN.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905161718099_aaaa.cs" />
-    <Compile Include="Migrations\201905161718099_aaaa.Designer.cs">
-      <DependentUpon>201905161718099_aaaa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905190945363_AddMasterIdToCHITIETSANBONG.cs" />
-    <Compile Include="Migrations\201905190945363_AddMasterIdToCHITIETSANBONG.Designer.cs">
-      <DependentUpon>201905190945363_AddMasterIdToCHITIETSANBONG.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905191009083_abc.cs" />
-    <Compile Include="Migrations\201905191009083_abc.Designer.cs">
-      <DependentUpon>201905191009083_abc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905191010149_NotNullDatetime.cs" />
-    <Compile Include="Migrations\201905191010149_NotNullDatetime.Designer.cs">
-      <DependentUpon>201905191010149_NotNullDatetime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905191033015_NotNullInt.cs" />
-    <Compile Include="Migrations\201905191033015_NotNullInt.Designer.cs">
-      <DependentUpon>201905191033015_NotNullInt.cs</DependentUpon>
+    <Compile Include="Migrations\201905210914215_ThemTenNguoiDat.cs" />
+    <Compile Include="Migrations\201905210914215_ThemTenNguoiDat.Designer.cs">
+      <DependentUpon>201905210914215_ThemTenNguoiDat.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,29 +83,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905110352201_test.resx">
-      <DependentUpon>201905110352201_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905110401025_test1.resx">
-      <DependentUpon>201905110401025_test1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905161253218_Add colum IsHaveAccount in NHANVIEN.resx">
-      <DependentUpon>201905161253218_Add colum IsHaveAccount in NHANVIEN.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905161718099_aaaa.resx">
-      <DependentUpon>201905161718099_aaaa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905190945363_AddMasterIdToCHITIETSANBONG.resx">
-      <DependentUpon>201905190945363_AddMasterIdToCHITIETSANBONG.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905191009083_abc.resx">
-      <DependentUpon>201905191009083_abc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905191010149_NotNullDatetime.resx">
-      <DependentUpon>201905191010149_NotNullDatetime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905191033015_NotNullInt.resx">
-      <DependentUpon>201905191033015_NotNullInt.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905210914215_ThemTenNguoiDat.resx">
+      <DependentUpon>201905210914215_ThemTenNguoiDat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

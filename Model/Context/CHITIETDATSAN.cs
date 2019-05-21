@@ -37,5 +37,7 @@ namespace Model.Context
         public virtual DATSAN DATSAN { get; set; }
 
         public virtual CHUSANQUANLY CHUSANQUANLY { get; set; }
+
+        public virtual SANBONG SANBONG { get; set; }
     }
 }

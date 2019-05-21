@@ -342,6 +342,7 @@
     <Content Include="Assets\fullcalendar-4.1.0\packages\timegrid\main.min.js" />
     <Content Include="Assets\fullcalendar-4.1.0\vendor\rrule.js" />
     <Content Include="Assets\Images\Image\image-1.jpg" />
+    <Content Include="Assets\Scripts\tooltips.js" />
     <Content Include="Assets\SonSiHoJS\arrUtils.js" />
     <Content Include="Assets\SonSiHoJS\byteUtils.js" />
     <Content Include="Assets\SonSiHoJS\dateUtilis.js" />
@@ -1952,6 +1953,7 @@
     <Content Include="Assets\Content\bootstrap-reboot.min.css" />
     <Content Include="Assets\Content\bootstrap.css" />
     <Content Include="Assets\Content\bootstrap.min.css" />
+    <Content Include="Controllers\jsController\jsOrderManager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Content\Site.css" />
@@ -2238,6 +2240,8 @@
     <Content Include="Views\Employee\_EmployeeForm.cshtml" />
     <Content Include="Views\Employee\_CreateEmployeeForm.cshtml" />
     <Content Include="Views\OrderManager\Index.cshtml" />
+    <Content Include="Views\Shared\_Modal.cshtml" />
+    <Content Include="Views\OrderManager\_FormAddOrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

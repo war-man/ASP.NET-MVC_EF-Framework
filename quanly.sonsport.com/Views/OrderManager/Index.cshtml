@@ -1,7 +1,9 @@
-﻿
+﻿@using quanly.sonsport.com.Common
+@using Model.Context
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstPlace = ViewData[GlobalConstans.ViewDataLstPlaceYard] as List<DIADIEMSANBONG>;
 }
 <link href='~/Assets/fullcalendar-4.1.0/packages/core/main.css' rel='stylesheet' />
 <link href='~/Assets/fullcalendar-4.1.0/packages/bootstrap/main.css' rel='stylesheet' />
@@ -18,81 +20,34 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Quản lý lịch đặt</h1>
-    @*<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#AddOrEditModal" data-whatever="add">
-            <i class="fas fa-plus fa-sm text-white-50"></i>
-            <span class="text text-white">Thêm địa điểm mới</span>
-        </a>*@
+    <h2 id="text-place-name" class="h3 mb-0 text-primary"></h2>
+    <select class="custom-select w-25 bg-primary my-1 mr-sm-2 text-white" id="PlaceId" onchange="LoadOrderOfYard();">
+        <option value="0">Chọn địa điểm...</option>
+        @foreach (var item in lstPlace)
+        {
+            <option value="@item.MaDiaDiem">@item.TenDiaDiem</option> 
+        }
+    </select>
 </div>
-
 <div id='calendar-container'>
     <div id='calendar'></div>
 </div>
+@RenderPage("~/Views/Shared/_Modal.cshtml")
+<script src="~/Controllers/jsController/jsOrderManager.js"></script>
 <script>
-    function DayOnClick() {
-        bootbox.alert('ok');
-    }
-
-    function EventOnClick() {
-        bootbox.alert('events click');
+    document.addEventListener("DOMContentLoaded", function() { 
+          LoadOrderOfYard();
+        });
+    function LoadOrderOfYard() {
+        var PlaceId = $('#PlaceId').val();
+        if (PlaceId == 0) {
+            $('#calendar').empty().html('<h1>Chưa có địa điểm nào được chọn!</h1>');
+            $('#text-place-name').text('');
+        }
+        else {
+            var PlaceName = $('#PlaceId option:selected').text();
+            $('#text-place-name').text(PlaceName);
+            orderManager.OnCalenderLoad('@Url.Action("LoadOrderYard","OrderManager")?PlaceId='+PlaceId, '@DateTime.Now.ToString("yyyy-MM-dd")');
+        }
     }
 </script>
-@section scripts{
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['interaction', 'dayGrid', 'timeGrid', 'list', 'bootstrap'],
-                themeSystem: 'bootstrap',
-                selectable: true,
-                height: 'parent',
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                },
-                titleFormat: {
-                    month: '2-digit',
-                    year: 'numeric',
-                },
-                columnHeaderText: function (date) {
-                    if (date.getDay() === 1) {
-                      return 'Thứ 2';
-                    } 
-                    if (date.getDay() === 2) {
-                      return 'Thứ 3';
-                    } 
-                    if (date.getDay() === 3) {
-                      return 'Thứ 4';
-                    } 
-                    if (date.getDay() === 4) {
-                      return 'Thứ 5';
-                    } 
-                    if (date.getDay() === 5) {
-                      return 'Thứ 6';
-                    } 
-                    if (date.getDay() === 6) {
-                      return 'Thứ 7';
-                    } 
-                    if (date.getDay() === 0) {
-                      return 'Chủ nhật';
-                    } 
-                },
-                defaultView: 'dayGridMonth',
-                defaultDate: '@DateTime.Now.Date.ToString("yyyy-MM-dd")',
-                navLinks: true, // can click day/week names to navigate views
-                editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                //Bắt sự kiện khi click vào ngày
-                dateClick: function (info) {
-                    DayOnClick();
-                },
-                events: '@Url.Action("LoadOrderYard","OrderManager")',
-                eventClick: function () {
-                    EventOnClick();
-                }
-        });
-        calendar.render();
-    });
-    </script>
-}

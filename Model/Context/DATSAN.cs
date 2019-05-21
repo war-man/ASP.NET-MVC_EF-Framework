@@ -24,6 +24,8 @@ namespace Model.Context
 
         public DateTime? NgayHuySan { get; set; }
 
+        public string TenNguoiDat { get; set; }
+
         public bool? Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -19,6 +19,7 @@ namespace quanly.sonsport.com.Common
         public const string ViewDataLstPriceOfYard = "ViewDataLstPriceOfYard";
         public const string ViewDataLstTypeOfYard = "ViewDataLstTypeOfYard";
         public const string ViewDataLstPlaceYard = "ViewDataLstPlaceYard";
+        public const string ViewDataLstYardOfPlace = "ViewDataLstYardOfPlace";
         public const string MaDiaDiem = "MaDiaDiem";
         public const string TenDiaDiem = "TenDiaDiem";
         public const string MasterId = "MasterId";

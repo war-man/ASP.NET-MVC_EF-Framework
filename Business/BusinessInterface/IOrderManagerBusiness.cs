@@ -10,5 +10,11 @@ namespace Business.BusinessInterface
     public interface IOrderManagerBusiness
     {
         List<CHITIETDATSAN> GetOrderDetailsByMasterId(int MasterId);
+
+        void CreateOrder(DATSAN ds);
+
+        void CreateOrderDetails(CHITIETDATSAN ctds);
+
+        List<CHITIETDATSAN> GetOrderDetails(int? MasterId,int? PlaceId);
     }
 }
