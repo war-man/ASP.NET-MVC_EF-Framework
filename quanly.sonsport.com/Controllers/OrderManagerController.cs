@@ -16,11 +16,14 @@ namespace quanly.sonsport.com.Controllers
         private IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness;
         private ICustomerOfMasterBusiness CustomerOfMasterBusiness;
         private IPlaceYardFootballBusiness PlaceYardFootballBusiness;
-        public OrderManagerController(IPlaceYardFootballBusiness placeYardFootballBusiness,
+        private IPriceOfYardFootBallBusiness PriceOfYardFootBallBusiness;
+        public OrderManagerController(IPriceOfYardFootBallBusiness priceOfYardFootBallBusiness,
+        IPlaceYardFootballBusiness placeYardFootballBusiness,
         ICustomerOfMasterBusiness customerOfMasterBusiness,
         IYardFootballOfPlaceBusiness yardFootballOfPlaceBusiness,
             IOrderManagerBusiness orderManagerBusiness)
         {
+            this.PriceOfYardFootBallBusiness = priceOfYardFootBallBusiness;
             this.PlaceYardFootballBusiness = placeYardFootballBusiness;
             this.CustomerOfMasterBusiness = customerOfMasterBusiness;
             this.YardFootballOfPlaceBusiness = yardFootballOfPlaceBusiness;
@@ -104,6 +107,21 @@ namespace quanly.sonsport.com.Controllers
                 return Json(new { success = true });
             }
             return Json(new { success = false,message="Có lỗi xảy ra!" });
+        }
+
+        public JsonResult CaculatorPrice(int start,int end,int YardId)
+        {
+            var lstPrice = PriceOfYardFootBallBusiness.GetPriceTableByYardId(YardId);
+            int totalTime = end - start;
+            int price = 0;
+            foreach(var item in lstPrice)
+            {
+                if(start>=item.GioBatDau && end<=item.GioKetThuc)
+                {
+                    price = totalTime * (int)item.GiaTien;
+                }
+            }
+            return Json(new {success=true , totalprice = price },JsonRequestBehavior.AllowGet);
         }
     }
 }

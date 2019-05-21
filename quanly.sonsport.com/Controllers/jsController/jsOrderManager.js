@@ -1,19 +1,37 @@
 ﻿var orderManager = {
+    CaculatorPrice: function () {
+        var start = parseInt($('#StartTime').val());
+        var end = parseInt($('#EndTime').val());
+        var YardId = $('#YardId').val();
+        var total = 0;
+        if (end < start) {
+            total = -1;
+        }
+        else {
+            $.get('/OrderManager/CaculatorPrice?start=' + start + '&end=' + end + '&YardId=' + YardId, function (response) {
+                if (response.success) {
+                    $('#Price').val(response.totalprice);
+                }
+            })
+        }
+        $('#Price').val(total);
+    },
     OnDayClick: function (info) {
         var PlaceId = $('#PlaceId').val();
         const modal = $('#sonsihomodal');
         modal.find('.modal-title').text('Thêm lịch đặt sân bóng');
         const result = $('#form-result');
-        $.get('/OrderManager/LoadFormAdd?strDate=' + info.dateStr + '&PlaceId=' + PlaceId , (response) => {
+        $.get('/OrderManager/LoadFormAdd?strDate=' + info.dateStr + '&PlaceId=' + PlaceId, (response) => {
             result.html(response);
         });
         modal.modal('show');
     },
-    OnEventClick: function () {
-        var modal = $('#AddOrEditModal');
+    OnEventClick: function (info) {
+        var modal = $('#sonsihomodal');
         modal.find('.modal-title').text('Xem lịch đặt sân bóng');
-        modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Sửa').on('click', () => {
-            modal.find('.modal-body form[id="order-details-add-form"]').submit();
+        const result = $('#form-result');
+        $.get('/OrderManager/LoadFormAdd?strDate=' + info.dateStr + '&PlaceId=' + PlaceId, (response) => {
+            result.html(response);
         });
         modal.modal('show');
     },
@@ -21,7 +39,7 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: ['interaction', 'dayGrid', 'timeGrid', 'list', 'bootstrap'],
-            locale:'vi',
+            locale: 'vi',
             themeSystem: 'bootstrap',
             selectable: false,
             height: 'auto',

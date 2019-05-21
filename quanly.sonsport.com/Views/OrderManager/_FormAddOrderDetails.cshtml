@@ -50,7 +50,8 @@
                 @Html.ValidationMessageFor(n => n.EndTime, null, htmlAttributes: new { @class = "text-danger" })
             </div>
             <div class="form-group col-2">
-                @Ajax.ActionLink("$$$","CaculatorPrice","OrderManager",new AjaxOptions { UpdateTargetId = "Price",HttpMethod="GET",InsertionMode = InsertionMode.Replace})
+                <label for="btnCaculator" class="col-form-label">Tính tiền sân</label>
+                <a id="btnCaculator" class="form-control text-white btn-success" onclick="orderManager.CaculatorPrice()"><i class="fa fa-money-bill"></i>Tính</a>
             </div>
         </div>
         <div class="row">
@@ -72,6 +73,7 @@
         <button type="submit" class="btn btn-primary">Xác nhận thêm</button>
     </div>
 }
+<script src="~/Assets/Scripts/jquery-3.4.1.min.js"></script>
 <script>
     function OnAddOrderSuccess(response) {
         if (!response.success) {
