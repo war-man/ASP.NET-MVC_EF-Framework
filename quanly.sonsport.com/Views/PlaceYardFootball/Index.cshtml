@@ -15,44 +15,54 @@
     </a>
 </div>
 <div id="alert-result"></div>
-<!-- Content Row -->
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-bottom-primary shadow h-100 py-2">
-                <img src="~/Assets/Images/Image/image-1.jpg" style="padding: 5px;" class="card-img-top" width="100%" height="200px" alt="...">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <a href="@Url.Action("Edit","DiaDiemSanBong",new { @id=item.MaDiaDiem})" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                @item.TenDiaDiem
-                            </a>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">@item.DiaChi</div>
+@if (Model.Count > 0)
+{
+    <!-- Content Row -->
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-bottom-primary shadow h-100 py-2">
+                    <img src="~/Assets/Images/Image/image-1.jpg" style="padding: 5px;" class="card-img-top" width="100%" height="200px" alt="...">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <a href="#" onclick="RedirectToTypeAndPrice(@item.MaDiaDiem)" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    @item.TenDiaDiem
+                                </a>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@item.DiaChi</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer text-right">
-                    <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="@item.MaDiaDiem" class="btn btn-success btn-icon-split">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-edit"></i>
-                        </span>
-                        <span class="text text-white">Sửa</span>
-                    </a>
-                    <a onclick="DeleteConfirm(@item.MaDiaDiem)" class="btn btn-danger btn-icon-split">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-trash"></i>
-                        </span>
-                        <span class="text text-white">Xóa</span>
-                    </a>
+                    <div class="card-footer text-right">
+                        <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="@item.MaDiaDiem" class="btn btn-success btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span class="text text-white">Sửa</span>
+                        </a>
+                        <a onclick="DeleteConfirm(@item.MaDiaDiem)" class="btn btn-danger btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                            <span class="text text-white">Xóa</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
 
 
-</div>
+    </div>
+
+
+}
+else
+{
+    <h1 class="text-center text-warning">Bạn chưa có địa điểm sân bóng nào!</h1>
+}
+
 <div class="modal fade" id="AddOrEditModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -74,6 +84,7 @@
 </div>
 <!-- /.content-wrapper -->
 @section scripts{
+    <script src="~/Assets/Scripts/jquery.validate.min.js"></script>
     <script src="~/Assets/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
     <script>
@@ -131,6 +142,14 @@
             location.reload();
         }
         $('#AddOrEditModal').find('.modal-body').html(response);
+            }
+
+    function RedirectToTypeAndPrice(id) {
+        var PlaceId = id;
+        sessionStorage.setItem('PlaceIdSelected', PlaceId);
+        location.href = '@Url.Action("Index","TypeAndPriceYard")';
     }
+
+
     </script>
 }

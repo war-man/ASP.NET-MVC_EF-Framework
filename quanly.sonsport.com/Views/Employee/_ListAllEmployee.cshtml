@@ -5,8 +5,6 @@
     var lstPlace = ViewData[GlobalConstans.ViewDataLstPlaceYard] as List<DIADIEMSANBONG>;
     int MasterId = (int)ViewData[GlobalConstans.MasterId];
 }
-
-
 <style>
     #tblBodyPrice input {
         border: none;
@@ -117,7 +115,8 @@
                 modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận thêm').on('click', function () {
                     modal.find('.modal-body form[id="employee-form"]').submit();
                 });
-            }else if (action.split("-")[0] == "edit") {
+            }
+            else if (action.split("-")[0] == "edit") {
                 var EmployeeIdEdit = action.split("-")[1];
                 $.get('@Url.Action("AddOrEdit","Employee")?EmployeeId=' + EmployeeIdEdit, function (data) {
                     modal.find('.modal-body').html(data);
@@ -127,7 +126,7 @@
                     modal.find('.modal-body form[id="employee-form"]').submit();
                 });
             }
-            else if ((action.split("-")[0] == "editaccount") {
+            else if (action.split("-")[0] == "editaccount") {
                 var EmployeeIEditAccount = action.split("-")[1];
                 $.get('@Url.Action("EditAccountEmployee","Employee")?EmployeeId=' + EmployeeId, function (data) {
                     modal.find('.modal-body').html(data);
@@ -137,7 +136,7 @@
                     modal.find('.modal-body form[id="employee-account-edit-form"]').submit();
                 });
             }
-            else if ((action.split("-")[0] == "addaccount")) {
+            else if (action.split("-")[0] == "addaccount") {
                 var EmployeeIdAddAccount = action.split("-")[1];
                 $.get('@Url.Action("CreateAccountEmployee","Employee")?EmployeeId='+EmployeeIdAddAccount, function (data) {
                     modal.find('.modal-body').html(data);
@@ -151,11 +150,11 @@
     }
 
     function LoadRowEmployeeByMaster() {
-        var MasterId = @MasterId;
+        var MasterId = '@MasterId';
         $.get('@Url.Action("LoadRowEmployeeByMaster","Employee")?MasterId=' + MasterId, (response) => {
             $('#tblBodyPrice').empty().html(response);
         });
-        }
+    }
 
 
 </script>

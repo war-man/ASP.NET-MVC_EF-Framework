@@ -45,25 +45,19 @@ namespace quanly.sonsport.com.Controllers
 
         public ActionResult LoadListEmployeeOfPlace(int? PlaceId)
         {
-            if (PlaceId == null)
-            {
-                TempData[GlobalConstans.MessageFail] = "Có lỗi xảy ra!";
-                return Json(new { error = true }, JsonRequestBehavior.AllowGet);
-            }
-
             if (PlaceId == 0)
             {
                 int MasterId = MasterOfPlace.MaChuSan;
                 ViewData[GlobalConstans.ViewDataLstPlaceYard] = PlaceYardFootballBusiness.SearchByMaster(MasterId);
                 ViewData[GlobalConstans.MasterId] = MasterId;
                 var listAllEmployee = EmployeeOfPlaceBusiness.SearchEmployeeByMasterId(MasterId);
-                return PartialView("_ListAllEmployee", listAllEmployee);
+                return PartialView("_ListAllEmployee",listAllEmployee);
             }
             else
             {
                 ViewData[GlobalConstans.ViewDataPlace] = PlaceYardFootballBusiness.SearchInfoPlace(PlaceId);
                 var listEmployee = EmployeeOfPlaceBusiness.SearchEmployeeByPlaceId(PlaceId);
-                return PartialView("_ListEmployee", listEmployee);
+                return PartialView("_ListEmployee",listEmployee);
             }
 
         }

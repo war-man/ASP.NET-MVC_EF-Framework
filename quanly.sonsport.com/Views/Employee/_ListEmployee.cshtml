@@ -20,12 +20,12 @@
 <div class="card shadow mb-4 ">
     <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
         <h6 class="m-0 font-weight-bold text-primary">Nhân viên của <b>@Place.TenDiaDiem</b> </h6>
-        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="btnAddEmployeeToPlace">
+        <button disabled class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="btnAddEmployeeToPlace">
             <span class="icon text-white-50">
                 <i class="fas fa-plus-square"></i>
             </span>
-            <span class="text text-white">Thêm nhân viên làm việc cho sân này</span>
-        </a>
+            <span class="text text-white">Thêm nhân viên làm việc cho sân này (Updating...)</span>
+        </button>
     </div>
     @if (Model.Count == 0)
     {

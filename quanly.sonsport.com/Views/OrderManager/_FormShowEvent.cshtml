@@ -63,11 +63,11 @@
     @if (checkDate > DateTime.Now)
     {
         <a class="btn btn-danger text-white" onclick="orderManager.DeleteOrderDetails('@Url.Action("DeleteOrderDetails","OrderManager")?OrderId='+@Model.OrderId)">Hủy sân</a>
-        <a class="btn btn-success text-white">Sửa</a>
-        <a class="btn btn-primary text-white">Tính tiền</a>
+        <button class="btn btn-primary text-white" disabled>Sửa(Updating...)</button>
+        <button class="btn btn-success text-white" disabled>Tính tiền(Updating...)</button>
     }
     else
     {
-        <button class="btn btn-secondary text-white" disabled>Xem chi tiết (Updating....)</button>
+        <button class="btn btn-danger text-white" disabled>Xóa (Updating....)</button>
     }
 </div>

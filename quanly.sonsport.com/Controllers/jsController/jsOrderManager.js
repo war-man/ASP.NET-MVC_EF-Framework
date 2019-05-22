@@ -3,9 +3,10 @@
         bootbox.confirm('Bạn có muốn hủy sân này không?', (result) => {
             if (result) {
                 $.get(url, function (resposne) {
-                    if (resposne.success) {
-                        bootbox.alert(resposne.Message);
-                        LoadOrderOfYard();
+                    if (resposne.Type=="success") {
+                        var PlaceId = $('#PlaceId').val();
+                        sessionStorage.setItem('PlaceIdSelected', PlaceId);
+                        location.reload();
                     }
                 });
             }

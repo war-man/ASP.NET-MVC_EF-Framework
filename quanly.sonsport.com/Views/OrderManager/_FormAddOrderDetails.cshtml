@@ -74,20 +74,21 @@
 }
 <script>
     $(function () {
-        $('#btnSubmitFormAddOd').one('click', function (event) {
+        $('#btnSubmitFormAddOd').on('click', function (event) {
             event.preventDefault();
             $('#form-add-od').submit();
         });
     })
     function OnAddOrderSuccess(response) {
         if (!response.success) {
-            bootbox.alert(response.message);
-            $('#sonsihomodal').modal('hide');
+             var PlaceId = $('#PlaceId').val();
+            sessionStorage.setItem('PlaceIdSelected', PlaceId);
+            location.reload();
         }
         else {
-            $('#sonsihomodal').modal('hide');
-            bootbox.alert('Đã thêm');
-            LoadOrderOfYard();
+             var PlaceId = $('#PlaceId').val();
+            sessionStorage.setItem('PlaceIdSelected', PlaceId);
+            location.reload();
         }
     }
 </script>

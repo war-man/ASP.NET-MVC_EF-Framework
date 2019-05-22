@@ -39,6 +39,16 @@ namespace quanly.sonsport.com.Controllers
             return View();
         }
 
+        public ActionResult CheckYardOfPlace(int PlaceId)
+        {
+            var lstYardOfPlace = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(PlaceId);
+            if(lstYardOfPlace.Count>0)
+            {
+                return Json(new { IsHaveLstYard = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { IsHaveLstYard = false }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult LoadOrderYard(int PlaceId)
         {
             var lstOrderDetails = OrderManagerBusiness.GetOrderDetails(MasterOfPlace.MaChuSan,PlaceId,null);
@@ -106,6 +116,7 @@ namespace quanly.sonsport.com.Controllers
             string Message = GlobalMethod.CustomValidateInputTimeAndPrice(start, end, price, lstPrice,model.KickAtDate);
             if(!Message.Equals("success"))
             {
+                TempData[GlobalConstans.MessageFailBootBox] = Message;
                 return Json(new { success = false,message=Message });
             }
             ViewData[GlobalConstans.ViewDataLstYardOfPlace] = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(model.PlaceId);
@@ -129,8 +140,10 @@ namespace quanly.sonsport.com.Controllers
                     MaSanBong=model.YardId,
                 };
                 OrderManagerBusiness.CreateOrderDetails(ctds);
+                TempData[GlobalConstans.MessageSuccessBootBox] = "Đã thêm lịch đặt";
                 return Json(new { success = true });
             }
+            TempData[GlobalConstans.MessageFailBootBox] = "Có lỗi xảy ra!";
             return Json(new { success = false,message="Có lỗi xảy ra!" });
         }
 
@@ -163,7 +176,8 @@ namespace quanly.sonsport.com.Controllers
         public ActionResult DeleteOrderDetails(int OrderId)
         {
             OrderManagerBusiness.DeleteOrderDetails(OrderId);
-            return Json(new JsonMessage { Type = JsonMessage.SUCCESS, Message = "Hủy sân thành công!" });
+            TempData[GlobalConstans.MessageSuccessBootBox] = "Đã xóa lịch đặt sân!";
+            return Json(new JsonMessage { Type = JsonMessage.SUCCESS, Message = "Hủy sân thành công!" },JsonRequestBehavior.AllowGet);
         }
     }
 }

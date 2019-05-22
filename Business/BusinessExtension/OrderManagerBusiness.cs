@@ -42,12 +42,13 @@ namespace Business.BusinessExtension
             {
                 var OrderDetails = dbContext.CHITIETDATSAN.FirstOrDefault(n => n.MaDatSan == OrderId);
                 dbContext.Entry(OrderDetails).State = EntityState.Deleted;
-                
+                dbContext.SaveChanges();
             }
             using (dbContext = new SonSportDbContext())
             {
                 var Order = dbContext.DATSAN.FirstOrDefault(n => n.MaDatSan == OrderId);
                 dbContext.Entry(Order).State = EntityState.Deleted;
+                dbContext.SaveChanges();
             }
         }
 

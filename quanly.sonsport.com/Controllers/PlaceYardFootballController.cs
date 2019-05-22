@@ -22,7 +22,7 @@ namespace quanly.sonsport.com.Controllers
         // GET: PlaceYardFootball
         public ActionResult Index()
         {
-            var lstPlace = PlaceYardFootballBusiness.SearchByMaster(GetMaster().MaChuSan);
+            var lstPlace = PlaceYardFootballBusiness.SearchByMaster(MasterOfPlace.MaChuSan);
             return View(lstPlace);
         }
 
@@ -30,8 +30,7 @@ namespace quanly.sonsport.com.Controllers
         {
             if (PlaceId.Equals("add"))
             {
-                var user = GetMaster();
-                int MasterId = user.MaChuSan;
+                int MasterId = MasterOfPlace.MaChuSan;
                 var model = new PlaceYardViewModel() { MaChuSan = MasterId };
                 return PartialView("_YardPlaceForm",model);
             }
