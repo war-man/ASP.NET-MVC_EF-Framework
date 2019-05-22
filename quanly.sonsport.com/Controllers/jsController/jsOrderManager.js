@@ -1,4 +1,17 @@
 ﻿var orderManager = {
+    DeleteOrderDetails: function (url) {
+        bootbox.confirm('Bạn có muốn hủy sân này không?', (result) => {
+            if (result) {
+                $.get(url, function (resposne) {
+                    if (resposne.success) {
+                        bootbox.alert(resposne.Message);
+                        LoadOrderOfYard();
+                    }
+                });
+            }
+        });
+
+    },
     CaculatorPrice: function () {
         var start = parseInt($('#StartTime').val());
         var end = parseInt($('#EndTime').val());
@@ -10,7 +23,7 @@
         else {
             $.get('/OrderManager/CaculatorPrice?start=' + start + '&end=' + end + '&YardId=' + YardId, function (response) {
                 if (response.success) {
-                    $('#Price').val(response.totalprice);
+                    $('#Price').prop('value', response.totalprice);
                 }
             })
         }
@@ -21,17 +34,27 @@
         const modal = $('#sonsihomodal');
         modal.find('.modal-title').text('Thêm lịch đặt sân bóng');
         const result = $('#form-result');
-        $.get('/OrderManager/LoadFormAdd?strDate=' + info.dateStr + '&PlaceId=' + PlaceId, (response) => {
-            result.html(response);
-        });
+        var today = new Date();
+        var yesterday = new Date();
+        yesterday.setDate(today.getDate() - 1);
+        var date = Date.parse(info.dateStr);
+        if (date < yesterday) {
+            result.empty().html('<br/><h3 class="text-center text-warning">Không được thêm lịch vào ngày trong quá khứ!</h3><br/>');
+        }
+        else {
+            $.get('/OrderManager/LoadFormAdd?strDate=' + info.dateStr + '&PlaceId=' + PlaceId, (response) => {
+                result.empty().html(response);
+            });
+        }
         modal.modal('show');
     },
     OnEventClick: function (info) {
         var modal = $('#sonsihomodal');
-        modal.find('.modal-title').text('Xem lịch đặt sân bóng');
+        modal.find('.modal-title').text('Thông tin chi tiết');
         const result = $('#form-result');
-        $.get('/OrderManager/LoadFormAdd?strDate=' + info.dateStr + '&PlaceId=' + PlaceId, (response) => {
-            result.html(response);
+        const id = info.event.id;
+        $.get('/OrderManager/LoadFormShow?OrderId=' + id , (response) => {
+            result.empty().html(response);
         });
         modal.modal('show');
     },
@@ -98,8 +121,8 @@
                 orderManager.OnDayClick(info);
             },
             events: url,
-            eventClick: function () {
-                orderManager.OnEventClick();
+            eventClick: function (info) {
+                orderManager.OnEventClick(info);
             },
             eventRender: function (info) {
                 var tooltip = new Tooltip(info.el, {

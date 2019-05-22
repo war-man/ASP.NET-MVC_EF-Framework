@@ -1,4 +1,5 @@
-﻿using Model.Context;
+﻿using Business.BusinessViewModels;
+using Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace Business.BusinessInterface
 
         void CreateOrderDetails(CHITIETDATSAN ctds);
 
-        List<CHITIETDATSAN> GetOrderDetails(int? MasterId,int? PlaceId);
+        List<CHITIETDATSAN> GetOrderDetails(int? MasterId,int? PlaceId,int? YardId);
+
+        OrderDetailsViewModels GetOrderDetailsByOrderId(int OrderId);
+
+        void DeleteOrderDetails(int OrderId);
     }
 }

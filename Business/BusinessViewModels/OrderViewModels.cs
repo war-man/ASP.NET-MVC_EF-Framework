@@ -15,5 +15,9 @@ namespace Business.BusinessViewModels
         public bool? editable { get; set; }
         public string description { get; set; }
 
+        public string kickatdate { get; set; }
+
+        public string backgroundColor { get; set; }
+        public string borderColor { get; set; }
     }
 }

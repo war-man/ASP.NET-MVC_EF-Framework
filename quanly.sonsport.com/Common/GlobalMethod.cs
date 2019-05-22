@@ -29,7 +29,7 @@ namespace quanly.sonsport.com.Common
             return $"0{Hour}:00:00";
         }
 
-        public static string CustomValidateInputTimeAndPrice(int bd, int kt, int price,List<CHITIETDATSAN> lstCTDS)
+        public static string CustomValidateInputTimeAndPrice(int bd, int kt, int price,List<CHITIETDATSAN> lstCTDS,DateTime kickatdate)
         {
             if (price > 10000000)
             {
@@ -45,13 +45,20 @@ namespace quanly.sonsport.com.Common
             }
             foreach (var item in lstCTDS)
             {
-                if (bd >= item.ThoiGianBatDau && bd < item.ThoiGianKetThuc)
+                if(kickatdate.Date==item.DaVaoNgay)
                 {
-                    return "Khung giờ này đã có người đặt!";
+                    if (bd >= item.ThoiGianBatDau && bd < item.ThoiGianKetThuc)
+                    {
+                        return "Khung giờ này đã có người đặt!";
+                    }
+                    if (kt > item.ThoiGianBatDau && kt <= item.ThoiGianKetThuc)
+                    {
+                        return "Khung giờ này đã có người đặt!";
+                    }
                 }
-                if (kt > item.ThoiGianBatDau && kt <= item.ThoiGianKetThuc)
+                else if(kickatdate.Date<DateTime.Now.Date)
                 {
-                    return "Khung giờ này đã có người đặt!";
+                    return "Không thể tạo lịch đặt trong quá khứ";
                 }
             }
             return "success";

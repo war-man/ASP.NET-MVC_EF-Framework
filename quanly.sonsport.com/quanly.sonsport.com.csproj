@@ -2242,6 +2242,7 @@
     <Content Include="Views\OrderManager\Index.cshtml" />
     <Content Include="Views\Shared\_Modal.cshtml" />
     <Content Include="Views\OrderManager\_FormAddOrderDetails.cshtml" />
+    <Content Include="Views\OrderManager\_FormShowEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

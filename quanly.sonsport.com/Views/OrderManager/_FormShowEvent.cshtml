@@ -1,0 +1,73 @@
+﻿@using quanly.sonsport.com.Common
+@using Model.Context
+@using Business.BusinessViewModels
+@model OrderDetailsViewModels
+@{
+    var lstYardOfPlace = ViewData[GlobalConstans.ViewDataLstYardOfPlace] as List<SANBONG>;
+    DateTime checkDate = new DateTime(Model.KickAtDate.Year, Model.KickAtDate.Month, Model.KickAtDate.Day, Model.StartTime, 0, 0);
+}
+<div class="modal-body">
+    @if(checkDate<DateTime.Now)
+    {
+        <h1 class="text-warning text-center" >Lịch đã hoàn thành</h1>
+    }
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(n => n.MasterId)
+    @Html.HiddenFor(n => n.PlaceId)
+    <div class="row">
+        <div class="form-group col-6">
+            @Html.LabelFor(n => n.CustomerName, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.CustomerName, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.ValidationMessageFor(n => n.CustomerName, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-6">
+            @Html.LabelFor(n => n.PhoneNumber, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.PhoneNumber, htmlAttributes: new { @class = "form-control", type = "tel", @disabled = "disabled" })
+            @Html.ValidationMessageFor(n => n.PhoneNumber, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            @Html.LabelFor(n => n.KickAtDate, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.KickAtDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", @type = "date", @disabled = "disabled" })
+            @Html.ValidationMessageFor(n => n.KickAtDate, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-3">
+            @Html.LabelFor(n => n.StartTime, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.StartTime, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.ValidationMessageFor(n => n.StartTime, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-3">
+            @Html.LabelFor(n => n.EndTime, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.EndTime, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.ValidationMessageFor(n => n.EndTime, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-6">
+            @Html.LabelFor(n => n.YardId, htmlAttributes: new { @class = "col-form-label" })
+            @Html.DropDownListFor(n => n.YardId, new SelectList(lstYardOfPlace, "MaSanBong", "TenSanBong", "TenSanBong"), htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.ValidationMessageFor(n => n.YardId, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-6">
+            @Html.LabelFor(n => n.Price, htmlAttributes: new { @class = "col-form-label" })
+            @Html.TextBoxFor(n => n.Price, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.ValidationMessageFor(n => n.Price, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+    @if (checkDate > DateTime.Now)
+    {
+        <a class="btn btn-danger text-white" onclick="orderManager.DeleteOrderDetails('@Url.Action("DeleteOrderDetails","OrderManager")?OrderId='+@Model.OrderId)">Hủy sân</a>
+        <a class="btn btn-success text-white">Sửa</a>
+        <a class="btn btn-primary text-white">Tính tiền</a>
+    }
+    else
+    {
+        <button class="btn btn-secondary text-white" disabled>Xem chi tiết (Updating....)</button>
+    }
+</div>

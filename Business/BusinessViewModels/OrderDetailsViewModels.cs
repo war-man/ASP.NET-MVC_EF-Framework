@@ -15,7 +15,7 @@ namespace Business.BusinessViewModels
         [Display(Name = "Đá tại sân:")]
         public int YardId { get; set; }
         public string YardName { get; set; }
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
 
         [Required]
         [Display(Name = "Tên người đặt:")]
@@ -23,12 +23,11 @@ namespace Business.BusinessViewModels
 
         [Required]
         [Display(Name = "Số điện thoại:")]
-        [Phone]
-        public string PhoneNumber { get; set; }
+        public int PhoneNumber { get; set; }
 
         [Required]
         [Display(Name = "Đá vào ngày:")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime KickAtDate { get; set; }
 
         [Display(Name = "Giờ bắt đầu")]
@@ -44,9 +43,8 @@ namespace Business.BusinessViewModels
         [Display(Name = "Gía tiền:")]
         public int? Price { get; set; }
 
-        public bool IsEditPrice { get; set; }
-        public bool StatusPayment { get; set; }
-        public int PaymentMethod { get; set; }
+        public bool? StatusPayment { get; set; }
+        public int? PaymentMethod { get; set; }
 
         public int PlaceId { get; set; }
     }

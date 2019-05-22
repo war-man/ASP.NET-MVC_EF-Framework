@@ -50,7 +50,7 @@
                 @Html.ValidationMessageFor(n => n.EndTime, null, htmlAttributes: new { @class = "text-danger" })
             </div>
             <div class="form-group col-2">
-                <label for="btnCaculator" class="col-form-label">Tính tiền sân</label>
+                <label for="btnCaculator" class="col-form-label">Ước lượng </label>
                 <a id="btnCaculator" class="form-control text-white btn-success" onclick="orderManager.CaculatorPrice()"><i class="fa fa-money-bill"></i>Tính</a>
             </div>
         </div>
@@ -61,23 +61,28 @@
                 @Html.ValidationMessageFor(n => n.YardId, null, htmlAttributes: new { @class = "text-danger" })
             </div>
             <div class="form-group col-6">
-                @Html.CheckBoxFor(n => n.IsEditPrice, htmlAttributes: new { @class = "col-form-label", @onclick = "document.getElementById('Price').disabled=!this.checked;" })
                 @Html.LabelFor(n => n.Price, htmlAttributes: new { @class = "col-form-label" })
-                @Html.TextBoxFor(n => n.Price, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                @Html.TextBoxFor(n => n.Price, htmlAttributes: new { @class = "form-control"})
                 @Html.ValidationMessageFor(n => n.Price, null, htmlAttributes: new { @class = "text-danger" })
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-        <button type="submit" class="btn btn-primary">Xác nhận thêm</button>
+        <a class="btn btn-secondary text-white" data-dismiss="modal">Thoát</a>
+        <a class="btn btn-primary text-white" id="btnSubmitFormAddOd">Xác nhận thêm</a>
     </div>
 }
-<script src="~/Assets/Scripts/jquery-3.4.1.min.js"></script>
 <script>
+    $(function () {
+        $('#btnSubmitFormAddOd').one('click', function (event) {
+            event.preventDefault();
+            $('#form-add-od').submit();
+        });
+    })
     function OnAddOrderSuccess(response) {
         if (!response.success) {
             bootbox.alert(response.message);
+            $('#sonsihomodal').modal('hide');
         }
         else {
             $('#sonsihomodal').modal('hide');

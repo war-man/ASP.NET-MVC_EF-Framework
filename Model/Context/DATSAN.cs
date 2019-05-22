@@ -26,7 +26,9 @@ namespace Model.Context
 
         public string TenNguoiDat { get; set; }
 
-        public bool? Status { get; set; }
+        public int PhoneNumber { get; set; }
+
+        public bool? IsCancelled { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDATSAN> CHITIETDATSAN { get; set; }

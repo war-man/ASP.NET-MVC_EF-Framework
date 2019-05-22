@@ -47,6 +47,7 @@
         else {
             var PlaceName = $('#PlaceId option:selected').text();
             $('#text-place-name').text(PlaceName);
+            $('#calendar').empty();
             orderManager.OnCalenderLoad('@Url.Action("LoadOrderYard","OrderManager")?PlaceId='+PlaceId, '@DateTime.Now.ToString("yyyy-MM-dd")');
         }
     }

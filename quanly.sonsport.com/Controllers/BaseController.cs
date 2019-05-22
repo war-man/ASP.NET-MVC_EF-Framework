@@ -66,10 +66,21 @@ namespace quanly.sonsport.com.Controllers
             }
         }
 
+        public string UserId
+        {
+            get
+            {
+                return User.Identity.GetUserId();
+            }
+        }
+
         public ApplicationUser GetUser()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            return user;
+            using (_dbContext = new SonSportDbContext())
+            {
+                var user = _dbContext.Users.Find(UserId);
+                return user;
+            }
         }
 
         public CHUSANQUANLY GetMaster()
