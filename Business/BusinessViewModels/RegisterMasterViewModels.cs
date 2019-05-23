@@ -35,26 +35,29 @@ namespace Business.BusinessViewModels
 
         [Required]
         [Display(Name = "Số điện thoại 1")]
-        [RegularExpression(@"[0]{1}[0-9, ,.]{8,}", ErrorMessage = "Nhập số điện thoại bàn hoặc di động như 15DTH13 hay 0972 612 950")]
+        [RegularExpression(@"[0]{1}[0-9, ,.]{8,}", ErrorMessage = "Nhập số điện thoại bàn hoặc di động như 15DTH13 hay 0972612950")]
         public string PhoneNumber1 { get; set; }
 
         [Required]
         [Display(Name = "Số điện thoại 2")]
-        [RegularExpression(@"[0]{1}[0-9, ,.]{8,}", ErrorMessage = "Nhập số điện thoại bàn hoặc di động như 15DTH13 hay 0972 612 950")]
+        [RegularExpression(@"[0]{1}[0-9, ,.]{8,}", ErrorMessage = "Nhập số điện thoại bàn hoặc di động như 15DTH13 hay 0972612950")]
         public string PhoneNumber2 { get; set; }
 
         [Required]
         [Display(Name = "Giờ mở cửa")]
-        [RegularExpression(@"^([01]\d|2[0-4]):([0-5]\d)$", ErrorMessage = "06:00 hoặc 14:00")]
+        [RegularExpression(@"^([01]\d|2[0-4]):([0-5]\d)$", ErrorMessage = "Nhập theo định dạng 06:00 hoặc 14:00")]
         public string OpenTime { get; set; }
 
-        [Required]
+        [Required]  
         [Display(Name = "Giờ đóng cửa")]
-        [RegularExpression(@"^([01]\d|2[0-4]):([0-5]\d)$", ErrorMessage = "06:00 hoặc 14:00")]
+        [RegularExpression(@"^([01]\d|2[0-4]):([0-5]\d)$", ErrorMessage = "Nhập theo định dạng 06:00 hoặc 14:00")]
         public string CloseTime { get; set; }
 
         [Required]
         [Display(Name = "Địa chỉ")]
         public string Address { get; set; }
+
+        [Display(Name = "Quận/Huyện")]
+        public string District { get; set; }
     }
 }

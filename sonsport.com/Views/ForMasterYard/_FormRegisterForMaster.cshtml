@@ -2,6 +2,7 @@
 <script src="~/Assets/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 @using Business.BusinessViewModels
+@using sonsport.com.Common
 @model RegisterMasterViewModels
 <div class="modal-content" style="padding: 24px 0px 24px 0px">
     @using (Ajax.BeginForm("RegisterMaster", "ForMasterYard",
@@ -13,15 +14,14 @@
         },
         new { @id = "new_business", @class = "new_business" }))
     {
-       @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
         <div class="row">
             <div class="col s12">
                 <h5 class="center">Đăng ký dành cho chủ sân</h5>
-
                 <div class="input-field col s12 m6">
-                    @Html.LabelFor(n=>n.MasterName)
-                    @Html.TextBoxFor(n=>n.MasterName,new {@required="required"})
-                    @Html.ValidationMessageFor(n=>n.MasterName,null,new { @class="red-text"})
+                    @Html.LabelFor(n => n.MasterName)
+                    @Html.TextBoxFor(n => n.MasterName, new { @required = "required" })
+                    @Html.ValidationMessageFor(n => n.MasterName, null, new { @class = "red-text" })
                 </div>
                 <div class="input-field col s12 m6">
                     @Html.LabelFor(n => n.Email)
@@ -30,12 +30,12 @@
                 </div>
                 <div class="input-field col s12 m6">
                     @Html.LabelFor(n => n.Password)
-                    @Html.TextBoxFor(n => n.Password, new { @required = "required",autocomplete="off"})
+                    @Html.PasswordFor(n => n.Password, new { @required = "required", autocomplete = "off" })
                     @Html.ValidationMessageFor(n => n.Password, null, new { @class = "red-text" })
                 </div>
                 <div class="input-field col s12 m6">
                     @Html.LabelFor(n => n.ConfirmPassword)
-                    @Html.TextBoxFor(n => n.ConfirmPassword, new { @required = "required", autocomplete = "off" })
+                    @Html.PasswordFor(n => n.ConfirmPassword, new { @required = "required", autocomplete = "off" })
                     @Html.ValidationMessageFor(n => n.ConfirmPassword, null, new { @class = "red-text" })
                 </div>
             </div>
@@ -75,46 +75,49 @@
                 </div>
                 <div class="row address_form">
 
-                    <div class="col s6 m3 l3 address_city">
+                    <div class="col s3 m3 l3 address_city">
                         <label class="active" for="city">Thành phố/Tỉnh</label>
                         <select name="city" id="city" required="required" class="browser-default" disabled>
                             <option value="2">Tỉnh quảng trị</option>
                             <option selected="selected" value="1">Tp Hồ Chí Minh</option>
                         </select>
                     </div>
-                    <div class="col s6 m3 l3 address_district">
+                    <div class="col s3 m3 l3 address_district">
                         <label class="active" for="DistrictName">Quận/Huyện</label>
                         <select class="browser-default" name="DistrictName" id="DistrictName">
-                            <option value="573">Huyện Bình Chánh</option>
-                            <option value="575">Huyện Cần Giờ</option>
-                            <option value="571">Huyện Củ Chi</option>
-                            <option value="572">Huyện Hóc Môn</option>
-                            <option value="574">Huyện Nhà Bè</option>
-                            <option value="552">Quận 1</option>
-                            <option value="563">Quận 10</option>
-                            <option value="564">Quận 11</option>
-                            <option value="553">Quận 12</option>
-                            <option value="561">Quận 2</option>
-                            <option value="562">Quận 3</option>
-                            <option value="565">Quận 4</option>
-                            <option value="566">Quận 5</option>
-                            <option value="567">Quận 6</option>
-                            <option value="570">Quận 7</option>
-                            <option value="568">Quận 8</option>
-                            <option value="555">Quận 9</option>
-                            <option value="569">Quận Bình Tân</option>
-                            <option value="557">Quận Bình Thạnh</option>
-                            <option value="556">Quận Gò Vấp</option>
-                            <option value="560">Quận Phú Nhuận</option>
-                            <option value="558">Quận Tân Bình</option>
-                            <option value="559">Quận Tân Phú</option>
-                            <option value="554">Quận Thủ Đức</option>
+                            <option value="Huyện Bình Chánh">Huyện Bình Chánh</option>
+                            <option value="Huyện Cần Giờ">Huyện Cần Giờ</option>
+                            <option value="Huyện Củ Chi">Huyện Củ Chi</option>
+                            <option value="Huyện Hóc Môn">Huyện Hóc Môn</option>
+                            <option value="Huyện Nhà Bè">Huyện Nhà Bè</option>
+                            <option value="Quận 1">Quận 1</option>
+                            <option value="Quận 10">Quận 10</option>
+                            <option value="Quận 11">Quận 11</option>
+                            <option value="Quận 12">Quận 12</option>
+                            <option value="Quận 2">Quận 2</option>
+                            <option value="Quận 3">Quận 3</option>
+                            <option value="Quận 4">Quận 4</option>
+                            <option value="Quận 5">Quận 5</option>
+                            <option value="Quận 6">Quận 6</option>
+                            <option value="Quận 7">Quận 7</option>
+                            <option value="Quận 8">Quận 8</option>
+                            <option value="Quận 9">Quận 9</option>
+                            <option value="Quận Bình Tân">Quận Bình Tân</option>
+                            <option value="Quận Bình Thạnh">Quận Bình Thạnh</option>
+                            <option value="Quận Gò Vấp">Quận Gò Vấp</option>
+                            <option value="Quận Phú Nhuận">Quận Phú Nhuận</option>
+                            <option value="Quận Tân Bình">Quận Tân Bình</option>
+                            <option value="Quận Tân Phú">Quận Tân Phú</option>
+                            <option value="Quận Thủ Đức">Quận Thủ Đức</option>
                         </select>
                     </div>
-                    <div class="input-field col s12 m6 l6 address_street">
+                    <div class="input-field col s6 m9 address_street">
                         @Html.LabelFor(n => n.Address)
-                        @Html.TextBoxFor(n => n.Address, new { @required = "required"})
+                        @Html.TextBoxFor(n => n.Address, new { @required = "required" })
                         @Html.ValidationMessageFor(n => n.Address, null, new { @class = "red-text" })
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.ValidationSummary(true, "", new { @class = "red-text" })
                     </div>
                 </div>
                 <span class="grey-text" style="font-size: 12px;">Bằng cách nhấn vào nút đăng ký bên dưới, bạn đã chấp nhận <a target="_blank" href="@Url.Action("TermsOfUse","HelperPages")">Điều khoản sử dụng</a> và <a target="_blank" href="@Url.Action("TermsOfUse","HelperPages")">Chính sách bảo mật</a> của chúng tôi.</span>
@@ -126,3 +129,9 @@
     }
 
 </div>
+<script src="~/Assets/Scripts/bootbox.min.js"></script>
+<script>
+    function OnCreateSuccess(response) {
+        $('#business-register').empty().html(response);
+    }
+</script>

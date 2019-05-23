@@ -8,7 +8,7 @@ using Microsoft.Owin.Security;
 
 namespace admin.sonsport.com.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN")]
     public class ManageController : BaseController
     {
 

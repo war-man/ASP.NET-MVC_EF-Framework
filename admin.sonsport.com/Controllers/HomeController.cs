@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace admin.sonsport.com.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN")]
     public class HomeController : BaseController
     {
         public ActionResult Index()

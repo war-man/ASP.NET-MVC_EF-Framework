@@ -1,0 +1,94 @@
+﻿@using Model.Context
+@using admin.sonsport.com.Common
+@{
+    ViewBag.Title = "MasterWaiting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstMasterIsNotActive = (List<CHUSANQUANLY>)ViewData[GlobalConstans.LstMasterIsNotActive];
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Quản lý chủ sân</a>
+    </li>
+    <li class="breadcrumb-item active">Danh sách</li>
+</ol>
+<div id="alert-result"></div>
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Danh sách chủ sân đăng ký mới
+        @*<a class="btn btn-primary float-right" data-toggle="modal" data-target="#AddOrEditModal" data-whatever="add">Thêm tài khoản Admin</a>*@
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên chủ sân</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Mật khẩu</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Tên chủ sân</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Mật khẩu</th>
+                        <th class="w-25">Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in lstMasterIsNotActive)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.TenChuSan)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Sdt)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                            <td>
+                                <a class="btn btn-primary" onclick="ConfirmActive(@item.MaChuSan)">Kích hoạt tài khoản</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+@RenderPage("~/Views/Shared/_Modal.cshtml")
+@section scripts{
+    <script>
+    $(function () {
+        @if(TempData[GlobalConstans.MessageSuccess]!=null)
+        {
+            @Html.Raw($"ssh.ShowAlertSuccess('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
+        }
+        @if(TempData[GlobalConstans.MessageFail]!=null)
+        {
+            @Html.Raw($"ssh.ShowAlertError('{TempData[GlobalConstans.MessageFail].ToString()}')");
+        }
+    })
+    function ConfirmActive(MasterId) {
+        bootbox.confirm({
+            title: "Kích hoạt tài khoản chủ sân!",
+            message: "Bạn có muốn kích hoạt tài khoản cho chủ sân này không?",
+            callback: function (result) {
+                if (result) {
+                    $.get('@Url.Action("ActiveMaster","MasterManager")?MasterId=' + MasterId, (response) => {
+                        if (response.Type = 'success') {
+                            location.reload();
+                        }
+                        location.reload();
+                    });
+                }
+            }
+        });
+    }
+    </script>
+}

@@ -18,6 +18,7 @@ namespace sonsport.com
 
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IPlaceYardFootballBusiness, PlaceYardFootballBusiness>();
+            container.RegisterType<IMasterYardBusiness, MasterYardBusiness>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

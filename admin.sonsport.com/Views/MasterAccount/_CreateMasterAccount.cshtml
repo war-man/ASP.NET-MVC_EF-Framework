@@ -1,28 +1,93 @@
-﻿@using admin.sonsport.com.Models;
-@model RegisterViewModel
-@using (Ajax.BeginForm("Create", "MasterAccount",
+﻿<script src="~/Assets/Scripts/jquery.validate.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using admin.sonsport.com.Common
+@using Model.Context
+@using Business.BusinessViewModels
+@model MasterViewModels
+@{
+
+}
+@using (Ajax.BeginForm("ActiveAccountMaster", "MasterManager",
             ajaxOptions: new AjaxOptions
             {
                 HttpMethod = "POST",
-                OnSuccess = "OnCreateSuccess",
-                OnFailure = "OnFailure"
-            },
-            htmlAttributes: new { @id = "master-account-form" }))
+                OnSuccess = "OnActiveSuccess",
+                OnFailure = "OnFailure",
+            }
+            , htmlAttributes: new { @id = "form-active-master" }))
 {
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        @Html.LabelFor(n => n.Email, htmlAttributes: new { @class = "col-form-label" })
-        @Html.TextBoxFor(n => n.Email, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(n => n.Email, null, htmlAttributes: new { @class = "text-danger" })
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(n => n.MasterId)
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.MasterId, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.MasterId, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.MasterId, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.PhoneNumber, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.PhoneNumber, htmlAttributes: new { @class = "form-control", type = "tel" })
+                @Html.ValidationMessageFor(n => n.PhoneNumber, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.KickAtDate, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.KickAtDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", @type = "date" })
+                @Html.ValidationMessageFor(n => n.KickAtDate, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-2">
+                @Html.LabelFor(n => n.StartTime, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.StartTime, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.StartTime, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-2">
+                @Html.LabelFor(n => n.EndTime, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.EndTime, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.EndTime, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-2">
+                <label for="btnCaculator" class="col-form-label">Ước lượng </label>
+                <a id="btnCaculator" class="form-control text-white btn-success" onclick="orderManager.CaculatorPrice()"><i class="fa fa-money-bill"></i>Tính</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.YardId, htmlAttributes: new { @class = "col-form-label" })
+                @Html.DropDownListFor(n => n.YardId, new SelectList(lstYardOfPlace, "MaSanBong", "TenSanBong", "TenSanBong"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.YardId, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.Price, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.Price, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.Price, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(n => n.Password, htmlAttributes: new { @class = "col-form-label" })
-        @Html.PasswordFor(n => n.Password, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(n => n.Password, null, htmlAttributes: new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(n => n.ConfirmPassword, htmlAttributes: new { @class = "col-form-label" })
-        @Html.PasswordFor(n => n.ConfirmPassword, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(n => n.ConfirmPassword, null, htmlAttributes: new { @class = "text-danger" })
+    <div class="modal-footer">
+        <a class="btn btn-secondary text-white" data-dismiss="modal">Thoát</a>
+        <a class="btn btn-primary text-white" id="btnSubmitFormAddOd">Xác nhận thêm</a>
     </div>
 }
+<script>
+    $(function () {
+        $('#btnSubmitFormAddOd').on('click', function (event) {
+            event.preventDefault();
+            $('#form-add-od').submit();
+        });
+    })
+    function OnAddOrderSuccess(response) {
+        if (!response.success) {
+             var PlaceId = $('#PlaceId').val();
+            sessionStorage.setItem('PlaceIdSelected', PlaceId);
+            location.reload();
+        }
+        else {
+             var PlaceId = $('#PlaceId').val();
+            sessionStorage.setItem('PlaceIdSelected', PlaceId);
+            location.reload();
+        }
+    }
+</script>

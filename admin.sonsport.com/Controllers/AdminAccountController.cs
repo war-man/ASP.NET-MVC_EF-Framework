@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace admin.sonsport.com.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN")]
     [RoutePrefix("admin")]
     public class AdminAccountController : BaseController
     {

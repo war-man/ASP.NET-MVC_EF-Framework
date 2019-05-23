@@ -7,7 +7,7 @@ using Business.BusinessViewModels;
 
 namespace admin.sonsport.com.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN")]
     [RoutePrefix("admin")]
     public class RoleController : BaseController
     {

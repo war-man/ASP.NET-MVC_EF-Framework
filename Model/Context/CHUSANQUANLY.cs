@@ -26,6 +26,11 @@ namespace Model.Context
         [StringLength(15)]
         public string Sdt { get; set; }
 
+        [StringLength(25)]
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
         public bool IsActive { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -346,6 +346,7 @@
     <Content Include="Views\ForMasterYard\_FormRegisterForMaster.cshtml" />
     <Content Include="Views\HelperPages\PrivacyPolicy.cshtml" />
     <Content Include="Views\HelperPages\TermsOfUse.cshtml" />
+    <Content Include="Views\ForMasterYard\_FormRegisterSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

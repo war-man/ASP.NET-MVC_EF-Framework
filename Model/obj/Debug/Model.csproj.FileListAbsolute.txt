@@ -51,7 +51,3 @@ D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.CoreComp
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.CopyComplete
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.dll
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.pdb
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.ThemTenNguoiDat.resources
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.GenerateResource.cache
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.aaaa.resources
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.adsasdasd.resources

@@ -1,0 +1,64 @@
+﻿@using Model.Context
+@using admin.sonsport.com.Common
+@{
+    ViewBag.Title = "MasterActivating";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstMasterIsActive = (List<CHUSANQUANLY>)ViewData[GlobalConstans.LstMasterIsActive];
+}
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Quản lý chủ sân</a>
+    </li>
+    <li class="breadcrumb-item active">Danh sách</li>
+</ol>
+<div id="alert-result"></div>
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Danh sách chủ sân đăng ký mới
+        @*<a class="btn btn-primary float-right" data-toggle="modal" data-target="#AddOrEditModal" data-whatever="add">Thêm tài khoản Admin</a>*@
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên chủ sân</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Mật khẩu</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Tên chủ sân</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Mật khẩu</th>
+                        <th>Trạng thái</th>
+                        <th class="w-25">Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in lstMasterIsActive)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.TenChuSan)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Sdt)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                            <td>Đã kích hoạt</td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+

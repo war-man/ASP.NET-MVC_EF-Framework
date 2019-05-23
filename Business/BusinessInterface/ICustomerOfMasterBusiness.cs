@@ -10,5 +10,6 @@ namespace Business.BusinessInterface
     public interface ICustomerOfMasterBusiness
     {
         KHACHHANG GetInfoCustomer(int CustomerId);
+
     }
 }

@@ -70,18 +70,6 @@
     <Compile Include="Context\NHANVIEN.cs" />
     <Compile Include="Context\SANBONG.cs" />
     <Compile Include="Context\SonSportDbContext.cs" />
-    <Compile Include="Migrations\201905210914215_ThemTenNguoiDat.cs" />
-    <Compile Include="Migrations\201905210914215_ThemTenNguoiDat.Designer.cs">
-      <DependentUpon>201905210914215_ThemTenNguoiDat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905220445482_aaaa.cs" />
-    <Compile Include="Migrations\201905220445482_aaaa.Designer.cs">
-      <DependentUpon>201905220445482_aaaa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905220802383_adsasdasd.cs" />
-    <Compile Include="Migrations\201905220802383_adsasdasd.Designer.cs">
-      <DependentUpon>201905220802383_adsasdasd.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sysdiagrams.cs" />
@@ -89,17 +77,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905210914215_ThemTenNguoiDat.resx">
-      <DependentUpon>201905210914215_ThemTenNguoiDat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905220445482_aaaa.resx">
-      <DependentUpon>201905220445482_aaaa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905220802383_adsasdasd.resx">
-      <DependentUpon>201905220802383_adsasdasd.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
