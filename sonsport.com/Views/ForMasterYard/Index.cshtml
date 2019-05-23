@@ -78,7 +78,7 @@
                         <li><i class="fa fa-check-circle"></i>  Miễn phí sử dụng</li>
                     </ul>
                     <p class="center">
-                        <a style="height: 50px; line-height: 50px; font-size: 1.2rem" class="waves-effect waves-light btn orange black-text modal-trigger" href="#business-register" id="business-new-modal-event" data-event="{:user_id=>nil, :venue=>nil}">
+                        <a onclick="ShowModalRegister()" style="height: 50px; line-height: 50px; font-size: 1.2rem" class="waves-effect waves-light btn orange black-text modal-trigger" href="#business-register" id="business-new-modal-event" data-event="{:user_id=>nil, :venue=>nil}">
                             ĐĂNG KÝ NGAY
                         </a>
                     </p>
@@ -116,7 +116,7 @@
                             <span>
                                 Sân bóng của bạn sau khi đăng ký hợp tác với Son Sport sẽ được sở hữu một link riêng. Mọi thông tin sân bóng cũng như giờ còn sân trống sẽ được hiện thị ở đó.<br>
                                 <br>
-                                Đường dẫn này bạn có thể cài đặt ở phần quản lý của chủ sân. Ví dụ đường dẫn này có thể là “https://www.Son Sport.vn/tensancuaban”. Son Sport cam kết thông tin sân bóng của bạn được bảo vệ và hiện thị chính xác.
+                                Đường dẫn này bạn có thể cài đặt ở phần quản lý của chủ sân. Ví dụ đường dẫn này có thể là “https://www.sonsport.vn/tensancuaban”. Son Sport cam kết thông tin sân bóng của bạn được bảo vệ và hiện thị chính xác.
                             </span>
                         </div>
                     </li>
@@ -136,175 +136,15 @@
             </div>
         </div>
         <div id="business-register" class="modal" style="max-height: 80%; z-index: 1003; display: none; opacity: 0; top: 4%; transform: scaleX(0.8) scaleY(0.8);" tabindex="0">
-            <div class="modal-content" style="padding: 24px 0px 24px 0px">
-                <form class="new_business" id="new_business" action="/chu-san" accept-charset="UTF-8" method="post">
-                    <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="CUOt5ykxr0nCEVr0uffQ26JpmdUrgBRM+q+1jDlITKH84ia9lrgbU5vvxoJEMw7N0esNSqjwI/4Uo/ZUZYiSSw==">
-                    <div class="row">
-                        <div class="col s12">
-                            <h5 class="center">Đăng ký dành cho chủ sân</h5>
 
-                            <div class="input-field col s12 m6">
-                                <label for="business_user_attributes_name">Họ và tên</label>
-                                <input required="required" type="text" name="business[user_attributes][name]" id="business_user_attributes_name">
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <label for="business_user_attributes_email">Địa chỉ email</label>
-                                <input required="required" type="email" value="" name="business[user_attributes][email]" id="business_user_attributes_email">
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <label for="business_user_attributes_password">Mật khẩu</label>
-                                <input autocomplete="off" required="required" pattern=".{6,}" title="ít nhất 6 ký tự" type="password" name="business[user_attributes][password]" id="business_user_attributes_password">
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <label for="business_user_attributes_password_confirmation">Nhập lại mật khẩu</label>
-                                <input autocomplete="off" required="required" pattern=".{6,}" title="ít nhất 6 ký tự" type="password" name="business[user_attributes][password_confirmation]" id="business_user_attributes_password_confirmation">
-                            </div>
-                        </div>
-                        <div class="col s12">
-
-                            <div class="row" style="margin-bottom: 0px;">
-                                <div class="input-field col s12 m12 l8">
-                                    <label for="business_venues_attributes_0_name" class="">Tên sân</label>
-                                    <input required="required" type="text" name="business[venues_attributes][0][name]" id="business_venues_attributes_0_name">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12"></div>
-
-                                <div class="input-field col s6 l4">
-                                    <label for="business_venues_attributes_0_phones_attributes_0_number">Số điện thoại 1</label>
-                                    <input required="required" pattern="[0]{1}[0-9, ,.]{8,}" title="Nhập số điện thoại bàn hoặc di động như 08 3884 0839 hay 0937 179 129" type="text" name="business[venues_attributes][0][phones_attributes][0][number]" id="business_venues_attributes_0_phones_attributes_0_number">
-                                </div>
-
-                                <div class="input-field col s6 l4">
-                                    <label for="business_venues_attributes_0_phones_attributes_1_number">Số điện thoại 2</label>
-                                    <input pattern="[0]{1}[0-9, ,.]{8,}" title="Nhập số điện thoại bàn hoặc di động như 08 3884 0839 hay 0937 179 129" type="text" name="business[venues_attributes][0][phones_attributes][1][number]" id="business_venues_attributes_0_phones_attributes_1_number">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s6 m3">
-                                    <label class="active" for="business_venues_attributes_0_begin_work_time">Giờ mở cửa</label>
-                                    <input value="06:00" pattern="^([01]\d|2[0-4]):([0-5]\d)$" title="06:00 hoặc 14:00" type="text" name="business[venues_attributes][0][begin_work_time]" id="business_venues_attributes_0_begin_work_time">
-                                </div>
-                                <div class="input-field col s6 m3">
-                                    <label class="active" for="business_venues_attributes_0_end_work_time">Giờ đóng cửa</label>
-                                    <input value="24:00" pattern="^([01]\d|2[0-4]):([0-5]\d)$" title="06:00 hoặc 24:00" type="text" name="business[venues_attributes][0][end_work_time]" id="business_venues_attributes_0_end_work_time">
-                                </div>
-                            </div>
-                            <div class="row address_form">
-
-                                <div class="col s6 m3 l3 address_city">
-                                    <label class="active" for="city">Thành phố/Tỉnh</label>
-                                    <select name="city" id="city" required="required" class="browser-default">
-                                        <option value="57">Tỉnh An Giang</option>
-                                        <option value="15">Tỉnh Bắc Giang</option>
-                                        <option value="4">Tỉnh Bắc Kạn</option>
-                                        <option value="62">Tỉnh Bạc Liêu</option>
-                                        <option value="18">Tỉnh Bắc Ninh</option>
-                                        <option value="49">Tỉnh Bà Rịa-Vũng Tàu</option>
-                                        <option value="53">Tỉnh Bến Tre</option>
-                                        <option value="35">Tỉnh Bình Định</option>
-                                        <option value="47">Tỉnh Bình Dương</option>
-                                        <option value="45">Tỉnh Bình Phước</option>
-                                        <option value="39">Tỉnh Bình Thuận</option>
-                                        <option value="63">Tỉnh Cà Mau</option>
-                                        <option value="3">Tỉnh Cao Bằng</option>
-                                        <option value="42">Tỉnh Đắk Lắk</option>
-                                        <option value="43">Tỉnh Đắk Nông</option>
-                                        <option value="7">Tỉnh Điện Biên</option>
-                                        <option value="48">Tỉnh Đồng Nai</option>
-                                        <option value="56">Tỉnh Đồng Tháp</option>
-                                        <option value="41">Tỉnh Gia Lai</option>
-                                        <option value="2">Tỉnh Hà Giang</option>
-                                        <option value="19">Tỉnh Hải Dương</option>
-                                        <option value="23">Tỉnh Hà Nam</option>
-                                        <option value="28">Tỉnh Hà Tĩnh</option>
-                                        <option value="60">Tỉnh Hậu Giang</option>
-                                        <option value="11">Tỉnh Hòa Bình</option>
-                                        <option value="21">Tỉnh Hưng Yên</option>
-                                        <option value="37">Tỉnh Khánh Hòa</option>
-                                        <option value="58">Tỉnh Kiên Giang</option>
-                                        <option value="40">Tỉnh Kon Tum</option>
-                                        <option value="8">Tỉnh Lai Châu</option>
-                                        <option value="44">Tỉnh Lâm Đồng</option>
-                                        <option value="13">Tỉnh Lạng Sơn</option>
-                                        <option value="6">Tỉnh Lào Cai</option>
-                                        <option value="51">Tỉnh Long An</option>
-                                        <option value="24">Tỉnh Nam Định</option>
-                                        <option value="27">Tỉnh Nghệ An</option>
-                                        <option value="25">Tỉnh Ninh Bình</option>
-                                        <option value="38">Tỉnh Ninh Thuận</option>
-                                        <option value="16">Tỉnh Phú Thọ</option>
-                                        <option value="36">Tỉnh Phú Yên</option>
-                                        <option value="29">Tỉnh Quảng Bình</option>
-                                        <option value="33">Tỉnh Quảng Nam</option>
-                                        <option value="34">Tỉnh Quảng Ngãi</option>
-                                        <option value="14">Tỉnh Quảng Ninh</option>
-                                        <option value="30">Tỉnh Quảng Trị</option>
-                                        <option value="61">Tỉnh Sóc Trăng</option>
-                                        <option value="9">Tỉnh Sơn La</option>
-                                        <option value="46">Tỉnh Tây Ninh</option>
-                                        <option value="22">Tỉnh Thái Bình</option>
-                                        <option value="12">Tỉnh Thái Nguyên</option>
-                                        <option value="26">Tỉnh Thanh Hóa</option>
-                                        <option value="31">Tỉnh Thừa Thiên Huế</option>
-                                        <option value="52">Tỉnh Tiền Giang</option>
-                                        <option value="54">Tỉnh Trà Vinh</option>
-                                        <option value="5">Tỉnh Tuyên Quang</option>
-                                        <option value="55">Tỉnh Vĩnh Long</option>
-                                        <option value="17">Tỉnh Vĩnh Phúc</option>
-                                        <option value="10">Tỉnh Yên Bái</option>
-                                        <option value="59">Tp Cần Thơ</option>
-                                        <option value="32">Tp Đà Nẵng</option>
-                                        <option value="20">Tp Hải Phòng</option>
-                                        <option value="1">Tp Hà Nội</option>
-                                        <option selected="selected" value="50">Tp Hồ Chí Minh</option>
-                                    </select>
-                                </div>
-                                <div class="col s6 m3 l3 address_district">
-                                    <label class="active" for="business_venues_attributes_0_address_attributes_district_id">Quận/Huyện</label>
-                                    <select class="browser-default" name="business[venues_attributes][0][address_attributes][district_id]" id="business_venues_attributes_0_address_attributes_district_id">
-                                        <option value="573">Huyện Bình Chánh</option>
-                                        <option value="575">Huyện Cần Giờ</option>
-                                        <option value="571">Huyện Củ Chi</option>
-                                        <option value="572">Huyện Hóc Môn</option>
-                                        <option value="574">Huyện Nhà Bè</option>
-                                        <option value="552">Quận 1</option>
-                                        <option value="563">Quận 10</option>
-                                        <option value="564">Quận 11</option>
-                                        <option value="553">Quận 12</option>
-                                        <option value="561">Quận 2</option>
-                                        <option value="562">Quận 3</option>
-                                        <option value="565">Quận 4</option>
-                                        <option value="566">Quận 5</option>
-                                        <option value="567">Quận 6</option>
-                                        <option value="570">Quận 7</option>
-                                        <option value="568">Quận 8</option>
-                                        <option value="555">Quận 9</option>
-                                        <option value="569">Quận Bình Tân</option>
-                                        <option value="557">Quận Bình Thạnh</option>
-                                        <option value="556">Quận Gò Vấp</option>
-                                        <option value="560">Quận Phú Nhuận</option>
-                                        <option value="558">Quận Tân Bình</option>
-                                        <option value="559">Quận Tân Phú</option>
-                                        <option value="554">Quận Thủ Đức</option>
-                                    </select>
-                                </div>
-                                <div class="input-field col s12 m6 l6 address_street">
-                                    <label for="business_venues_attributes_0_address_attributes_street">Địa chỉ</label>
-                                    <input required="required" type="text" name="business[venues_attributes][0][address_attributes][street]" id="business_venues_attributes_0_address_attributes_street">
-                                </div>
-                                <input hidden="hidden" id="latitude" type="text" name="business[venues_attributes][0][address_attributes][latitude]">
-                                <input hidden="hidden" id="longitude" type="text" name="business[venues_attributes][0][address_attributes][longitude]">
-                                <input value="Việt Nam" hidden="hidden" readonly="readonly" type="text" name="business[venues_attributes][0][address_attributes][country]" id="business_venues_attributes_0_address_attributes_country">
-                            </div>
-                            <span class="grey-text" style="font-size: 12px;">Bằng cách nhấn vào nút đăng ký bên dưới, bạn đã chấp nhận <a target="_blank" href="/pages/dieu-khoan-su-dung">Điều khoản sử dụng</a> và <a target="_blank" href="/pages/chinh-sach-bao-mat">Chính sách bảo mật</a> của chúng tôi.</span>
-                        </div>
-                        <div class="col s12 m12 l12 center">
-                            <button name="button" type="submit" class="btn" style="margin-top: 20px;">Đăng ký</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
     </main>
+@section scripts{
+    <script>
+    function ShowModalRegister() {
+        $.get('@Url.Action("LoadFormRegister","ForMasterYard")', function (response) {
+            $('#business-register').empty().html(response);
+        });
+    }
+    </script>
+    }

@@ -1,4 +1,5 @@
-﻿@model sonsport.com.Models.RegisterViewModel
+﻿@using Business.BusinessViewModels
+@model RegisterViewModel
 @{
     ViewBag.Title = "Đăng ký tài khoản";
 }
@@ -19,11 +20,10 @@
             <div class="center row" style="margin-bottom: 0px;">
                 <span>Hoặc</span>
             </div>
-
-            <section id="loginForm">
-                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "new_user", @id = "new_user", role = "form" }))
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new {@role = "form" }))
                 {
                     @Html.AntiForgeryToken()
+                    
                     <div class="row">
                         <div class="col s8 offset-s2">
                             <div class="input-field">
@@ -33,22 +33,21 @@
                             </div>
                             <div class="input-field">
                                 @Html.LabelFor(m => m.Password)
-                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", required = "required" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
                             </div>
                             <div class="input-field">
                                 @Html.LabelFor(m => m.ConfirmPassword)
-                                @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required" })
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required" })
                                 @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "red-text" })
                             </div>
-
                         </div>
                     </div>
                     <div class="row center">
-                        <input name="button" type="submit" class="btn lighten-1" value="Đăng ký" />
+                        @Html.ValidationSummary(true,"",new { @class="red-text"})
+                        <input type="submit" class="btn lighten-1" value="Đăng ký" />
                     </div>
                 }
-            </section>
         </div>
 
     </main>

@@ -26,6 +26,7 @@ namespace sonsport.com.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Route("dang-nhap")]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -46,7 +47,7 @@ namespace sonsport.com.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Sai tên đăng nhập hoặc mật khẩu.");
                     return View(model);
             }
         }
@@ -108,6 +109,7 @@ namespace sonsport.com.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Route("dang-ky")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -126,7 +128,7 @@ namespace sonsport.com.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+                ModelState.AddModelError("", "Tên đăng nhập đã tồn tại. Hãy chọn tên đăng nhập khác!");
             }
 
             // If we got this far, something failed, redisplay form

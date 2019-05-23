@@ -211,6 +211,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ForMasterYardController.cs" />
+    <Compile Include="Controllers\HelperPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlaceYardFootballController.cs" />
@@ -342,6 +343,9 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\ForMasterYard\Index.cshtml" />
     <Content Include="Views\PlaceYardFootball\Index.cshtml" />
+    <Content Include="Views\ForMasterYard\_FormRegisterForMaster.cshtml" />
+    <Content Include="Views\HelperPages\PrivacyPolicy.cshtml" />
+    <Content Include="Views\HelperPages\TermsOfUse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

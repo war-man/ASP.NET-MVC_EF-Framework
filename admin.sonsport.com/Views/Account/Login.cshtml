@@ -1,4 +1,4 @@
-﻿@using admin.sonsport.com.Models
+﻿@using Business.BusinessViewModels
 @model LoginViewModel
 @{
     Layout = null;
@@ -57,7 +57,7 @@
                             </label>
                         </div>
                     </div>
-                    @Html.ValidationSummary(false,"",new { @class = "text-danger"})
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
                     <input type="submit" class="btn btn-primary btn-block" value="Đăng nhập" />
                 }
@@ -73,7 +73,8 @@
     <!-- Bootstrap core JavaScript-->
     <script src="~/Assets/TemplateAdmin/vendor/jquery/jquery.min.js"></script>
     <script src="~/Assets/TemplateAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Assets/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="~/Assets/TemplateAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 

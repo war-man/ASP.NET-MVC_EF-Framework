@@ -1,0 +1,128 @@
+﻿<script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using Business.BusinessViewModels
+@model RegisterMasterViewModels
+<div class="modal-content" style="padding: 24px 0px 24px 0px">
+    @using (Ajax.BeginForm("RegisterMaster", "ForMasterYard",
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "OnCreateSuccess",
+            OnFailure = "OnCreateFail"
+        },
+        new { @id = "new_business", @class = "new_business" }))
+    {
+       @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col s12">
+                <h5 class="center">Đăng ký dành cho chủ sân</h5>
+
+                <div class="input-field col s12 m6">
+                    @Html.LabelFor(n=>n.MasterName)
+                    @Html.TextBoxFor(n=>n.MasterName,new {@required="required"})
+                    @Html.ValidationMessageFor(n=>n.MasterName,null,new { @class="red-text"})
+                </div>
+                <div class="input-field col s12 m6">
+                    @Html.LabelFor(n => n.Email)
+                    @Html.TextBoxFor(n => n.Email, new { @required = "required" })
+                    @Html.ValidationMessageFor(n => n.Email, null, new { @class = "red-text" })
+                </div>
+                <div class="input-field col s12 m6">
+                    @Html.LabelFor(n => n.Password)
+                    @Html.TextBoxFor(n => n.Password, new { @required = "required",autocomplete="off"})
+                    @Html.ValidationMessageFor(n => n.Password, null, new { @class = "red-text" })
+                </div>
+                <div class="input-field col s12 m6">
+                    @Html.LabelFor(n => n.ConfirmPassword)
+                    @Html.TextBoxFor(n => n.ConfirmPassword, new { @required = "required", autocomplete = "off" })
+                    @Html.ValidationMessageFor(n => n.ConfirmPassword, null, new { @class = "red-text" })
+                </div>
+            </div>
+            <div class="col s12">
+
+                <div class="row">
+                    <div class="input-field col s12 m12">
+                        @Html.LabelFor(n => n.PlaceName)
+                        @Html.TextBoxFor(n => n.PlaceName, new { @required = "required" })
+                        @Html.ValidationMessageFor(n => n.PlaceName, null, new { @class = "red-text" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12"></div>
+
+                    <div class="input-field col s3 m3">
+                        @Html.LabelFor(n => n.PhoneNumber1)
+                        @Html.TextBoxFor(n => n.PhoneNumber1, new { @required = "required" })
+                        @Html.ValidationMessageFor(n => n.PhoneNumber1, null, new { @class = "red-text" })
+                    </div>
+
+                    <div class="input-field col s3 m3">
+                        @Html.LabelFor(n => n.PhoneNumber2)
+                        @Html.TextBoxFor(n => n.PhoneNumber2, new { @required = "required" })
+                        @Html.ValidationMessageFor(n => n.PhoneNumber2, null, new { @class = "red-text" })
+                    </div>
+                    <div class="input-field col s3 m3">
+                        @Html.LabelFor(n => n.OpenTime, new { @class = "active" })
+                        @Html.TextBoxFor(n => n.OpenTime, new { @required = "required", @value = "06:00" })
+                        @Html.ValidationMessageFor(n => n.OpenTime, null, new { @class = "red-text" })
+                    </div>
+                    <div class="input-field col s3 m3">
+                        @Html.LabelFor(n => n.CloseTime, new { @class = "active" })
+                        @Html.TextBoxFor(n => n.CloseTime, new { @required = "required", @value = "06:00" })
+                        @Html.ValidationMessageFor(n => n.CloseTime, null, new { @class = "red-text" })
+                    </div>
+                </div>
+                <div class="row address_form">
+
+                    <div class="col s6 m3 l3 address_city">
+                        <label class="active" for="city">Thành phố/Tỉnh</label>
+                        <select name="city" id="city" required="required" class="browser-default" disabled>
+                            <option value="2">Tỉnh quảng trị</option>
+                            <option selected="selected" value="1">Tp Hồ Chí Minh</option>
+                        </select>
+                    </div>
+                    <div class="col s6 m3 l3 address_district">
+                        <label class="active" for="DistrictName">Quận/Huyện</label>
+                        <select class="browser-default" name="DistrictName" id="DistrictName">
+                            <option value="573">Huyện Bình Chánh</option>
+                            <option value="575">Huyện Cần Giờ</option>
+                            <option value="571">Huyện Củ Chi</option>
+                            <option value="572">Huyện Hóc Môn</option>
+                            <option value="574">Huyện Nhà Bè</option>
+                            <option value="552">Quận 1</option>
+                            <option value="563">Quận 10</option>
+                            <option value="564">Quận 11</option>
+                            <option value="553">Quận 12</option>
+                            <option value="561">Quận 2</option>
+                            <option value="562">Quận 3</option>
+                            <option value="565">Quận 4</option>
+                            <option value="566">Quận 5</option>
+                            <option value="567">Quận 6</option>
+                            <option value="570">Quận 7</option>
+                            <option value="568">Quận 8</option>
+                            <option value="555">Quận 9</option>
+                            <option value="569">Quận Bình Tân</option>
+                            <option value="557">Quận Bình Thạnh</option>
+                            <option value="556">Quận Gò Vấp</option>
+                            <option value="560">Quận Phú Nhuận</option>
+                            <option value="558">Quận Tân Bình</option>
+                            <option value="559">Quận Tân Phú</option>
+                            <option value="554">Quận Thủ Đức</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12 m6 l6 address_street">
+                        @Html.LabelFor(n => n.Address)
+                        @Html.TextBoxFor(n => n.Address, new { @required = "required"})
+                        @Html.ValidationMessageFor(n => n.Address, null, new { @class = "red-text" })
+                    </div>
+                </div>
+                <span class="grey-text" style="font-size: 12px;">Bằng cách nhấn vào nút đăng ký bên dưới, bạn đã chấp nhận <a target="_blank" href="@Url.Action("TermsOfUse","HelperPages")">Điều khoản sử dụng</a> và <a target="_blank" href="@Url.Action("TermsOfUse","HelperPages")">Chính sách bảo mật</a> của chúng tôi.</span>
+            </div>
+            <div class="col s12 m12 l12 center">
+                <button name="button" type="submit" class="btn" style="margin-top: 20px;">Đăng ký</button>
+            </div>
+        </div>
+    }
+
+</div>

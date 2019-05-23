@@ -1,4 +1,4 @@
-﻿@using sonsport.com.Models
+﻿@using Business.BusinessViewModels
 @model LoginViewModel
 @{
     ViewBag.Title = "Đăng nhập";
@@ -20,38 +20,34 @@
             <span>Hoặc</span>
         </div>
 
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "new_user", @id = "new_user", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <div class="row">
-                    <div class="col s8 offset-s2">
-                        <div class="input-field">
-                            @Html.LabelFor(m => m.Email)
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required", autofocus = "autofocus" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="input-field">
-                            @Html.LabelFor(m => m.Password)
-                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", required = "required" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="field">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                        <a class=" left" href="/users/password/new">Quên mật khẩu?</a>
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <div class="input-field">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required", autofocus = "autofocus" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
+                    <div class="input-field">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="intput-field">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                    <a class=" left" href="/users/password/new">Quên mật khẩu?</a>
                 </div>
-                <div class="row center">
-                    <input name="button" type="submit" class="btn lighten-1" value="Đăng nhập" />
-                </div>
-            }
-        </section>
+            </div>
+            <div class="row center">
+                @Html.ValidationSummary(true, "", new { @class = "red-text" })
+                <input type="submit" class="btn lighten-1" value="Đăng nhập" />
+            </div>
+        }
     </div>
 
 </main>
-
-@section Scripts {
-
-}
