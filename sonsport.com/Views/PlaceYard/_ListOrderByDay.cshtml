@@ -1,0 +1,83 @@
+﻿@using Model.Context
+@using sonsport.com.Common
+@model List<CHITIETDATSAN>
+@{ 
+    var lstYardOfPlace = (List<SANBONG>)ViewData[GlobalConstans.LstYardOfPlace];
+    var DateView = (DateTime)ViewData[GlobalConstans.DateView];
+    var Place = (DIADIEMSANBONG)ViewData[GlobalConstans.Place];
+}
+<div class="seven-day-picker">
+    @for (int i = 0; i < 6; i++)
+    {
+        if (DateView.ToString("dd-MM").Equals(DateTime.Now.AddDays(+i).ToString("dd-MM")))
+        {
+            <a class="seven-day-picker__date even-day-picker__date--is-active" data-date="@DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")" href="@Url.Action("Index","PlaceYard",new { @PlaceId=Place.MaDiaDiem,@strDate= DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")})">
+                <strong>@DateTime.Now.AddDays(+i).DayOfWeek</strong><br><span style="font-size: small;">@DateTime.Now.AddDays(+i).ToString("dd-MM")</span>
+            </a>
+        }
+        else
+        {
+            <a class="seven-day-picker__date" data-date="@DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")" href="@Url.Action("Index","PlaceYard",new { @PlaceId=Place.MaDiaDiem,@strDate= DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")})">
+                <strong>@DateTime.Now.AddDays(+i).DayOfWeek</strong><br><span style="font-size: small;">@DateTime.Now.AddDays(+i).ToString("dd-MM")</span>
+            </a>
+        }
+    }
+</div>
+
+<div id="available_time_slots">
+    <div class="row">
+        <div class="col s12">
+            <p>Khoảng giờ có người đặt</p>
+            <ul class="period-list">
+                @foreach (var item in lstYardOfPlace)
+                {
+                    if (item != null)
+                    {
+                        <li>
+                            <div class="asset_category col s12 m3">
+                                <span class="venue-type"> @item.TenSanBong</span>
+                            </div>
+                            <div class="info col s12 m9">
+                                <p class="time-period period-hour text-center">@item.DIADIEMSANBONG.GioMoCua:00 - @item.DIADIEMSANBONG.GioDongCua:00</p>
+                                <div class="row fast-booking">
+                                    <div>Giờ đã có người đặt</div>
+
+                                    <div>
+                                        <div style="display:inline-block;">
+                                            @foreach (var ctds in Model.Where(n => n.MaSanBong == item.MaSanBong && DateView.Date == Convert.ToDateTime(n.DaVaoNgay).Date))
+                                            {
+                                                if (ctds != null)
+                                                {
+                                                    <div style="display:inline-block;">
+
+                                                        <button class="outline" type="submit" disabled>
+                                                            <strong>@ctds.ThoiGianBatDau:00 - @ctds.ThoiGianKetThuc:00</strong><br>Đã đặt
+                                                        </button><input type="hidden" name="asset_category_name" value="5" /><input type="hidden" name="begin_time" value="16:00" /><input type="hidden" name="city" value="50" /><input type="hidden" name="date" value="CN, 05/05/2019" /><input type="hidden" name="district_id" value="570" /><input type="hidden" name="how_long" value="1.5" /><input type="hidden" name="venue_id" value="91" />
+
+                                                    </div>
+                                                }
+
+
+                                            }
+                                            <div style="display:inline-block;">
+                                                <button class="outline" onclick="DatSanBong(@item.MaSanBong,'@DateView.Date.ToString("dd-MM-yyyy")')" type="submit">
+                                                    <strong>Có sân trống</strong><br />Đặt sân
+                                                </button><input type="hidden" name="asset_category_name" value="5" /><input type="hidden" name="begin_time" value="16:00" /><input type="hidden" name="city" value="50" /><input type="hidden" name="date" value="CN, 05/05/2019" /><input type="hidden" name="district_id" value="570" /><input type="hidden" name="how_long" value="1.5" /><input type="hidden" name="venue_id" value="91" />
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                }
+
+
+            </ul>
+        </div>
+    </div>
+</div>

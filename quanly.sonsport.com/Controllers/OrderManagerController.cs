@@ -138,6 +138,7 @@ namespace quanly.sonsport.com.Controllers
                     ThoiGianKetThuc = model.EndTime,
                     MaChuSan = model.MasterId,
                     MaSanBong=model.YardId,
+                    MaDiaDiem=model.PlaceId
                 };
                 OrderManagerBusiness.CreateOrderDetails(ctds);
                 TempData[GlobalConstans.MessageSuccessBootBox] = "Đã thêm lịch đặt";

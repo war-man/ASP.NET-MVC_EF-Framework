@@ -8,10 +8,16 @@
     var lstYardOfPlace = (List<SANBONG>)ViewData[GlobalConstans.LstYardOfPlace];
     var LstOrderDetailsOfYard = (List<CHITIETDATSAN>)ViewData[GlobalConstans.LstOrderDetailsOfYard];
     var lstPriceOfYard = (List<BANGGIALOAISAN>)ViewData[GlobalConstans.LstPriceOfYard];
+
+    //View data group
+    var viewDataGroup = new ViewDataDictionary();
+    viewDataGroup.Add(GlobalConstans.LstYardOfPlace, ViewData[GlobalConstans.LstYardOfPlace]);
+    viewDataGroup.Add(GlobalConstans.DateView, ViewData[GlobalConstans.DateView]);
+    viewDataGroup.Add(GlobalConstans.Place, ViewData[GlobalConstans.Place]);
 }
 <main>
-    @Html.Partial("_InfoPlace",Place)
-    
+    @Html.Partial("_InfoPlace", Place)
+
 
     <div class="section">
         <div class="container-90">
@@ -22,153 +28,12 @@
                             Chọn ngày đặt
                         </span>
                     </div>
-                    <div class="seven-day-picker">
-                        @for (int i = 0; i < 6; i++)
-                        {
-                            if (DateView.ToString("dd-MM").Equals(DateTime.Now.AddDays(+i).ToString("dd-MM")))
-                            {
-                                <a class="seven-day-picker__date even-day-picker__date--is-active" data-date="@DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")" href="@Url.Action("Index","PlaceYard",new { @PlaceId=Place.MaDiaDiem,@strDate= DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")})">
-                                    <strong>@DateTime.Now.AddDays(+i).DayOfWeek</strong><br><span style="font-size: small;">@DateTime.Now.AddDays(+i).ToString("dd-MM")</span>
-                                </a>
-                            }
-                            else
-                            {
-                                <a class="seven-day-picker__date" data-date="@DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")" href="@Url.Action("Index","PlaceYard",new { @PlaceId=Place.MaDiaDiem,@strDate= DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")})">
-                                    <strong>@DateTime.Now.AddDays(+i).DayOfWeek</strong><br><span style="font-size: small;">@DateTime.Now.AddDays(+i).ToString("dd-MM")</span>
-                                </a>
-                            }
-                        }
-                    </div>
+                    @Html.Partial("_ListOrderByDay", LstOrderDetailsOfYard, viewDataGroup)
 
-                    <div id="available_time_slots">
-                        <div class="row">
-                            <div class="col s12">
-                                <p>Khoảng giờ có người đặt</p>
-                                <ul class="period-list">
-                                    @foreach (var item in lstYardOfPlace)
-                                    {
-                                        if (item != null)
-                                        {
-                                            <li>
-                                                <div class="asset_category col s12 m3">
-                                                    <span class="venue-type"> @item.TenSanBong</span>
-                                                </div>
-                                                <div class="info col s12 m9">
-                                                    <p class="time-period period-hour text-center">@Place.GioMoCua:00 - @Place.GioDongCua:00</p>
-                                                    <div class="row fast-booking">
-                                                        <div>Giờ đã có người đặt</div>
-
-                                                        <div>
-                                                            <div style="display:inline-block;">
-                                                                @foreach (var ctds in LstOrderDetailsOfYard.Where(n => n.MaSanBong == item.MaSanBong && DateView.Date == Convert.ToDateTime(n.DaVaoNgay).Date))
-                                                                {
-                                                                    if (ctds != null)
-                                                                    {
-                                                                        <div style="display:inline-block;">
-
-                                                                            <button class="outline" type="submit" disabled>
-                                                                                <strong>@ctds.ThoiGianBatDau:00 - @ctds.ThoiGianKetThuc:00</strong><br>Đã đặt
-                                                                            </button><input type="hidden" name="asset_category_name" value="5" /><input type="hidden" name="begin_time" value="16:00" /><input type="hidden" name="city" value="50" /><input type="hidden" name="date" value="CN, 05/05/2019" /><input type="hidden" name="district_id" value="570" /><input type="hidden" name="how_long" value="1.5" /><input type="hidden" name="venue_id" value="91" />
-
-                                                                        </div>
-                                                                    }
-
-
-                                                                }
-                                                                <div style="display:inline-block;">
-                                                                    <button class="outline" onclick="DatSanBong(@item.MaSanBong,'@DateView.Date.ToString("dd-MM-yyyy")')" type="submit">
-                                                                        <strong>Có sân trống</strong><br />Đặt sân
-                                                                    </button><input type="hidden" name="asset_category_name" value="5" /><input type="hidden" name="begin_time" value="16:00" /><input type="hidden" name="city" value="50" /><input type="hidden" name="date" value="CN, 05/05/2019" /><input type="hidden" name="district_id" value="570" /><input type="hidden" name="how_long" value="1.5" /><input type="hidden" name="venue_id" value="91" />
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        }
-
-                                    }
-
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="col s12 m6 l6">
-                    <div class="content-header">
-                        <span class="content-title">
-                            Bảng giá
-                        </span>
-                    </div>
-                    <div style="min-height: 250px;">
-                        <span>&nbsp;</span>
-                        @foreach (var item in lstYardOfPlace)
-                        {
-                            <div class="col s12 m12 l12 valign-wrapper asset_category_info">
-                                <div class="col s2 m2 l2 valign">
-                                    <p class="center">@item.TenSanBong</p>
-                                    <p class="center">@item.LOAISANBONG.TenLoaiSan</p>
-                                </div>
-                                <div class="col s12 m10 l10 valign">
-                                    <table class="fee_table">
-                                        <tbody>
-                                            @if (lstPriceOfYard.Exists(n => n.MaSanBong == item.MaSanBong))
-                                            {
-                                                foreach (var bg in lstPriceOfYard.Where(n => n.MaSanBong == item.MaSanBong))
-                                                {
-                                                    if (bg != null)
-                                                    {
-                                                        <tr style="border:thin">
-                                                            <td class="center" style="border:none;">@bg.GioBatDau:00  - @bg.GioKetThuc:00 : <strong>@bg.GiaTien.ToString("N0") VNĐ/giờ</strong></td>
-                                                        </tr>
-                                                    }
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <tr style="border:thin">
-                                                    <td class="center">Đang cập nhật bảng giá</td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        }
-                        <div>
-                            @if (!Place.CanDatCocKhiDatSan)
-                            {
-                                <p><i class="fa fa-check-circle blue-text text-darken-3"></i> Không cần đặt cọc.</p>
-                            }
-                            else
-                            {
-                                <p><i class="fa fa-exclamation-circle red-text text-darken-3"></i> Cần đặt cọc khi thuê sân.</p>
-                            }
-                            @if (!Place.CoPhiMuonBong)
-                            {
-                                <p><i class="fa fa-check-circle blue-text text-darken-3"></i> Bóng dùng miễn phí.</p>
-                            }
-                            else
-                            {
-                                <p><i class="fa fa-exclamation-circle red-text text-darken-3"></i> Có phí mượn bóng.</p>
-                            }
-                            @if (!Place.CoPhiNuocUongTrenSan)
-                            {
-                                <p><i class="fa fa-check-circle blue-text text-darken-3"></i> Nước uống miễn phí.</p>
-                            }
-                            else
-                            {
-                                <p><i class="fa fa-exclamation-circle red-text text-darken-3"></i> Có phí nước uống.</p>
-                            }
-                        </div>
+                @Html.Partial("_ListPriceOfYard", lstPriceOfYard, viewDataGroup)
 
-                    </div>
-                </div>
 
 
                 <div class="col s12 ratings">
@@ -186,7 +51,7 @@
                 </div>
 
                 <div id="venue_gallery" class="col s12">
-                    <p>Là sân 11 người, chuyên dùng để đào tạo và huấn luyện. Để đặt sân thường phải làm hợp đồng.</p>
+                    <p>Là sân 7 người, chuyên dùng để đào tạo và huấn luyện. Để đặt sân thường phải làm hợp đồng.</p>
                     <div class="my-gallery">
                     </div>
                 </div>

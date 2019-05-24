@@ -67,12 +67,12 @@ namespace Business.BusinessViewModels
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [Display(Name = "Email")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "{0} không đúng định dạng")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
@@ -83,17 +83,18 @@ namespace Business.BusinessViewModels
 
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage ="{0} không được để trống")]
+        [EmailAddress(ErrorMessage ="{0} không đúng định dạng")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [StringLength(100, ErrorMessage = "{0} phải lớn hơn {2} kí tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "{0} không được để trống")]
         [DataType(DataType.Password)]
         [Display(Name = "Nhập lại mật khẩu")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Mật khẩu nhập lại không đúng")]
@@ -102,23 +103,24 @@ namespace Business.BusinessViewModels
 
     public class RegisterEmployeeViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [StringLength(100, ErrorMessage = "{0} phải lớn hơn {2} kí tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [StringLength(100, ErrorMessage = "{0} phải lớn hơn {2} kí tự.", MinimumLength = 6)]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Mật khẩu nhập lại không đúng")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
 

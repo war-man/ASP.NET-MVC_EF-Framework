@@ -350,6 +350,8 @@
     <Content Include="Views\ForMasterYard\_FormRegisterSuccess.cshtml" />
     <Content Include="Views\PlaceYard\Index.cshtml" />
     <Content Include="Views\PlaceYard\_InfoPlace.cshtml" />
+    <Content Include="Views\PlaceYard\_ListOrderByDay.cshtml" />
+    <Content Include="Views\PlaceYard\_ListPriceOfYard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

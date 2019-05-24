@@ -42,7 +42,10 @@ namespace Business.BusinessExtension
 
         public List<SANBONG> GetAllYardFooballByPlace(int? PlaceId)
         {
-            var lstYard = dbContext.SANBONG.Include(s => s.DIADIEMSANBONG).Include(s => s.LOAISANBONG).Where(n => n.MaDiaDiem == PlaceId).ToList();
+            var lstYard = dbContext.SANBONG.Include(s => s.DIADIEMSANBONG)
+                .Include(s => s.LOAISANBONG)
+                .Include(n=>n.BANGGIALOAISAN)
+                .Where(n => n.MaDiaDiem == PlaceId).ToList();
             return lstYard;
         }
 

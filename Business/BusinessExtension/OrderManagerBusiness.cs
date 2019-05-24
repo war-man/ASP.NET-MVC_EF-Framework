@@ -57,7 +57,11 @@ namespace Business.BusinessExtension
             var lstOrderDetails = new List<CHITIETDATSAN>();
             using (dbContext=new SonSportDbContext())
             {
-                lstOrderDetails = dbContext.CHITIETDATSAN.Include(n => n.DATSAN).Include(n => n.CHUSANQUANLY).Include(n => n.SANBONG).ToList();
+                lstOrderDetails = dbContext.CHITIETDATSAN.Include(n => n.DATSAN)
+                    .Include(n => n.CHUSANQUANLY)
+                    .Include(n => n.SANBONG)
+                    .Include(n=>n.DIADIEMSANBONG)
+                    .ToList();
             }
             if(MasterId!=null)
             {

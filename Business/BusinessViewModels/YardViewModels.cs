@@ -13,7 +13,7 @@ namespace Business.BusinessViewModels
 
         [StringLength(100)]
         [Display(Name = "Tên sân bóng")]
-        [Required]
+        [Required(ErrorMessage ="{0} tên sân bóng không được để trống!")]
         public string TenSanBong { get; set; }
 
         [Display(Name = "Loại sân")]

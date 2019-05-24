@@ -34,6 +34,10 @@ namespace Model.Context
 
         public int? MaChuSan { get; set; }
 
+        public int? MaDiaDiem { get; set; }
+
+        public virtual DIADIEMSANBONG DIADIEMSANBONG { get; set; }
+
         public virtual DATSAN DATSAN { get; set; }
 
         public virtual CHUSANQUANLY CHUSANQUANLY { get; set; }

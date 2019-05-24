@@ -29,6 +29,15 @@ namespace quanly.sonsport.com.Common
             return $"0{Hour}:00:00";
         }
 
+        public static string ConvertIntToHourNoMilisecond(int Hour)
+        {
+            if (Hour >= 10)
+            {
+                return $"{Hour}:00";
+            }
+            return $"0{Hour}:00";
+        }
+
         public static string CustomValidateInputTimeAndPrice(int bd, int kt, int price,List<CHITIETDATSAN> lstCTDS,DateTime kickatdate)
         {
             if (price > 10000000)

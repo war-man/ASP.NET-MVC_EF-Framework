@@ -21,5 +21,6 @@ namespace Business.BusinessInterface
         OrderDetailsViewModels GetOrderDetailsByOrderId(int OrderId);
 
         void DeleteOrderDetails(int OrderId);
+
     }
 }

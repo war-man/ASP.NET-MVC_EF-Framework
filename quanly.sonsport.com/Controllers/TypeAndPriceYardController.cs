@@ -219,7 +219,7 @@ namespace quanly.sonsport.com.Controllers
                 }
                 return Json(new { success = false, messageError = message }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, messageError = message }, JsonRequestBehavior.AllowGet);
         }
     }
 }

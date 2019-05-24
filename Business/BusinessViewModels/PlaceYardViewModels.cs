@@ -13,35 +13,38 @@ namespace Business.BusinessViewModels
 
         [Display(Name ="Tên địa điểm")]
         [StringLength(100)]
-        [Required]
+        [Required(ErrorMessage ="{0} không được để trống")]
         public string TenDiaDiem { get; set; }
 
         [Display(Name = "Mô tả địa điểm")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [StringLength(200)]
         public string MoTaDiaDiem { get; set; }
 
         [Display(Name = "Số điện thoại 1")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [RegularExpression(@"[0]{1}[0-9, ,.]{8,}",ErrorMessage = "Số điện thoại tương tự như 0972612950. Tối thiểu 8 số.")]
         [StringLength(15)]
         public string Sdt1 { get; set; }
 
         [Display(Name = "Số điện thoại 2")]
+        [RegularExpression(@"[0]{1}[0-9, ,.]{8,}", ErrorMessage = "Số điện thoại tương tự như 0972612950. Tối thiểu 8 số.")]
         [StringLength(15)]
         public string Sdt2 { get; set; }
 
         [Display(Name = "Địa chỉ")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [StringLength(100)]
         public string DiaChi { get; set; }
 
         [Display(Name = "Giờ mở cửa")]
-        [Required]
-        public int? GioMoCua { get; set; }
+        [RegularExpression(@"^([01]\d|2[0-4]):([0-5]\d)$", ErrorMessage = "Nhập theo định dạng 06:00 hoặc 14:00")]
+        [Required(ErrorMessage = "{0} không được để trống")]
+        public string GioMoCua { get; set; }
 
         [Display(Name = "Giờ đóng cửa")]
-        [Required]
-        public int? GioDongCua { get; set; }
+        [RegularExpression(@"^([01]\d|2[0-4]):([0-5]\d)$", ErrorMessage = "Nhập theo định dạng 06:00 hoặc 14:00")]
+        public string GioDongCua { get; set; }
 
         [Display(Name = "Cần đặt cọc")]
         public bool CanDatCocKhiDatSan { get; set; }

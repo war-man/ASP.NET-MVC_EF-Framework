@@ -12,28 +12,28 @@
         [Key]
         public int MaNhanVien { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [StringLength(50)]
-        [Display(Name ="Tên nhân viên:")]
+        [Display(Name ="Tên nhân viên")]
         public string TenNhanVien { get; set; }
 
-        [Display(Name = "Nơi làm việc:")]
+        [Display(Name = "Nơi làm việc")]
         public int? MaDiaDiem { get; set; }
 
         [StringLength(20)]
-        [Display(Name = "Chức vụ:")]
+        [Display(Name = "Chức vụ")]
         public string ChucVu { get; set; }
 
         public int? MaChuSan { get; set; }
 
-        [Required]
-        [Display(Name = "Email:")]
-        [EmailAddress]
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "{0} không đúng định dạng")]
         public string Email { get; set; }
 
-        [Required]
-        [Display(Name = "Số điện thoại:")]
-        [Phone]
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [Display(Name = "Số điện thoại")]
+        [RegularExpression(@"[0]{1}[0-9]{8,}",ErrorMessage ="Số điện thoại tương tự như: 0972612950. Tối thiểu 8 số")]
         public string SoDienThoai { get; set; }
 
         public bool? IsHaveAccount { get; set; }

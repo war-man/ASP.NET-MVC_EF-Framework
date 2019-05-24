@@ -1,5 +1,8 @@
 ﻿@using Business.BusinessViewModels
 @model RegisterEmployeeViewModel
+<script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 @using (Ajax.BeginForm("CreateAccountEmployee", "Employee",
             ajaxOptions: new AjaxOptions
             {

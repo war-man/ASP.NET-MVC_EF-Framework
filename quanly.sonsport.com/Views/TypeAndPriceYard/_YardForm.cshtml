@@ -5,6 +5,8 @@
 @{
     List<LOAISANBONG> lstType = ViewData[GlobalConstans.ViewDataLstTypeOfYard] as List<LOAISANBONG>;
 }
+<script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <div class="container-fluid">
     @using (Ajax.BeginForm("AddOrEdit", "TypeAndPriceYard",
                 ajaxOptions: new AjaxOptions
@@ -18,19 +20,19 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(n => n.MaDiaDiem)
         @Html.HiddenFor(n => n.MaSanBong)
-    <div class="row">
-        <div class="form-group col-6">
-            @Html.LabelFor(n => n.TenSanBong, htmlAttributes: new { @class = "col-form-label" })
-            @Html.TextBoxFor(n => n.TenSanBong, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(n => n.TenSanBong, null, htmlAttributes: new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.TenSanBong, htmlAttributes: new { @class = "col-form-label" })
+                @Html.TextBoxFor(n => n.TenSanBong, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.TenSanBong, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(n => n.MaLoai, htmlAttributes: new { @class = "col-form-label" })
+                @Html.DropDownListFor(n => n.MaLoai, new SelectList(lstType, "MaLoai", "TenLoaiSan", "TenLoaiSan"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.MaLoai, null, htmlAttributes: new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="form-group col-6">
-            @Html.LabelFor(n => n.MaLoai, htmlAttributes: new { @class = "col-form-label" })
-            @Html.DropDownListFor(n => n.MaLoai, new SelectList(lstType, "MaLoai", "TenLoaiSan", "TenLoaiSan"), htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(n => n.MaLoai, null, htmlAttributes: new { @class = "text-danger" })
-        </div>
-    </div>
-        
+
     }
 
 </div>
