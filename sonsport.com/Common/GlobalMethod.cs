@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace admin.sonsport.com.Common
+namespace sonsport.com.Common
 {
     public static class GlobalMethod
     {
@@ -17,6 +17,13 @@ namespace admin.sonsport.com.Common
                 return "active";
             }
             return "";
+        }
+
+        public static DateTime ParseStringToDateTime(string strDate=null)
+        {
+            if (string.IsNullOrEmpty(strDate))
+                return DateTime.Now;
+            return Convert.ToDateTime(strDate);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Model.Context
 
         public int? MaSanBong { get; set; }
 
-        public int? GiaTien { get; set; }
+        public int GiaTien { get; set; }
 
         public virtual SANBONG SANBONG { get; set; }
     }

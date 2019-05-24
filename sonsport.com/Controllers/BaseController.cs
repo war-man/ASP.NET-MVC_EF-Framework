@@ -5,6 +5,8 @@ using System.Web.SessionState;
 using sonsport.com.Common;
 using System.Threading.Tasks;
 using Model.Application;
+using Microsoft.AspNet.Identity;
+using Model.Context;
 
 namespace sonsport.com.Controllers
 {
@@ -14,7 +16,7 @@ namespace sonsport.com.Controllers
         protected ApplicationSignInManager _signInManager;
         protected ApplicationUserManager _userManager;
         protected ApplicationRoleManager _roleManager;
-
+        protected SonSportDbContext _dbContext;
         public BaseController()
         {
         }
@@ -74,6 +76,40 @@ namespace sonsport.com.Controllers
                 return user;
             }
             return null;
+        }
+
+        public ApplicationUser CurrentUserAccount
+        {
+            get
+            {
+                var userId = User.Identity.GetUserId();
+                return UserManager.FindById(userId);
+            }
+        }
+
+        public object CurrentUser 
+        {
+            get
+            {
+                var currentUser = CurrentUserAccount;
+                if(User.IsInRole("CHUSAN") && currentUser.MaChuSan!=null)
+                {
+                    var MasterId = currentUser.MaChuSan;
+                    using (_dbContext = new SonSportDbContext())
+                    {
+                        return _dbContext.CHUSANQUANLY.Find(MasterId);
+                    }
+                }
+                else if(User.IsInRole("KHACHHANG") && currentUser.MaKhachHang != null)
+                {
+                    var CustomerId = currentUser.MaKhachHang;
+                    using (_dbContext = new SonSportDbContext())
+                    {
+                        return _dbContext.KHACHHANG.Find(CustomerId);
+                    }
+                }
+                return null;
+            }
         }
     }
 }

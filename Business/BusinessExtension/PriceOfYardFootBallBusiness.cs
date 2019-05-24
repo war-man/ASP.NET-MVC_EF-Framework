@@ -23,7 +23,7 @@ namespace Business.BusinessExtension
             var price = new BANGGIALOAISAN
             {
                 MaSanBong = model.MaSanBong,
-                GiaTien = model.GiaTien,
+                GiaTien = (int)model.GiaTien,
                 GioBatDau = model.GioBatDau,
                 GioKetThuc = model.GioKetThuc,
                 NgayTrongTuan = "T2,T3,T4,T5,T6,T7,CN"
@@ -51,6 +51,16 @@ namespace Business.BusinessExtension
             return lstPrice;
         }
 
+        public List<BANGGIALOAISAN> Search(int? YardId)
+        {
+            var lstPriceOfYard = dbContext.BANGGIALOAISAN.ToList();
+            if(YardId!=null)
+            {
+                lstPriceOfYard = lstPriceOfYard.Where(n => n.MaSanBong == YardId).ToList();
+            }
+            return lstPriceOfYard;
+        }
+
         public BANGGIALOAISAN SearchDetails(int PriceId)
         {
             return dbContext.BANGGIALOAISAN.Find(PriceId);
@@ -61,7 +71,7 @@ namespace Business.BusinessExtension
             var price = new BANGGIALOAISAN
             {
                MaBangGiaLoaiSan=(int)model.MaBangGiaLoaiSan,
-                GiaTien = model.GiaTien,
+                GiaTien = (int)model.GiaTien,
                 GioBatDau = model.GioBatDau,
                 GioKetThuc = model.GioKetThuc,
                 NgayTrongTuan = "T2,T3,T4,T5,T6,T7,CN",

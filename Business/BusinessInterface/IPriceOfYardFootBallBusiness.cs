@@ -10,6 +10,7 @@ namespace Business.BusinessInterface
 {
     public interface IPriceOfYardFootBallBusiness
     {
+        List<BANGGIALOAISAN> Search(int? YardId);
         List<BANGGIALOAISAN> GetPriceTableByYardId(int YardId);
 
         BANGGIALOAISAN SearchDetails(int PriceId);

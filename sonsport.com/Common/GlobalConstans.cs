@@ -4,13 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace admin.sonsport.com.Common
+namespace sonsport.com.Common
 {
     public class GlobalConstans
     {
         public const string MessageSuccess = "MessageSuccess";
-
+        public const string DateView = "Date view in Place Yard";
         public const string MessageFail = "MessageFail";
-
+        public const string Place = "View all yard of place";
+        public const string LstYardOfPlace = "List yard of place by place id";
+        public const string LstOrderDetailsOfYard = "List order details of yard";
+        public const string LstPriceOfYard = "List price table of yard by yard id";
+        
     }
 }

@@ -1,0 +1,43 @@
+﻿@using sonsport.com.Common
+@using Model.Context
+@model DIADIEMSANBONG
+<div class="venue_image">
+    <img src='~/Assets/Images/image/banner-1.jpg'>
+    <div class="venue_info">
+        <h1 class="venue_name">
+            @Model.TenDiaDiem
+            <i class="fa fa-info-circle yellow-text tooltipped" data-position="bottom" data-tooltip="Thông tin được đăng bởi người chơi" style="font-size: 0.5em"></i>
+        </h1>
+        <p>
+            <i class="fa fa-map-marker" style="font-size: 20px"></i>
+            @Model.DiaChi&nbsp;
+            <a target="_blank" href='https://www.google.com/maps/dir//10.8715154717314,106.795287796571'>
+                <i class="fa fa-location-arrow" style="font-size: 20px;"></i>
+            </a>
+        </p>
+        <p>
+            <i class="fa fa-phone-square" style="font-size: 20px"></i>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="waves-effect waves-orange btn-flat view_phones" href="https://www.sporta.vn/users/sign_in">
+                    @Model.Sdt1
+                </a>
+            }
+            else
+            {
+                <a class="waves-effect waves-orange btn-flat view_phones" href="https://www.sporta.vn/users/sign_in">
+                    ĐĂNG NHẬP ĐỂ XEM SỐ ĐIỆN THOẠI
+                </a>
+            }
+        </p>
+        <p>
+            <i class="fa fa-clock-o"></i>&nbsp;@Model.GioMoCua - @Model.GioDongCua
+        </p>
+        <p style="margin-bottom: 10px;">
+            <i class="fa fa-exclamation-triangle"></i>
+            <a href="#" class="orange-text" onclick="M.toast({html: 'Bạn cần đăng nhập để báo lỗi!', displayLength:3000});" aria-pressed="true">Báo lỗi</a>
+        </p>
+        <div class="fb-like hide-on-med-and-up col s12" data-href="https://www.sporta.vn/dai-hoc-tdtt-hcm" data-layout="standard" data-action="like" data-width="250" data-size="small" data-show-faces="true" data-share="true" colorscheme="dark" style="margin-top: 5px;"></div>
+        <div class="fb-like hide-on-small-only col s12" data-href="https://www.sporta.vn/dai-hoc-tdtt-hcm" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true" colorscheme="dark" style="margin-top: 5px;"></div>
+    </div>
+</div>

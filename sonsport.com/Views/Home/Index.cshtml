@@ -190,7 +190,7 @@
                             </div>
                         </div>
                         <div class="venue-details">
-                            <h5><a class="venue_title" href="/KhachHang/Home/XemSan?madiadiem=@item.MaDiaDiem&strDate=@DateTime.Now.ToString("dd-MM-yyyy")">@item.TenDiaDiem</a></h5>
+                            <h5><a class="venue_title" href="@Url.Action("Index","PlaceYard",new { @PlaceId=@item.MaDiaDiem,@strDate= DateTime.Now.ToString("dd-MM-yyyy")})">@item.TenDiaDiem</a></h5>
                             <p class="address_text">
                                 <i class="fa fa-map-marker"></i>
                                 @item.DiaChi

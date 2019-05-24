@@ -1,0 +1,277 @@
+﻿@using sonsport.com.Common
+@using Model.Context
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Place = (DIADIEMSANBONG)ViewData[GlobalConstans.Place];
+    var DateView = (DateTime)ViewData[GlobalConstans.DateView];
+    var lstYardOfPlace = (List<SANBONG>)ViewData[GlobalConstans.LstYardOfPlace];
+    var LstOrderDetailsOfYard = (List<CHITIETDATSAN>)ViewData[GlobalConstans.LstOrderDetailsOfYard];
+    var lstPriceOfYard = (List<BANGGIALOAISAN>)ViewData[GlobalConstans.LstPriceOfYard];
+}
+<main>
+    @Html.Partial("_InfoPlace",Place)
+    
+
+    <div class="section">
+        <div class="container-90">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <div class="content-header">
+                        <span class="content-title">
+                            Chọn ngày đặt
+                        </span>
+                    </div>
+                    <div class="seven-day-picker">
+                        @for (int i = 0; i < 6; i++)
+                        {
+                            if (DateView.ToString("dd-MM").Equals(DateTime.Now.AddDays(+i).ToString("dd-MM")))
+                            {
+                                <a class="seven-day-picker__date even-day-picker__date--is-active" data-date="@DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")" href="@Url.Action("Index","PlaceYard",new { @PlaceId=Place.MaDiaDiem,@strDate= DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")})">
+                                    <strong>@DateTime.Now.AddDays(+i).DayOfWeek</strong><br><span style="font-size: small;">@DateTime.Now.AddDays(+i).ToString("dd-MM")</span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="seven-day-picker__date" data-date="@DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")" href="@Url.Action("Index","PlaceYard",new { @PlaceId=Place.MaDiaDiem,@strDate= DateTime.Now.AddDays(+i).ToString("dd-MM-yyyy")})">
+                                    <strong>@DateTime.Now.AddDays(+i).DayOfWeek</strong><br><span style="font-size: small;">@DateTime.Now.AddDays(+i).ToString("dd-MM")</span>
+                                </a>
+                            }
+                        }
+                    </div>
+
+                    <div id="available_time_slots">
+                        <div class="row">
+                            <div class="col s12">
+                                <p>Khoảng giờ có người đặt</p>
+                                <ul class="period-list">
+                                    @foreach (var item in lstYardOfPlace)
+                                    {
+                                        if (item != null)
+                                        {
+                                            <li>
+                                                <div class="asset_category col s12 m3">
+                                                    <span class="venue-type"> @item.TenSanBong</span>
+                                                </div>
+                                                <div class="info col s12 m9">
+                                                    <p class="time-period period-hour text-center">@Place.GioMoCua:00 - @Place.GioDongCua:00</p>
+                                                    <div class="row fast-booking">
+                                                        <div>Giờ đã có người đặt</div>
+
+                                                        <div>
+                                                            <div style="display:inline-block;">
+                                                                @foreach (var ctds in LstOrderDetailsOfYard.Where(n => n.MaSanBong == item.MaSanBong && DateView.Date == Convert.ToDateTime(n.DaVaoNgay).Date))
+                                                                {
+                                                                    if (ctds != null)
+                                                                    {
+                                                                        <div style="display:inline-block;">
+
+                                                                            <button class="outline" type="submit" disabled>
+                                                                                <strong>@ctds.ThoiGianBatDau:00 - @ctds.ThoiGianKetThuc:00</strong><br>Đã đặt
+                                                                            </button><input type="hidden" name="asset_category_name" value="5" /><input type="hidden" name="begin_time" value="16:00" /><input type="hidden" name="city" value="50" /><input type="hidden" name="date" value="CN, 05/05/2019" /><input type="hidden" name="district_id" value="570" /><input type="hidden" name="how_long" value="1.5" /><input type="hidden" name="venue_id" value="91" />
+
+                                                                        </div>
+                                                                    }
+
+
+                                                                }
+                                                                <div style="display:inline-block;">
+                                                                    <button class="outline" onclick="DatSanBong(@item.MaSanBong,'@DateView.Date.ToString("dd-MM-yyyy")')" type="submit">
+                                                                        <strong>Có sân trống</strong><br />Đặt sân
+                                                                    </button><input type="hidden" name="asset_category_name" value="5" /><input type="hidden" name="begin_time" value="16:00" /><input type="hidden" name="city" value="50" /><input type="hidden" name="date" value="CN, 05/05/2019" /><input type="hidden" name="district_id" value="570" /><input type="hidden" name="how_long" value="1.5" /><input type="hidden" name="venue_id" value="91" />
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                    }
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l6">
+                    <div class="content-header">
+                        <span class="content-title">
+                            Bảng giá
+                        </span>
+                    </div>
+                    <div style="min-height: 250px;">
+                        <span>&nbsp;</span>
+                        @foreach (var item in lstYardOfPlace)
+                        {
+                            <div class="col s12 m12 l12 valign-wrapper asset_category_info">
+                                <div class="col s2 m2 l2 valign">
+                                    <p class="center">@item.TenSanBong</p>
+                                    <p class="center">@item.LOAISANBONG.TenLoaiSan</p>
+                                </div>
+                                <div class="col s12 m10 l10 valign">
+                                    <table class="fee_table">
+                                        <tbody>
+                                            @if (lstPriceOfYard.Exists(n => n.MaSanBong == item.MaSanBong))
+                                            {
+                                                foreach (var bg in lstPriceOfYard.Where(n => n.MaSanBong == item.MaSanBong))
+                                                {
+                                                    if (bg != null)
+                                                    {
+                                                        <tr style="border:thin">
+                                                            <td class="center" style="border:none;">@bg.GioBatDau:00  - @bg.GioKetThuc:00 : <strong>@bg.GiaTien.ToString("N0") VNĐ/giờ</strong></td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr style="border:thin">
+                                                    <td class="center">Đang cập nhật bảng giá</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+                        <div>
+                            @if (!Place.CanDatCocKhiDatSan)
+                            {
+                                <p><i class="fa fa-check-circle blue-text text-darken-3"></i> Không cần đặt cọc.</p>
+                            }
+                            else
+                            {
+                                <p><i class="fa fa-exclamation-circle red-text text-darken-3"></i> Cần đặt cọc khi thuê sân.</p>
+                            }
+                            @if (!Place.CoPhiMuonBong)
+                            {
+                                <p><i class="fa fa-check-circle blue-text text-darken-3"></i> Bóng dùng miễn phí.</p>
+                            }
+                            else
+                            {
+                                <p><i class="fa fa-exclamation-circle red-text text-darken-3"></i> Có phí mượn bóng.</p>
+                            }
+                            @if (!Place.CoPhiNuocUongTrenSan)
+                            {
+                                <p><i class="fa fa-check-circle blue-text text-darken-3"></i> Nước uống miễn phí.</p>
+                            }
+                            else
+                            {
+                                <p><i class="fa fa-exclamation-circle red-text text-darken-3"></i> Có phí nước uống.</p>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col s12 ratings">
+                    <ul class="tabs">
+                        <li class="tab normal_case"><a href="#">Đánh giá</a></li>
+                    </ul>
+                    <p>Sân này chưa có đánh giá nào</p>
+                </div>
+
+
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab normal_case"><a href="#venue_gallery">Hình ảnh</a></li>
+                    </ul>
+                </div>
+
+                <div id="venue_gallery" class="col s12">
+                    <p>Là sân 11 người, chuyên dùng để đào tạo và huấn luyện. Để đặt sân thường phải làm hợp đồng.</p>
+                    <div class="my-gallery">
+                    </div>
+                </div>
+                <div class="fb-comments" data-href="https://www.sporta.vn/san/84" data-width="100%" data-numposts="5">
+                </div>
+            </div>
+            <div class="row center">
+            </div>
+        </div>
+        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+            <!-- Background of PhotoSwipe.
+            It's a separate element, as animating opacity is faster than rgba(). -->
+            <div class="pswp__bg"></div>
+            <!-- Slides wrapper with overflow:hidden. -->
+            <div class="pswp__scroll-wrap">
+                <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+                <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+                <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                </div>
+                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                <div class="pswp__ui pswp__ui--hidden">
+                    <div class="pswp__top-bar">
+                        <!--  Controls are self-explanatory. Order can be changed. -->
+                        <div class="pswp__counter"></div>
+                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                        <button class="pswp__button pswp__button--share" title="Share"></button>
+                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                        <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                        <!-- element will get class pswp__preloader--active when preloader is running -->
+                        <div class="pswp__preloader">
+                            <div class="pswp__preloader__icn">
+                                <div class="pswp__preloader__cut">
+                                    <div class="pswp__preloader__donut"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                        <div class="pswp__share-tooltip"></div>
+                    </div>
+                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                    <div class="pswp__caption">
+                        <div class="pswp__caption__center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="report_venue_modal" class="modal">
+            <div class="modal-content">
+                <h5>Báo lỗi địa điểm</h5>
+                <form class="new_venue_report" id="new_venue_report" action="/venue_reports" accept-charset="UTF-8" data-remote="true" method="post">
+                    <input name="utf8" type="hidden" value="&#x2713;" />
+                    <textarea class="materialize-textarea" name="venue_report[reason]" id="venue_report_reason"></textarea>
+                    <input type="hidden" value="84" name="venue_report[venue_id]" id="venue_report_venue_id" />
+                    <input type="submit" name="commit" value="Gửi thông tin" class="btn" data-disable-with="Gửi thông tin" />
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+@section Scripts{
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script>
+            function DatSanBong(masanbong, ngaydat) {
+                location.replace('@Url.Action("Index","OrderYard")?YardId=' + masanbong + '&strDate=' + ngaydat + '');
+            }
+        </script>
+    }
+    else
+    {
+        <script>
+            function DatSanBong(masanbong, ngaydat) {
+                if (confirm('Bạn chưa đăng nhập! Hãy đăng nhập để đật sân') == true) {
+                    location.replace('@Url.Action("Index","OrderYard")?YardId=' + masanbong + '&strDate=' + ngaydat + '');
+                }
+            }
+        </script>
+    }
+}
