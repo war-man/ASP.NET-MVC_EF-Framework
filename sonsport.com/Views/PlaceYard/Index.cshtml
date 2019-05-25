@@ -55,88 +55,16 @@
                     <div class="my-gallery">
                     </div>
                 </div>
-                <div class="fb-comments" data-href="https://www.sporta.vn/san/84" data-width="100%" data-numposts="5">
+                <div class="fb-comments" data-href="#" data-width="100%" data-numposts="5">
                 </div>
             </div>
             <div class="row center">
             </div>
         </div>
-        <!-- Root element of PhotoSwipe. Must have class pswp. -->
-        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-            <!-- Background of PhotoSwipe.
-            It's a separate element, as animating opacity is faster than rgba(). -->
-            <div class="pswp__bg"></div>
-            <!-- Slides wrapper with overflow:hidden. -->
-            <div class="pswp__scroll-wrap">
-                <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-                <!-- don't modify these 3 pswp__item elements, data is added later on. -->
-                <div class="pswp__container">
-                    <div class="pswp__item"></div>
-                    <div class="pswp__item"></div>
-                    <div class="pswp__item"></div>
-                </div>
-                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-                <div class="pswp__ui pswp__ui--hidden">
-                    <div class="pswp__top-bar">
-                        <!--  Controls are self-explanatory. Order can be changed. -->
-                        <div class="pswp__counter"></div>
-                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                        <button class="pswp__button pswp__button--share" title="Share"></button>
-                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                        <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
-                        <!-- element will get class pswp__preloader--active when preloader is running -->
-                        <div class="pswp__preloader">
-                            <div class="pswp__preloader__icn">
-                                <div class="pswp__preloader__cut">
-                                    <div class="pswp__preloader__donut"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                        <div class="pswp__share-tooltip"></div>
-                    </div>
-                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-                    <div class="pswp__caption">
-                        <div class="pswp__caption__center"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div id="report_venue_modal" class="modal">
-            <div class="modal-content">
-                <h5>Báo lỗi địa điểm</h5>
-                <form class="new_venue_report" id="new_venue_report" action="/venue_reports" accept-charset="UTF-8" data-remote="true" method="post">
-                    <input name="utf8" type="hidden" value="&#x2713;" />
-                    <textarea class="materialize-textarea" name="venue_report[reason]" id="venue_report_reason"></textarea>
-                    <input type="hidden" value="84" name="venue_report[venue_id]" id="venue_report_venue_id" />
-                    <input type="submit" name="commit" value="Gửi thông tin" class="btn" data-disable-with="Gửi thông tin" />
-                </form>
-            </div>
-        </div>
     </div>
 </main>
 @section Scripts{
-    @if (User.Identity.IsAuthenticated)
-    {
-        <script>
-            function DatSanBong(masanbong, ngaydat) {
-                location.replace('@Url.Action("Index","OrderYard")?YardId=' + masanbong + '&strDate=' + ngaydat + '');
-            }
-        </script>
-    }
-    else
-    {
-        <script>
-            function DatSanBong(masanbong, ngaydat) {
-                if (confirm('Bạn chưa đăng nhập! Hãy đăng nhập để đật sân') == true) {
-                    location.replace('@Url.Action("Index","OrderYard")?YardId=' + masanbong + '&strDate=' + ngaydat + '');
-                }
-            }
-        </script>
-    }
+    <script>
+
+    </script>
 }

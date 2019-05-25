@@ -10,7 +10,6 @@ using Model.Context;
 
 namespace sonsport.com.Controllers
 {
-
     public class BaseController : Controller
     {
         protected ApplicationSignInManager _signInManager;
@@ -83,7 +82,8 @@ namespace sonsport.com.Controllers
             get
             {
                 var userId = User.Identity.GetUserId();
-                return UserManager.FindById(userId);
+                var user = UserManager.FindById(userId);
+                return user;
             }
         }
 
@@ -109,6 +109,19 @@ namespace sonsport.com.Controllers
                     }
                 }
                 return null;
+            }
+        }
+
+        public KHACHHANG CurrentCustomer
+        {
+            get
+            {
+                var currentUser = CurrentUserAccount;
+                var CustomerId = currentUser.MaKhachHang;
+                using (_dbContext = new SonSportDbContext())
+                {
+                    return _dbContext.KHACHHANG.Find(CustomerId);
+                }
             }
         }
     }

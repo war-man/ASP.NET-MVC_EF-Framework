@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 namespace quanly.sonsport.com.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = ("CHUSAN,CHUSAN_NHANVIEN"))]
     [RoutePrefix("chu-san")]
     public class EmployeeController : BaseController
     {

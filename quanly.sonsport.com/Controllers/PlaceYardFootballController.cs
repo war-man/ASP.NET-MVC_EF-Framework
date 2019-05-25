@@ -6,7 +6,7 @@ using Business.BusinessViewModels;
 
 namespace quanly.sonsport.com.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = ("CHUSAN,CHUSAN_NHANVIEN"))]
     [RoutePrefix("chu-san")]
     public class PlaceYardFootballController : BaseController
     {

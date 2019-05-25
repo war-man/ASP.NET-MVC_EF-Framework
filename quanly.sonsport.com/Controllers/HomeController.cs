@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace quanly.sonsport.com.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = ("CHUSAN,CHUSAN_NHANVIEN"))]
     public class HomeController : BaseController
     { 
         public ActionResult Index()

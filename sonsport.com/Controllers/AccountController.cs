@@ -10,7 +10,6 @@ using Model.Application;
 
 namespace sonsport.com.Controllers
 {
-    [Authorize]
     public class AccountController : BaseController
     {
         [AllowAnonymous]

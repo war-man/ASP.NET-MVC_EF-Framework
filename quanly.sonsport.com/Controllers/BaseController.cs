@@ -10,7 +10,7 @@ using Model.Context;
 
 namespace quanly.sonsport.com.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = ("CHUSAN,CHUSAN_NHANVIEN"))]
     public class BaseController : Controller
     {
         protected ApplicationSignInManager _signInManager;

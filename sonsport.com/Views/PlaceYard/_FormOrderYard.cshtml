@@ -1,0 +1,80 @@
+﻿@using Model.Context
+@using sonsport.com.Common
+@using Business.BusinessViewModels
+@model OrderYardViewModels
+@{
+    var lstYardOfPlace = ViewData[GlobalConstans.LstYardOfPlace] as List<SANBONG>;
+    var lstDateView = ViewData[GlobalConstans.DateView] as List<string>;
+}
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<div class="modal-content">
+    @using (Ajax.BeginForm("OrderYard", "PlaceYard", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnOrderSuccess" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(n => n.PlaceId);
+        <div class="row">
+            <h5 class="text-center orange-text text-darken-1" id="PlaceName" name="PlaceName">@Model.PlaceName</h5>
+            <p class="text-center" id="PlaceAddress" name="PlaceAddress">@Model.PlaceAddress</p>
+
+            <div class="col s6">
+                <label>Sân bóng</label>
+                @Html.DropDownListFor(n => n.YardId, new SelectList(lstYardOfPlace, "MaSanBong", "TenSanBong", "TenSanBong"), new { @class = "browser-default", @onchange = "LoadStartTime()" })
+            </div>
+
+            <div class="col s6">
+                <label>Ngày đặt</label>
+                <select name="dateview" id="dateview" class="date-output browser-default" onchange="LoadStartTime()">
+                    @foreach (var date in lstDateView)
+                    {
+                        <option value="@date">@date</option>
+                    }
+                </select>
+            </div>
+            <div class="col s6 m6">
+                <label>Đặt từ</label>
+                <select name="begin_time" id="begin_time" required="required" class="browser-default">
+
+                </select>
+            </div>
+            <div class="col s6 m6">
+                <label>Thời lượng</label>
+                <select name="how_long" id="how_long" required="required" class="browser-default">
+                    <option selected="selected" value="1">1 Giờ</option>
+                    <option value="2">2 Giờ</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l12 center">
+                <button class="btn btn-datsan booking-form-submit-btn" type="submit">Đặt sân</button>
+            </div>
+        </div>
+    }
+
+</div>
+<script>
+    $(function () {
+        LoadStartTime();
+    })
+    function LoadStartTime() {
+        var YardId = $('#YardId').val();
+        var dateview = $('#dateview').val();
+        $.get('@Url.Action("LoadStartTime","PlaceYard")?YardId=' + YardId+'&strDate='+dateview, (response) => {
+            var lstStringStartTime = response.data;
+            var html = "";
+            $.each(lstStringStartTime, function (intdex, value) {
+                if (value.indexOf('(Đã có người đặt)') >= 0) {
+                    html += '<option value="' + value + '" disabled>' + value + '</option>'
+                }
+                else {
+                    html+= '<option value="'+value+'">'+value+'</option>'
+                }
+            });
+            $('#begin_time').empty().html(html);
+        });
+        }
+
+    function OnOrderSuccess(response) {
+        $('#booking_modal').empty().html(response);
+    }
+</script>

@@ -15,6 +15,8 @@ namespace sonsport.com.Common
         public const string LstYardOfPlace = "List yard of place by place id";
         public const string LstOrderDetailsOfYard = "List order details of yard";
         public const string LstPriceOfYard = "List price table of yard by yard id";
-        
+        public const string Yard = "Yard details";
+        public const string InfoCustomer = "Infomation of customer";
+        public const string DicInfoOrder = "Dictionary infomation order";
     }
 }

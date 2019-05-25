@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace sonsport.com.Controllers
 {
+
     public class ForMasterYardController : BaseController
     {
         private readonly IMasterYardBusiness MasterYardBusiness;

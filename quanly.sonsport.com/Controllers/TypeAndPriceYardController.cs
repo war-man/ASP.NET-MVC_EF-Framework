@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace quanly.sonsport.com.Controllers
 {
     //TypeAndPriceYard
-    [Authorize]
+    [Authorize(Roles = ("CHUSAN,CHUSAN_NHANVIEN"))]
     [RoutePrefix("chu-san")]
     public class TypeAndPriceYardController : BaseController
     {

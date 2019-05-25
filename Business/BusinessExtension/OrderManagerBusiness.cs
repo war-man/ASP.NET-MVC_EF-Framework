@@ -83,6 +83,12 @@ namespace Business.BusinessExtension
             return dbContext.CHITIETDATSAN.Include(n=>n.DATSAN).Where(n => n.MaChuSan == MasterId).ToList();
         }
 
+        public List<CHITIETDATSAN> GetOrderDetailsByNgayDat(DateTime KickAtDate)
+        {
+            var lstOrderDetails = dbContext.CHITIETDATSAN.Where(n => n.DaVaoNgay == KickAtDate.Date).ToList();
+            return lstOrderDetails;
+        }
+
         public OrderDetailsViewModels GetOrderDetailsByOrderId(int OrderId)
         {
             var ctds = dbContext.CHITIETDATSAN.Include(n => n.DATSAN).Include(n => n.SANBONG).FirstOrDefault(n => n.MaDatSan == OrderId);

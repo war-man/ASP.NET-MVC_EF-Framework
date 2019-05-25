@@ -22,5 +22,7 @@ namespace Business.BusinessInterface
 
         void DeleteOrderDetails(int OrderId);
 
+        List<CHITIETDATSAN> GetOrderDetailsByNgayDat(DateTime KickAtDate);
+
     }
 }

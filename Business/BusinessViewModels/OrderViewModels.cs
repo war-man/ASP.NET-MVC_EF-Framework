@@ -20,4 +20,27 @@ namespace Business.BusinessViewModels
         public string backgroundColor { get; set; }
         public string borderColor { get; set; }
     }
+
+    public class OrderYardViewModels
+    {
+        public int PlaceId { get; set; }
+
+        public string PlaceName { get; set; }
+
+        public string PlaceAddress { get; set; }
+
+        public int YardId { get; set; }
+
+        public string YardName { get; set; }
+
+        public string KickAtDate { get; set; }
+
+        public string CreatedDate { get; set; }
+
+        public string StartTime { get; set; }
+
+        public string Duration { get; set; }
+
+        public string EndTime { get; set; }
+    }
 }

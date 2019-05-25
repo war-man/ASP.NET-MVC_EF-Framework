@@ -1,0 +1,94 @@
+﻿@using Model.Context
+@using sonsport.com.Common
+@model CHITIETDATSAN
+@{
+    var CurrentCustomer = (KHACHHANG)ViewData[GlobalConstans.InfoCustomer];
+    var Yard = (SANBONG)ViewData[GlobalConstans.Yard];
+    var DateView = (string)ViewData[GlobalConstans.DateView];
+    var Place = (DIADIEMSANBONG)ViewData[GlobalConstans.Place];
+    int Price = (int)Model.GiaTien;
+}
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<div class="modal-content">
+    @using (Ajax.BeginForm("ConfirmOrder", "PlaceYard", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnConfirmSuccess" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(n => n.MaDiaDiem)
+        @Html.HiddenFor(n => n.MaSanBong)
+        @Html.HiddenFor(n => n.DaVaoNgay)
+        @Html.HiddenFor(n => n.MaChuSan)
+        @Html.HiddenFor(n => n.ThoiGianBatDau)
+        @Html.HiddenFor(n => n.ThoiGianKetThuc)
+        @Html.HiddenFor(n => n.GiaTien)
+        <div class="row">
+            <h5 class="text-center orange-text text-darken-1">XÁC NHẬN ĐẶT SÂN</h5>
+            <p class="text-center">Hãy kiểm tra lại thông tin đặt sân trước khi chúng tôi lưu vào hệ thống</p>
+
+            <ul class="stepper linear">
+                <li class="step active" style="padding-bottom: 0px;">
+                    <div class="step-title waves-effect">Thông tin người đặt</div>
+                    <div class="step-content">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="name" name="booker_name" type="text" class="validate" required="" value="@CurrentCustomer.TenKhachHang">
+                                <label for="name" class="active">Tên</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="phone" name="booker_phone_attributes[number]" type="text" class="validate" required="" value="@CurrentCustomer.Sdt">
+                                <label for="phone">Số điện thoại</label>
+                                <span class="helper-text red-text">Hãy sử dụng số đt đúng để chúng tôi có thể liên lạc với bạn.</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step active" style="padding-bottom: 0px;">
+                    <div class="step-title waves-effect">Thông tin lịch đặt</div>
+                    <div class="step-content">
+                        <div class="row">
+                            <div class="col s12">
+                                <h6 style="font-weight: 600;" class="orange-text">Địa điểm</h6>
+                                <div class="col">
+                                    <h6 style="font-size: 20px;">@Place.TenDiaDiem</h6>
+                                    <span class="grey-text text-darken-2" style="font-size: 12px;">@Place.DiaChi</span>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <h6 style="font-weight: 600;" class="orange-text">Thời gian</h6>
+                                <div class="col">
+                                    <h6 style="font-size: 16px;">@GlobalMethod.ConvertIntToHourNoMilisecond(Model.ThoiGianBatDau) <i class="fa fa-arrow-right"></i> @GlobalMethod.ConvertIntToHourNoMilisecond(Model.ThoiGianKetThuc) <span class="grey-text text-darken-2" style="font-size: 13px;"> (@(Model.ThoiGianKetThuc - Model.ThoiGianBatDau) Giờ)</span></h6>
+                                    @*<h6 style="font-size: 16px;">Thứ tư, 29-05-2019<span class="grey-text text-darken-2" style="font-size: 13px;"> (4 ngày nữa)</span></h6>*@
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <h6 style="font-weight: 600;" class="orange-text">Giá: @Price.ToString("N0") VNĐ</h6>
+                                <div class="col s12">
+                                    <label>
+                                        <input class="with-gap" name="payment_method" value="cod" type="radio" id="cod" checked="">
+                                        <span class="black-text">Thanh toán tại sân</span><br>
+                                        <span style="padding-left: 35px">Cần chờ xác nhận từ chủ sân và không được đảm bảo bởi Son Sport nếu có tranh chấp xảy ra.</span>
+                                    </label>
+                                </div>
+                                <div class="col s12">
+                                    <label>
+                                        <input class="with-gap" name="payment_method" type="radio" value="online" id="online_payment" disabled="">
+                                        <span class="gray-text">Thanh toán online</span><br>
+                                        <span style="padding-left: 35px">Được đảm bảo bởi Son Sport khi có tranh chấp. Hoàn tiền 110% nếu không có sân hoặc 100% nếu hủy sân trước giờ quy định.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-actions">
+                            <button class="waves-effect waves-dark btn" type="submit">Đặt sân</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+
+</div>
+<script>
+    function OnConfirmSuccess(response) {
+
+    }
+</script>

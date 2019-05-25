@@ -248,9 +248,6 @@
     <Content Include="Assets\Images\image\icon-momo.png" />
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Content\bootstrap.min.css" />
-    <Content Include="Assets\Scripts\bootbox.all.min.js" />
-    <Content Include="Assets\Scripts\bootbox.locales.min.js" />
-    <Content Include="Assets\Scripts\bootbox.min.js" />
     <Content Include="Assets\TemplateCustomer\chusan.html" />
     <Content Include="Assets\TemplateCustomer\css\font-awesome4.7\font-awesome.css" />
     <Content Include="Assets\TemplateCustomer\css\font-awesome4.7\font-awesome.min.css" />
@@ -308,6 +305,8 @@
     <Content Include="Assets\SonSiHoJS\ssh.js" />
     <Content Include="Assets\SonSiHoJS\stringUtils.js" />
     <Content Include="Assets\SonSiHoJS\validateUtils.js" />
+    <Content Include="Assets\Scripts\bootbox.js" />
+    <Content Include="Assets\Scripts\bootbox.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -352,6 +351,10 @@
     <Content Include="Views\PlaceYard\_InfoPlace.cshtml" />
     <Content Include="Views\PlaceYard\_ListOrderByDay.cshtml" />
     <Content Include="Views\PlaceYard\_ListPriceOfYard.cshtml" />
+    <Content Include="Views\PlaceYard\_FormReport.cshtml" />
+    <Content Include="Views\PlaceYard\_FormOrderYard.cshtml" />
+    <Content Include="Views\PlaceYard\_FormConfirmOrder.cshtml" />
+    <Content Include="Views\PlaceYard\_OrderSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

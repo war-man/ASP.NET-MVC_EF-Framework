@@ -11,7 +11,7 @@
         <p>
             <i class="fa fa-map-marker" style="font-size: 20px"></i>
             @Model.DiaChi&nbsp;
-            <a target="_blank" href='https://www.google.com/maps/dir//10.8715154717314,106.795287796571'>
+            <a target="_blank" href='#'>
                 <i class="fa fa-location-arrow" style="font-size: 20px;"></i>
             </a>
         </p>
@@ -19,13 +19,13 @@
             <i class="fa fa-phone-square" style="font-size: 20px"></i>
             @if (User.Identity.IsAuthenticated)
             {
-                <a class="waves-effect waves-orange btn-flat view_phones" href="https://www.sporta.vn/users/sign_in">
+                <a class="waves-effect waves-orange btn-flat view_phones">
                     @Model.Sdt1
                 </a>
             }
             else
             {
-                <a class="waves-effect waves-orange btn-flat view_phones" href="https://www.sporta.vn/users/sign_in">
+                <a class="waves-effect waves-orange btn-flat view_phones" href="@Url.Action("Login","Account")">
                     ĐĂNG NHẬP ĐỂ XEM SỐ ĐIỆN THOẠI
                 </a>
             }
@@ -33,11 +33,39 @@
         <p>
             <i class="fa fa-clock-o"></i>&nbsp;@Model.GioMoCua - @Model.GioDongCua
         </p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p style="margin-bottom: 10px;">
+                <i class="fa fa-exclamation-triangle"></i>
+                <a href="#report_venue_modal" class="modal-trigger orange-text" role="button" aria-pressed="true" onclick="ShowModalReport()">Báo lỗi</a>
+            </p>
+        }
+        else
+        {
+            <p>
+                <i class="fa fa-exclamation-triangle"></i>
+                <a class="orange-text btn-flat" onclick="M.toast({html: 'Bạn cần đăng nhập để báo lỗi!', displayLength:3000});" aria-pressed="true">Báo lỗi</a>
+            </p>
+        }
         <p style="margin-bottom: 10px;">
-            <i class="fa fa-exclamation-triangle"></i>
-            <a href="#" class="orange-text" onclick="M.toast({html: 'Bạn cần đăng nhập để báo lỗi!', displayLength:3000});" aria-pressed="true">Báo lỗi</a>
+            <i class="fa fa-user"></i>&nbsp;
+            <a class="orange-text" href="@Url.Action("Index","ForMasterYard")">Dành cho chủ sân</a>
         </p>
-        <div class="fb-like hide-on-med-and-up col s12" data-href="https://www.sporta.vn/dai-hoc-tdtt-hcm" data-layout="standard" data-action="like" data-width="250" data-size="small" data-show-faces="true" data-share="true" colorscheme="dark" style="margin-top: 5px;"></div>
-        <div class="fb-like hide-on-small-only col s12" data-href="https://www.sporta.vn/dai-hoc-tdtt-hcm" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true" colorscheme="dark" style="margin-top: 5px;"></div>
+        <div class="fb-like hide-on-med-and-up col s12" data-href="#" data-layout="standard" data-action="like" data-width="250" data-size="small" data-show-faces="true" data-share="true" colorscheme="dark" style="margin-top: 5px;"></div>
+        <div class="fb-like hide-on-small-only col s12" data-href="#" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true" colorscheme="dark" style="margin-top: 5px;"></div>
     </div>
 </div>
+
+
+
+<div id="report_venue_modal" class="modal">
+    
+</div>
+
+<script>
+    function ShowModalReport() {
+        $.get('@Url.Action("LoadFormReport","PlaceYard")', (response) => {
+            $('#report_venue_modal').empty().html(response);
+        })
+    }
+</script>

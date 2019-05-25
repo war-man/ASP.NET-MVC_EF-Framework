@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace quanly.sonsport.com.Controllers
 {
+    [Authorize(Roles = ("CHUSAN,CHUSAN_NHANVIEN"))]
     public class OrderManagerController : BaseController
     {
         private readonly IOrderManagerBusiness OrderManagerBusiness;
