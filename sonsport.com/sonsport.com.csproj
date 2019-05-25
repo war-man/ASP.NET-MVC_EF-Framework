@@ -210,12 +210,14 @@
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CustomerManagerController.cs" />
     <Compile Include="Controllers\ForMasterYardController.cs" />
     <Compile Include="Controllers\HelperPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlaceYardController.cs" />
     <Compile Include="Controllers\PlaceYardFootballController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +232,7 @@
     <Content Include="Assets\Content\Site.css" />
     <Content Include="Assets\Content\steper.css" />
     <Content Include="Assets\Images\image\avatar.png" />
+    <Content Include="Assets\Images\image\default_user_image.png" />
     <Content Include="Assets\Images\image\icon-aws.png" />
     <Content Include="Assets\Images\image\banner-1.jpg" />
     <Content Include="Assets\Images\image\icon-2.svg" />
@@ -248,6 +251,7 @@
     <Content Include="Assets\Images\image\icon-momo.png" />
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Content\bootstrap.min.css" />
+    <Content Include="Assets\Images\image\search_banner.jpg" />
     <Content Include="Assets\TemplateCustomer\chusan.html" />
     <Content Include="Assets\TemplateCustomer\css\font-awesome4.7\font-awesome.css" />
     <Content Include="Assets\TemplateCustomer\css\font-awesome4.7\font-awesome.min.css" />
@@ -355,6 +359,14 @@
     <Content Include="Views\PlaceYard\_FormOrderYard.cshtml" />
     <Content Include="Views\PlaceYard\_FormConfirmOrder.cshtml" />
     <Content Include="Views\PlaceYard\_OrderSuccess.cshtml" />
+    <Content Include="Views\CustomerManager\LayoutCustomerManager.cshtml" />
+    <Content Include="Views\CustomerManager\UserProfile.cshtml" />
+    <Content Include="Views\CustomerManager\BookingOfCustomer.cshtml" />
+    <Content Include="Views\CustomerManager\Notification.cshtml" />
+    <Content Include="Views\CustomerManager\ChangePassword.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\SearchYardEmpty.cshtml" />
+    <Content Include="Views\Home\_FormSearchYardEmpty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

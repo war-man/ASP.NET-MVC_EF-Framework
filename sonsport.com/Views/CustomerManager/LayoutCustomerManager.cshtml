@@ -1,0 +1,63 @@
+﻿@using sonsport.com.Common
+@{
+    ViewBag.Title = "LayoutCustomerManager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <main>
+        <div class="container-90" style="margin-top: 20px">
+            <div class="row">
+                <div class="col m2 hide-on-small-only">
+                    <div id="page_section" style="display: none;" data-section="profile"></div>
+
+                    <div class="row">
+                        <div class="user-brief">
+                            <a class="user-brief_avatar" href="#">
+                                <div class="sporta-avatar">
+                                    <img id="avatar" src="~/Assets/Images/image/default_user_image.png" alt="Default user image" />
+                                </div>
+                            </a>
+
+                            <div class="user-brief_right">
+                                <div class="user-brief-name">Sơn si hô</div>
+                                <div>
+                                    <a href="/user/profile"><i class="fa fa-edit"></i> Sửa hồ sơ</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="user-sidebar-menu">
+
+                            <a href="@Url.Action("UserProfile","CustomerManager")">
+                                <div class="menu-item @Html.IsMenuSelected("UserProfile","CustomerManager")">
+                                    <i class="fa fa-user-circle" style="color: orange !important; margin-right: 5px;"></i>
+                                    Tài khoản của tôi
+                                </div>
+                            </a>
+                            <a href="@Url.Action("BookingOfCustomer","CustomerManager")">
+                                <div class="menu-item @Html.IsMenuSelected("BookingOfCustomer","CustomerManager")">
+                                    <i class="fa fa-clock" style="color: #3DC3F3 !important; margin-right: 5px;"></i>
+                                    Lịch đặt của tôi
+                                </div>
+                            </a>
+                            <a href="@Url.Action("Notification","CustomerManager")">
+                                <div class="menu-item @Html.IsMenuSelected("Notification","CustomerManager")" id="announcements">
+                                    <i class="fa fa-bell" style="color: #F74B51 !important; margin-right: 5px;"></i>
+                                    Thông báo
+                                </div>
+                            </a>
+                            <a href="@Url.Action("ChangePassword","CustomerManager")">
+                                <div class="menu-item @Html.IsMenuSelected("ChangePassword","CustomerManager")" id="change_password">
+                                    <i class="fa fa-unlock-alt" style="color: #F74B51 !important; margin-right: 5px;"></i>
+                                    Đổi mật khẩu
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+
+    </main>

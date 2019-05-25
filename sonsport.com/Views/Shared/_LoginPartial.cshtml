@@ -6,8 +6,8 @@
             @User.Identity.Name <i class="fa fa-chevron-down" style="font-size: 16px;"></i>
         </a>
         <ul id="usermenu" class="dropdown-content" tabindex="0">
-            <li tabindex="0"><a href="/user/profile">Tài khoản của tôi</a></li>
-            <li tabindex="0"><a href="/user/booking_requests">Quản lý lịch đặt</a></li>
+            <li tabindex="0"><a href="@Url.Action("UserProfile","CustomerManager")">Tài khoản của tôi</a></li>
+            <li tabindex="0"><a href="@Url.Action("BookingOfCustomer","CustomerManager")">Quản lý lịch đặt</a></li>
             <li class="divider" tabindex="0"></li>
             @using (Html.BeginForm("../Account/LogOff", null, FormMethod.Post, htmlAttributes: new { @id = "logoutForm" }))
             {

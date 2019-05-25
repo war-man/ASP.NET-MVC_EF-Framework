@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <main>
+        <div id="find_available_asset" style="height: 450px;">
+            <div class="find_available_asset_form_is_center">
+                <h4 class="center white-text">Tìm kiếm thông tin và đặt sân online</h4>
+                <h5 class="center white-text">Với hàng ngàn địa điểm trên toàn quốc</h5>
+                <form action="/san/tim" accept-charset="UTF-8" method="get">
+                    <div class="venue_search_form row">
+                        <input type="checkbox" checked="checked" name="district_name[]" value="tất cả" hidden />
+                        <div class="col s12 m8 l6 offset-l3 offset-m2 input-field">
+                            <input type="text" name="q" id="search_text" class="white-text" placeholder="Tìm sân: tên, địa chỉ" />
+                            <button type="submit" id="search_btn"><i class='fa fa-search'></i></button>
+                        </div>
+                        <div class="center col s12 hide-on-med-and-up" style="margin-top: 10px;">
+                            <button class="btn" id="nearby_search">Gần đây</button>
+                        </div>
+                    </div>
+                </form>    <div class="hide-on-small-only center" style="margin-top: 10px;">
+                    <button class="btn" id="nearby_search" disabled>
+                        <i class="fa fa-location-arrow" style="font-size: 1.2rem;"></i> Gần đây (Updating...)
+                    </button>
+                </div>
+            </div>
+            <img class="brightness" src='~/Assets/Images/image/search_banner.jpg' alt="Sporta đặt sân bóng đá mini online">
+        </div>
+        <div>
+            <div>
+                <div class="container-90">
+                    <div class="row" id="venues_list">
+                        <div class="col s12 m6 l3">
+                            <div class="card-panel venue_item hoverable">
+                                <a href="/h2-tan-binh">
+                                    <img class="responsive-img" src='https://sporta.s3.amazonaws.com/production/images/460/images/thumb/1.jpg?1557819399'>
+                                </a>
+                                <div class="venue-details">
+                                    <div>
+                                        <a class="purple-text" href="/san-bong/tp-ho-chi-minh/quan-tan-binh"><i class='fa fa-hashtag'></i> Quận Tân Bình</a>
+                                    </div>
+                                    <h5><a href="/h2-tan-binh">Sân H2 Tân Bình</a></h5>
+                                    <p><i class="fa fa-map-marker" style="font-size: 1.5rem" aria-hidden="true"></i>  Hẻm 104 Tân Sơn, P.15, Quận Tân Bình, Tp Hồ Chí Minh</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center col s12">
+                            <a id="load-more-venues" class="waves-effect waves-orange btn-flat" style="border: 1px solid #ff9800" data-remote="true" href="/san/tim?loadmore=true&amp;page=2&amp;per_page=12">Xem thêm</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>

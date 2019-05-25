@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/CustomerManager/LayoutCustomerManager.cshtml";
+}
+
+    <div class="col s12 m10">
+        <div class="user-page-content">
+            <h5 class="ticket-title">Thông tin cá nhân</h5>
+            Điền thông tin hồ sơ để sporta phục vụ bạn tốt hơn.
+            <section>
+                <div class="profile-update">
+                    <div class="row">
+                        <div class="col s12 m2">
+                            <header class="profile-picture">
+                                <form class="edit_user" id="edit_user_7664" enctype="multipart/form-data" action="/users/7664/avatar_upload" accept-charset="UTF-8" method="post">
+                                    <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="7wNPr9AdxUR7grRl8c/cUCoOOoqDQtvWoc0ikTM60UgFTizRIMmdohj4CO3cfvb4d9gyL5oMI13siAF9Qb9+1Q==" />
+                                    <div class="avatar">
+                                        <img id="avatar" style="width: 100%" src="~/Assets/Images/image/default_user_image.png" alt="Default user image" />
+                                        <button class="btn-upload-avatar"><i class="fa fa-image fa-2x" aria-hidden="true"></i></button>
+                                        <input onchange="this.form.submit()" type="file" name="user[avatar]" id="user_avatar" />
+                                    </div>
+                                </form>
+                            </header>
+                        </div>
+                        <div class="col s12 m10">
+                            <div class="profile-form">
+                                <form class="edit_user" id="edit_user_7664" action="/users/7664" accept-charset="UTF-8" method="post">
+                                    <input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="DT/8rT16sMRpaOpxJ0c0b5w+5mCZt38WMGz1SEeIJvfncp/Tza7oIgoSVvkK9h7HwejuxYD5h519KdakNQ2Jag==" />
+                                    <div class="input-field col s12 m4">
+                                        <label for="user_name">Tên</label>
+                                        <input type="text" value="Sơn Si Hô" name="user[name]" id="user_name" />
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <label for="user_email">Email</label>
+                                        <input type="text" value="anson.hs38@gmail.com" name="user[email]" id="user_email" />
+                                    </div>
+                                    <div class="input-field col s12 m4">
+
+                                        <label for="user_phone_attributes_number">Số điện thoại</label>
+                                        <input type="text" name="user[phone_attributes][number]" id="user_phone_attributes_number" />
+                                        <a href="#" style="position: absolute; top: 15px; right: 12px;" onclick="smsLogin();">Xác nhận</a>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="input-field col s12 m4 l6 address_street">
+                                            <label for="user_address_attributes_street">Địa chỉ</label>
+                                            <input required="required" type="text" name="user[address_attributes][street]" id="user_address_attributes_street" />
+                                        </div>
+                                        <div class="col s6 m4 l3 address_district">
+                                            <label class="active" for="user_address_attributes_district_id">Quận/Huyện</label>
+                                            <select class="browser-default" name="user[address_attributes][district_id]" id="user_address_attributes_district_id">
+                                                <option value="573">Huyện Bình Chánh</option>
+                                                <option value="575">Huyện Cần Giờ</option>
+                                                <option value="571">Huyện Củ Chi</option>
+                                                <option value="572">Huyện Hóc Môn</option>
+                                                <option value="574">Huyện Nhà Bè</option>
+                                                <option value="552">Quận 1</option>
+                                                <option value="563">Quận 10</option>
+                                                <option value="564">Quận 11</option>
+                                                <option value="553">Quận 12</option>
+                                                <option value="561">Quận 2</option>
+                                                <option value="562">Quận 3</option>
+                                                <option value="565">Quận 4</option>
+                                                <option value="566">Quận 5</option>
+                                                <option value="567">Quận 6</option>
+                                                <option value="570">Quận 7</option>
+                                                <option value="568">Quận 8</option>
+                                                <option value="555">Quận 9</option>
+                                                <option value="569">Quận Bình Tân</option>
+                                                <option value="557">Quận Bình Thạnh</option>
+                                                <option value="556">Quận Gò Vấp</option>
+                                                <option value="560">Quận Phú Nhuận</option>
+                                                <option value="558">Quận Tân Bình</option>
+                                                <option value="559">Quận Tân Phú</option>
+                                                <option value="554">Quận Thủ Đức</option>
+                                            </select>
+                                        </div>
+                                        <div class="col s6 m4 l3 address_city">
+                                            <label class="active" for="city">Thành phố/Tỉnh</label>
+                                            <select name="city" id="city" required="required" class="browser-default" disabled>
+                                                <option selected="selected" value="50">Tp Hồ Chí Minh</option>
+                                            </select>
+                                        </div>
+                                        <input hidden="hidden" id="latitude" type="text" name="user[address_attributes][latitude]" />
+                                        <input hidden="hidden" id="longitude" type="text" name="user[address_attributes][longitude]" />
+                                        <input value="Việt Nam" hidden="hidden" readonly="readonly" type="text" name="user[address_attributes][country]" id="user_address_attributes_country" />
+                                    </div>
+                                    <div class="card-action center">
+                                        <button name="button" type="submit" class="btn">Cập nhật</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>

@@ -1,0 +1,114 @@
+﻿<form action="/dat-san-online" accept-charset="UTF-8" method="get">
+    <input name="utf8" type="hidden" value="&#x2713;" />
+    <div class="row">
+        <div class="input-field col s12 l6 browser-default">
+            <select name="city" id="city" required="required" class="browser-default">
+                <option selected="selected" value="50">Tp Hồ Chí Minh</option>
+            </select>
+            <label class="white-text">Khu vực</label>
+        </div>
+        <div class="input-field col s12 l6">
+            <select name="district_id" id="district_id" required="required" class="browser-default">
+                <option value="573">Huyện Bình Chánh</option>
+                <option value="575">Huyện Cần Giờ</option>
+                <option value="571">Huyện Củ Chi</option>
+                <option value="572">Huyện Hóc Môn</option>
+                <option value="574">Huyện Nhà Bè</option>
+                <option value="552">Quận 1</option>
+                <option value="563">Quận 10</option>
+                <option value="564">Quận 11</option>
+                <option value="553">Quận 12</option>
+                <option value="561">Quận 2</option>
+                <option value="562">Quận 3</option>
+                <option value="565">Quận 4</option>
+                <option value="566">Quận 5</option>
+                <option value="567">Quận 6</option>
+                <option value="570">Quận 7</option>
+                <option value="568">Quận 8</option>
+                <option value="555">Quận 9</option>
+                <option value="569">Quận Bình Tân</option>
+                <option value="557">Quận Bình Thạnh</option>
+                <option value="556">Quận Gò Vấp</option>
+                <option value="560">Quận Phú Nhuận</option>
+                <option value="558">Quận Tân Bình</option>
+                <option value="559">Quận Tân Phú</option>
+                <option selected="selected" value="554">Quận Thủ Đức</option>
+            </select>
+        </div>
+        <div class="input-field col s12 l6">
+            <select name="asset_category_name" class="browser-default" required>
+                <option value="5" selected>Sân 5 người</option>
+                <option value="7">Sân 7 người</option>
+            </select>
+            <label class="white-text">Loại sân</label>
+        </div>
+        <div class="input-field col s12 l6">
+            <input type="text" name="date" id="booking_date" value="Chủ nhật, 28-04-2019" placeholder="Chọn ngày" required="required">
+            <label class="white-text" for="booking_date" style="top: -3px;">Ngày</label>
+        </div>
+        <div class="input-field col s12 l6">
+            <select name="begin_time" id="begin_time" required="required" class="browser-default">
+                <option value="00:00">00:00</option>
+                <option value="00:30">00:30</option>
+                <option value="01:00">01:00</option>
+                <option value="01:30">01:30</option>
+                <option value="02:00">02:00</option>
+                <option value="02:30">02:30</option>
+                <option value="03:00">03:00</option>
+                <option value="03:30">03:30</option>
+                <option value="04:00">04:00</option>
+                <option value="04:30">04:30</option>
+                <option value="05:00">05:00</option>
+                <option value="05:30">05:30</option>
+                <option value="06:00">06:00</option>
+                <option value="06:30">06:30</option>
+                <option value="07:00">07:00</option>
+                <option value="07:30">07:30</option>
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option selected="selected" value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
+                <option value="23:30">23:30</option>
+            </select>
+            <label class="white-text">Đặt từ</label>
+        </div>
+        <div class="input-field col s12 l6">
+            <select name="how_long" class="browser-default" required>
+                <option value="1" selected>1 giờ</option>
+                <option value="1.5">1.5 giờ</option>
+                <option value="2">2 giờ</option>
+            </select>
+            <label class="white-text">Đặt bao lâu</label>
+        </div>
+        <div class="col s12 m12 l12 center">
+            <a class="btn btn-raised" href="@Url.Action("SearchYardEmpty","Search")">TÌM SÂN TRỐNG</a>
+        </div>
+    </div>
+</form>
