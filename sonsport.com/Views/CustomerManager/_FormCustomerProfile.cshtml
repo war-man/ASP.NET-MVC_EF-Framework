@@ -1,0 +1,78 @@
+﻿@using Model.Context
+@using Business.BusinessViewModels
+@model CustomerViewModels
+<script src="~/Assets/Scripts/jquery.validate.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using (Ajax.BeginForm("UpdateProfile", "CustomerManager", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnUpdateProfileSuccess", UpdateTargetId = "profile-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(n => n.MaKhachHang)
+    <div class="input-field col s12 m4">
+        @Html.LabelFor(n => n.TenKhachHang)
+        @Html.TextBoxFor(n => n.TenKhachHang,new {@autofocus=""})
+        @Html.ValidationMessageFor(n => n.TenKhachHang, "", new { @class = "red-text"})
+    </div>
+    <div class="input-field col s12 m4">
+        @Html.LabelFor(n => n.Email)
+        @Html.TextBoxFor(n => n.Email,new {@autofocus=""})
+        @Html.ValidationMessageFor(n => n.Email, "", new { @class = "red-text" })
+    </div>
+    <div class="input-field col s12 m4">
+        @Html.LabelFor(n => n.Sdt)
+        @Html.TextBoxFor(n => n.Sdt,new {@autofocus=""})
+        @Html.ValidationMessageFor(n => n.Sdt, "", new { @class = "red-text" })
+        <a href="#" style="position: absolute; top: 15px; right: 12px;">Xác thực</a>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m4 l6 address_street">
+            @Html.LabelFor(n => n.Address)
+            @Html.TextBoxFor(n => n.Address,new {@autofocus=""})
+            @Html.ValidationMessageFor(n => n.Address, "", new { @class = "red-text" })
+        </div>
+        <div class="col s6 m4 l3 address_district">
+            <label class="active" for="user_address_attributes_district_id">Quận/Huyện</label>
+            <select class="browser-default" disabled>
+                <option value="573">Huyện Bình Chánh</option>
+                <option value="575">Huyện Cần Giờ</option>
+                <option value="571">Huyện Củ Chi</option>
+                <option value="572">Huyện Hóc Môn</option>
+                <option value="574">Huyện Nhà Bè</option>
+                <option value="552">Quận 1</option>
+                <option value="563">Quận 10</option>
+                <option value="564">Quận 11</option>
+                <option value="553">Quận 12</option>
+                <option value="561">Quận 2</option>
+                <option value="562">Quận 3</option>
+                <option value="565">Quận 4</option>
+                <option value="566">Quận 5</option>
+                <option value="567">Quận 6</option>
+                <option value="570">Quận 7</option>
+                <option value="568">Quận 8</option>
+                <option value="555">Quận 9</option>
+                <option value="569">Quận Bình Tân</option>
+                <option value="557">Quận Bình Thạnh</option>
+                <option value="556">Quận Gò Vấp</option>
+                <option value="560">Quận Phú Nhuận</option>
+                <option value="558">Quận Tân Bình</option>
+                <option value="559">Quận Tân Phú</option>
+                <option value="554">Quận Thủ Đức</option>
+            </select>
+        </div>
+        <div class="col s6 m4 l3 address_city">
+            <label class="active" for="city">Thành phố/Tỉnh</label>
+            <select name="city" id="city" required="required" class="browser-default" disabled>
+                <option selected="selected" value="50">Tp Hồ Chí Minh</option>
+            </select>
+        </div>
+    </div>
+    <div class="card-action center">
+        <button name="button" type="submit" class="btn">Cập nhật</button>
+    </div>
+}
+<script src="~/Assets/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function OnUpdateProfileSuccess() {
+        M.toast({html: 'Cập nhật thành công!', displayLength: 3000});
+    }
+</script>

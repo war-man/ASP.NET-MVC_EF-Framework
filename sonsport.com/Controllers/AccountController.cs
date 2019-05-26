@@ -2,16 +2,25 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Business.BusinessInterface;
 using Business.BusinessViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Model.Application;
+using Model.Context;
 
 namespace sonsport.com.Controllers
 {
     public class AccountController : BaseController
     {
+        private readonly ICustomerBusiness CustomerBusiness;
+
+        public AccountController(ICustomerBusiness CustomerBusiness)
+        {
+            this.CustomerBusiness = CustomerBusiness;
+        }
+
         [AllowAnonymous]
         [Route("dang-nhap")]
         public ActionResult Login(string returnUrl)
@@ -113,10 +122,13 @@ namespace sonsport.com.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var customer = new KHACHHANG { Email = model.Email };
+                CustomerBusiness.CreateCustomer(customer);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,MaKhachHang= customer.MaKhachHang };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, "KHACHHANG");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

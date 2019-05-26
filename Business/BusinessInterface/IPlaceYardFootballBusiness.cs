@@ -23,5 +23,9 @@ namespace Business.BusinessInterface
 
         List<DIADIEMSANBONG> SearchByMaster(int? MaChuSan);
 
+        void ActivePlace(int PlaceId);
+
+        void UnActivePlace(int PlaceId);
+
     }
 }

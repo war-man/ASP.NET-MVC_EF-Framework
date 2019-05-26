@@ -28,11 +28,31 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <a href="#" onclick="RedirectToTypeAndPrice(@item.MaDiaDiem)" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                <a href="#" class="h5 mb-0 font-weight-bold text-primary-800" onclick="RedirectToTypeAndPrice(@item.MaDiaDiem)">
                                     @item.TenDiaDiem
                                 </a>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">@item.DiaChi</div>
+                                <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">@GlobalMethod.CutString(item.DiaChi, 40)</div>
+                                @if (item.IsActive != true)
+                                {
+                                    <a class="btn btn-primary btn-icon-split" onclick="ActivePlace(@item.MaDiaDiem)">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text text-white">Kích hoạt</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-secondary btn-icon-split" onclick="UnActivePlace(@item.MaDiaDiem)">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-window-close"></i>
+                                        </span>
+                                        <span class="text text-white">Hủy kích hoạt</span>
+                                    </a>
+                                }
+
                             </div>
+
                         </div>
                     </div>
                     <div class="card-footer text-right">
@@ -119,6 +139,10 @@ else
         {
             @Html.Raw($"ssh.ShowAlertError('{TempData[GlobalConstans.MessageFail].ToString()}')");
         }
+        @if(TempData[GlobalConstans.MessageFailBootBox]!=null)
+        {
+            @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageFailBootBox].ToString()}')");
+        }
     });
 
     function DeleteConfirm(id) {
@@ -148,6 +172,30 @@ else
         location.href = '@Url.Action("Index","TypeAndPriceYard")';
     }
 
+    function ActivePlace(PlaceId) {
+        bootbox.confirm('Bạn có muốn hiển thị sân bóng này lên trang chủ không?', (r) => {
+            if (r) {
+                $.get('@Url.Action("ActivePlace","PlaceYardFootball")?PlaceId=' + PlaceId, (response) => {
+                    if (response.success) {
+                        location.reload();
+                    }
+                });
+            }
+        })
 
+    }
+
+    function UnActivePlace(PlaceId) {
+        bootbox.confirm('Bạn có muốn bỏ hiển thị sân bóng này trên trang chủ không?', (r) => {
+            if (r) {
+                $.get('@Url.Action("UnActivePlace","PlaceYardFootball")?PlaceId=' + PlaceId, (response) => {
+                    if (response.success) {
+                        location.reload();
+                    }
+                });
+            }
+        })
+
+    }
     </script>
 }

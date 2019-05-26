@@ -4,6 +4,7 @@ using Model.Context;
 using quanly.sonsport.com.Common;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 namespace quanly.sonsport.com.Controllers
 {
     //TypeAndPriceYard
@@ -220,6 +221,24 @@ namespace quanly.sonsport.com.Controllers
                 return Json(new { success = false, messageError = message }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { success = false, messageError = message }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ActiveYard(int YardId)
+        {
+            var Place = PlaceYardFootballBusiness.SearchInfoPlaceByYardId(YardId);
+            var lstPOY = PriceOfYardFootBallBusiness.Search(YardId);
+            int DurationOpenClose = (int)(Place.GioDongCua - Place.GioMoCua);
+            int DurationPrice = (int)(lstPOY.Max(n => n.GioKetThuc) - lstPOY.Min(n => n.GioBatDau));
+            if(DurationOpenClose> DurationPrice)
+            {
+                return Json(new { success = true ,message= "Bảng giá chưa đủ tất cả các khung giờ (Tính từ giờ mở của tới giờ đóng cửa của địa điểm)!" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = true,message= "Kích hoạt thành công!" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult UnActivePlace(int YardId)
+        {
+            return Json(new { success = true ,message= "Đã hủy kích hoạt!" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

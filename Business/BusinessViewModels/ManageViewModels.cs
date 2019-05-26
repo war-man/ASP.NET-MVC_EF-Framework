@@ -42,20 +42,21 @@ namespace Business.BusinessViewModels
 
     public class ChangePasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="{0} không được để trống")]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Mật khẩu cũ")]
         public string OldPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [StringLength(100, ErrorMessage = "{0} phải có hơn {2} kị tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Mật khẩu mới")]
         public string NewPassword { get; set; }
 
+        [Required(ErrorMessage = "{0} không được để trống")]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Xác nhận mật khẩu mới")]
+        [Compare("NewPassword", ErrorMessage = "Nhập lại mật khẩu không đúng.")]
         public string ConfirmPassword { get; set; }
     }
 

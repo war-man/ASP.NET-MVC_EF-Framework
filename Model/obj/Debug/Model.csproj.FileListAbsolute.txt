@@ -54,3 +54,8 @@ D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.pdb
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.aaa.resources
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.GenerateResource.cache
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test1.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test2.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test3.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddActive.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddActiveToYard.resources

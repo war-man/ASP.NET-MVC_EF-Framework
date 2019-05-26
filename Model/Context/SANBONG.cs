@@ -23,6 +23,8 @@ namespace Model.Context
 
         public int? MaLoai { get; set; }
 
+        public bool? IsActive { get; set; }
+
         public int? MaDiaDiem { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

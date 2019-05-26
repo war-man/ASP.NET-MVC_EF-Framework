@@ -3,6 +3,7 @@ using Model.Context;
 using quanly.sonsport.com.Common;
 using Business.BusinessInterface;
 using Business.BusinessViewModels;
+using System.Linq;
 
 namespace quanly.sonsport.com.Controllers
 {
@@ -11,10 +12,12 @@ namespace quanly.sonsport.com.Controllers
     public class PlaceYardFootballController : BaseController
     {
         private IPlaceYardFootballBusiness PlaceYardFootballBusiness;
+        private IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness;
 
-
-        public PlaceYardFootballController(IPlaceYardFootballBusiness placeYardFootballBusiness)
+        public PlaceYardFootballController(IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness,
+        IPlaceYardFootballBusiness placeYardFootballBusiness)
         {
+            this.YardFootballOfPlaceBusiness = YardFootballOfPlaceBusiness;
             this.PlaceYardFootballBusiness = placeYardFootballBusiness;
         }
 
@@ -78,6 +81,30 @@ namespace quanly.sonsport.com.Controllers
         {
             PlaceYardFootballBusiness.DeletePlace(PlaceId);
             TempData[GlobalConstans.MessageSuccess] = "Xóa thành công!";
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ActivePlace(int PlaceId)
+        {
+            var lstYOP = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(PlaceId);
+            lstYOP = lstYOP.Where(n => n.IsActive == true).ToList();
+            if(lstYOP.Count>0)
+            {
+                PlaceYardFootballBusiness.ActivePlace(PlaceId);
+                TempData[GlobalConstans.MessageSuccess] = "Kích hoạt địa điểm thành công!";
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                TempData[GlobalConstans.MessageFailBootBox] = "Kích hoạt địa điểm thất bại! </br> Chưa có sân bóng nào được đưa vào sử dụng!";
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult UnActivePlace(int PlaceId)
+        {
+            PlaceYardFootballBusiness.UnActivePlace(PlaceId);
+            TempData[GlobalConstans.MessageSuccess] = "Hủy kích hoạt sân bóng thành công!";
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
     }

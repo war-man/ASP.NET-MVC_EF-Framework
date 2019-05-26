@@ -72,5 +72,18 @@ namespace quanly.sonsport.com.Common
             }
             return "success";
         }
+
+        public static string CutString(string input,int maxlength)
+        {
+            if(input.Length>maxlength)
+            {
+                input = input.Substring(0, maxlength) + "...";
+                return input;
+            }
+            else
+            {
+                return input;
+            }
+        }
     }
 }

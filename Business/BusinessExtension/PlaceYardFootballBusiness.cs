@@ -15,6 +15,17 @@ namespace Business.BusinessExtension
             dbContext = database;
         }
 
+        public void ActivePlace(int PlaceId)
+        {
+            var place = this.SearchInfoPlace(PlaceId);
+            place.IsActive = true;
+            using (dbContext = new SonSportDbContext())
+            {
+                dbContext.Entry(place).State = EntityState.Modified;
+                dbContext.SaveChanges();
+            }
+        }
+
         public void CreatePlace(PlaceYardViewModel model)
         {
             var place = new DIADIEMSANBONG
@@ -81,6 +92,17 @@ namespace Business.BusinessExtension
         {
             var yard = dbContext.SANBONG.FirstOrDefault(n => n.MaSanBong == YardId);
             return dbContext.DIADIEMSANBONG.FirstOrDefault(n => n.MaDiaDiem == yard.MaDiaDiem);
+        }
+
+        public void UnActivePlace(int PlaceId)
+        {
+            var place = this.SearchInfoPlace(PlaceId);
+            place.IsActive = false;
+            using (dbContext = new SonSportDbContext())
+            {
+                dbContext.Entry(place).State = EntityState.Modified;
+                dbContext.SaveChanges();
+            }
         }
 
         public void UpdatePlace(PlaceYardViewModel model)

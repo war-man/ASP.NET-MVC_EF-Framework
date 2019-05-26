@@ -17,7 +17,9 @@ namespace sonsport.com.Controllers
 
         public ActionResult Index()
         {
-            ViewData["lstDiaDiem"] = PlaceYardFootballBusiness.GetAllPlaceYardFootball();
+            var lstPlace = PlaceYardFootballBusiness.GetAllPlaceYardFootball();
+            lstPlace = lstPlace.Where(n => n.IsActive == true).ToList();
+            ViewData["lstDiaDiem"] = lstPlace;
             return View();
         }
     }

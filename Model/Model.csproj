@@ -78,6 +78,26 @@
     <Compile Include="Migrations\201905240159362_test.Designer.cs">
       <DependentUpon>201905240159362_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905260355568_test1.cs" />
+    <Compile Include="Migrations\201905260355568_test1.Designer.cs">
+      <DependentUpon>201905260355568_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905260456541_test2.cs" />
+    <Compile Include="Migrations\201905260456541_test2.Designer.cs">
+      <DependentUpon>201905260456541_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905260504100_test3.cs" />
+    <Compile Include="Migrations\201905260504100_test3.Designer.cs">
+      <DependentUpon>201905260504100_test3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905260640097_AddActive.cs" />
+    <Compile Include="Migrations\201905260640097_AddActive.Designer.cs">
+      <DependentUpon>201905260640097_AddActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905260724078_AddActiveToYard.cs" />
+    <Compile Include="Migrations\201905260724078_AddActiveToYard.Designer.cs">
+      <DependentUpon>201905260724078_AddActiveToYard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sysdiagrams.cs" />
@@ -92,6 +112,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905240159362_test.resx">
       <DependentUpon>201905240159362_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905260355568_test1.resx">
+      <DependentUpon>201905260355568_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905260456541_test2.resx">
+      <DependentUpon>201905260456541_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905260504100_test3.resx">
+      <DependentUpon>201905260504100_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905260640097_AddActive.resx">
+      <DependentUpon>201905260640097_AddActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905260724078_AddActiveToYard.resx">
+      <DependentUpon>201905260724078_AddActiveToYard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
