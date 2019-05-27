@@ -21,5 +21,7 @@ namespace Business.BusinessInterface
         void DeleteYard(int YardId);
 
         void UpdateYard(YardViewModels yard);
+
+        void UpdateYardNew(SANBONG yard);
     }
 }

@@ -1,9 +1,13 @@
 ﻿@using Model.Context
 @using Business.BusinessViewModels
+@using sonsport.com.Common
 @model CustomerViewModels
 <script src="~/Assets/Scripts/jquery.validate.js"></script>
 <script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@{ 
+    var lstDistrict = ViewData[GlobalConstans.LstDistrict] as List<DISTRICT>;
+}
 @using (Ajax.BeginForm("UpdateProfile", "CustomerManager", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnUpdateProfileSuccess", UpdateTargetId = "profile-form" }))
 {
     @Html.AntiForgeryToken()
@@ -31,33 +35,8 @@
             @Html.ValidationMessageFor(n => n.Address, "", new { @class = "red-text" })
         </div>
         <div class="col s6 m4 l3 address_district">
-            <label class="active" for="user_address_attributes_district_id">Quận/Huyện</label>
-            <select class="browser-default" disabled>
-                <option value="573">Huyện Bình Chánh</option>
-                <option value="575">Huyện Cần Giờ</option>
-                <option value="571">Huyện Củ Chi</option>
-                <option value="572">Huyện Hóc Môn</option>
-                <option value="574">Huyện Nhà Bè</option>
-                <option value="552">Quận 1</option>
-                <option value="563">Quận 10</option>
-                <option value="564">Quận 11</option>
-                <option value="553">Quận 12</option>
-                <option value="561">Quận 2</option>
-                <option value="562">Quận 3</option>
-                <option value="565">Quận 4</option>
-                <option value="566">Quận 5</option>
-                <option value="567">Quận 6</option>
-                <option value="570">Quận 7</option>
-                <option value="568">Quận 8</option>
-                <option value="555">Quận 9</option>
-                <option value="569">Quận Bình Tân</option>
-                <option value="557">Quận Bình Thạnh</option>
-                <option value="556">Quận Gò Vấp</option>
-                <option value="560">Quận Phú Nhuận</option>
-                <option value="558">Quận Tân Bình</option>
-                <option value="559">Quận Tân Phú</option>
-                <option value="554">Quận Thủ Đức</option>
-            </select>
+            @Html.LabelFor(n=>n.DistrictId,new { @class="active"})
+            @Html.DropDownListFor(n=>n.DistrictId,new SelectList(lstDistrict,"DistrictId","DistrictName","DistrictName"),new { @class="browser-default"})
         </div>
         <div class="col s6 m4 l3 address_city">
             <label class="active" for="city">Thành phố/Tỉnh</label>

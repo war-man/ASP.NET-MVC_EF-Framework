@@ -112,5 +112,17 @@ namespace quanly.sonsport.com.Controllers
                 }   
             }
         }
+
+        public List<DISTRICT> ListDistrict
+        {
+            get
+            {
+                using (_dbContext = new SonSportDbContext())
+                {
+                    var lstDistric = _dbContext.DISTRICT.ToList();
+                    return lstDistric;
+                }
+            }
+        }
     }
 }

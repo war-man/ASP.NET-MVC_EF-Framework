@@ -48,10 +48,15 @@ namespace Model.Context
 
         public int? MaChuSan { get; set; }
 
-        [StringLength(20)]
-        public string Quan { get; set; }
+        public int? DistrictId { get; set; }
+
+        public string KeywordPlace { get; set; }
+
+        public string KeywordAddress { get; set; }
 
         public bool? IsActive { get; set; }
+
+        public virtual DISTRICT DISTRICT { get; set; }
 
         public virtual CHUSANQUANLY CHUSANQUANLY { get; set; }
 

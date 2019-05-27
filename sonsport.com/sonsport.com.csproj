@@ -366,6 +366,7 @@
     <Content Include="Views\Search\SearchYardEmpty.cshtml" />
     <Content Include="Views\Home\_FormSearchYardEmpty.cshtml" />
     <Content Include="Views\CustomerManager\_FormCustomerProfile.cshtml" />
+    <Content Include="Views\Search\_ListPlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

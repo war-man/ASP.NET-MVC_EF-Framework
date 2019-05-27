@@ -1,0 +1,125 @@
+﻿@using Business.BusinessViewModels
+@using Model.Context
+@using quanly.sonsport.com.Common
+@model PlaceYardViewModel
+
+<script src="~/Assets/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.js"></script>
+@{
+    var lstDistrict = ViewData[GlobalConstans.LstDistrict] as List<DISTRICT>;
+}
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm địa điểm mới</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @using (Ajax.BeginForm("CreatePlace", "PlaceYardFootball",
+        ajaxOptions: new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "OnCreateSuccess",
+            OnFailure = "OnCreateFailure"
+        }))
+    {
+        <div class="modal-body">
+            <div class="container-fluid">
+
+
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(n => n.MaChuSan)
+                <div class="form-group">
+                    @Html.LabelFor(n => n.TenDiaDiem, htmlAttributes: new { @class = "col-form-label" })
+                    @Html.TextBoxFor(n => n.TenDiaDiem, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(n => n.TenDiaDiem, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+                <div class="form-group ">
+                    @Html.LabelFor(n => n.MoTaDiaDiem, htmlAttributes: new { @class = "col-form-label" })
+                    @Html.TextBoxFor(n => n.MoTaDiaDiem, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(n => n.MoTaDiaDiem, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        @Html.LabelFor(n => n.Sdt1, htmlAttributes: new { @class = "col-form-label" })
+                        @Html.TextBoxFor(n => n.Sdt1, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(n => n.Sdt1, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-6">
+                        @Html.LabelFor(n => n.Sdt2, htmlAttributes: new { @class = "col-form-label" })
+                        @Html.TextBoxFor(n => n.Sdt2, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(n => n.Sdt2, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        @Html.LabelFor(n => n.DiaChi, htmlAttributes: new { @class = "col-form-label" })
+                        @Html.TextBoxFor(n => n.DiaChi, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(n => n.DiaChi, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-3">
+                        @Html.LabelFor(n => n.DistrictId, htmlAttributes: new { @class = "col-form-label" })
+                        @Html.DropDownListFor(n => n.DistrictId, new SelectList(lstDistrict, "DistrictId", "DistrictName", "DistrictName"), htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-3">
+                        <label for="city" class="col-form-label">Thành phố</label>
+                        <input type="text" value="TP. Hồ Chí Minh" name="city" id="city" class="form-control" disabled />
+                        @Html.ValidationMessageFor(n => n.DistrictId, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        @Html.LabelFor(n => n.GioMoCua, htmlAttributes: new { @class = "col-form-label" })
+                        @Html.TextBoxFor(n => n.GioMoCua, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(n => n.GioMoCua, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-6">
+                        @Html.LabelFor(n => n.GioDongCua, htmlAttributes: new { @class = "col-form-label" })
+                        @Html.TextBoxFor(n => n.GioDongCua, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(n => n.GioDongCua, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-check col-4">
+                        @Html.CheckBoxFor(model => model.CoPhiNuocUongTrenSan, htmlAttributes: new { @class = "form-check-input" })
+                        @Html.LabelFor(model => model.CoPhiNuocUongTrenSan, htmlAttributes: new { @class = "form-check-label" })
+                    </div>
+                    <div class="form-check col-4">
+                        @Html.CheckBoxFor(model => model.CoPhiMuonBong, htmlAttributes: new { @class = "form-check-input" })
+                        @Html.LabelFor(model => model.CoPhiMuonBong, htmlAttributes: new { @class = "form-check-label" })
+                    </div>
+                    <div class="form-check col-4">
+                        @Html.CheckBoxFor(model => model.CanDatCocKhiDatSan, htmlAttributes: new { @class = "form-check-input" })
+                        @Html.LabelFor(model => model.CanDatCocKhiDatSan, htmlAttributes: new { @class = "form-check-label" })
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+            <button type="submit" class="btn btn-primary">Xác nhận thêm</button>
+        </div>
+    }
+</div>
+
+
+<script type="text/javascript">
+    function OnCreateSuccess(response) {
+        var success = response.success;
+        var data = response;
+        if (success) {
+            location.reload();
+        }
+        $('#ModalContent').empty().html(data);
+    }
+</script>

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Model.Application;
 using Microsoft.AspNet.Identity;
 using Model.Context;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace sonsport.com.Controllers
 {
@@ -121,6 +123,18 @@ namespace sonsport.com.Controllers
                 using (_dbContext = new SonSportDbContext())
                 {
                     return _dbContext.KHACHHANG.Find(CustomerId);
+                }
+            }
+        }
+
+        public List<DISTRICT> ListDistrict
+        {
+            get
+            {
+                using (_dbContext = new SonSportDbContext())
+                {
+                    var lstDistric = _dbContext.DISTRICT.ToList();
+                    return lstDistric;
                 }
             }
         }

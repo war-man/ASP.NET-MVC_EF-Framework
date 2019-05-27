@@ -37,7 +37,7 @@ namespace quanly.sonsport.com.Controllers
             var user = await UserManager.FindByEmailAsync(model.Email);
             if(user==null || !UserManager.IsInRole(user.Id,"CHUSAN"))
             {
-                ModelState.AddModelError("", "Sai tên tài khoản hoặc mật khẩu!");
+                ModelState.AddModelError("", "Sai tên đăng nhập hoặc mật khẩu!");
                 return View(model);
             }
             // This doesn't count login failures towards account lockout
@@ -53,7 +53,7 @@ namespace quanly.sonsport.com.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Sai tên đăng nhập hoặc mật khẩu!");
                     return View(model);
             }
         }

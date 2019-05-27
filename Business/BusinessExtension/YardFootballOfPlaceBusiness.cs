@@ -77,5 +77,14 @@ namespace Business.BusinessExtension
                 dbContext.SaveChanges();
             }
         }
+
+        public void UpdateYardNew(SANBONG yard)
+        {
+            using (dbContext = new SonSportDbContext())
+            {
+                dbContext.Entry(yard).State = EntityState.Modified;
+                dbContext.SaveChanges();
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Địa điểm sân bóng</h1>
-    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#AddOrEditModal" data-whatever="add">
+    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#SonSiHoModal" onclick="ShowModalCreate()">
         <i class="fas fa-plus fa-sm text-white-50"></i>
         <span class="text text-white">Thêm địa điểm mới</span>
     </a>
@@ -18,7 +18,8 @@
 @if (Model.Count > 0)
 {
     <!-- Content Row -->
-    <div class="row">
+    <div class="row" id="ListPlaceByMasterId">
+
         @foreach (var item in Model)
         {
             <!-- Earnings (Monthly) Card Example -->
@@ -56,7 +57,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="@item.MaDiaDiem" class="btn btn-success btn-icon-split">
+                        <a data-toggle="modal" data-target="#SonSiHoModal" onclick="ShowModalEdit(@item.MaDiaDiem)" class="btn btn-success btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-edit"></i>
                             </span>
@@ -83,23 +84,8 @@ else
     <h1 class="text-center text-warning">Bạn chưa có địa điểm sân bóng nào!</h1>
 }
 
-<div class="modal fade" id="AddOrEditModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" id="btnAddOrEditConfirm"></button>
-            </div>
-        </div>
+<div class="modal fade" id="SonSiHoModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" id="ModalContent">
     </div>
 </div>
 <!-- /.content-wrapper -->
@@ -107,30 +93,6 @@ else
 
     <script>
     $(function () {
-        $('#AddOrEditModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var action = button.data('whatever');
-            var modal = $(this);
-            if (action == "add") {
-                $.get('@Url.Action("AddOrEdit","PlaceYardFootball")?PlaceId=' + action, function (data) {
-                    modal.find('.modal-body').html(data);
-                });
-                modal.find('.modal-title').text('Thêm địa điểm sân bong');
-                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận thêm').on('click', function () {
-                    modal.find('.modal-body form[id="yard-place-form"]').submit();
-                });
-            }
-            else {
-                $.get('@Url.Action("AddOrEdit","PlaceYardFootball")?PlaceId=' + action, function (data) {
-                    modal.find('.modal-body').html(data);
-                });
-                modal.find('.modal-title').text('Sửa địa điểm sân bóng');
-                modal.find('.modal-footer button[id="btnAddOrEditConfirm"]').text('Xác nhận sửa').on('click', function () {
-                    modal.find('.modal-body form[id="yard-place-form"]').submit();
-                });
-            }
-        });
-
         @if(TempData[GlobalConstans.MessageSuccess]!=null)
         {
             @Html.Raw($"ssh.ShowAlertSuccess('{TempData[GlobalConstans.MessageSuccess].ToString()}')");
@@ -142,6 +104,10 @@ else
         @if(TempData[GlobalConstans.MessageFailBootBox]!=null)
         {
             @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageFailBootBox].ToString()}')");
+        }
+                @if(TempData[GlobalConstans.MessageSuccessBootBox]!=null)
+        {
+            @Html.Raw($"bootbox.alert('{TempData[GlobalConstans.MessageSuccessBootBox].ToString()}')");
         }
     });
 
@@ -157,14 +123,17 @@ else
         });
             }
 
-    function OnSuccess(response) {
-        var success = response.success;
-        var data = response;
-        if (response.success) {
-            location.reload();
-        }
-        $('#AddOrEditModal').find('.modal-body').html(response);
-            }
+    async function ShowModalEdit(PlaceId) {
+        let result = await $.get('@Url.Action("LoadFormEdit","PlaceYardFootball")?PlaceId=' + PlaceId);
+        $('#ModalContent').empty().html(result);
+    }
+
+    async function ShowModalCreate() {
+        let result = await $.get('@Url.Action("LoadFormCreate","PlaceYardFootball")');
+        $('#ModalContent').empty().html(result);
+    }
+
+
 
     function RedirectToTypeAndPrice(id) {
         var PlaceId = id;

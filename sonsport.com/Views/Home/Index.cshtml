@@ -40,12 +40,12 @@
                     <p class="text-center" style="color: #78909c">Lựa chọn sân gần vị trí của bạn nhất, đặt sân online, tiện lợi, dễ dàng</p>
                 </div>
                 <div class="col s12 m3">
-                    <p class='text-center'><a href="/quan-ly-san-bong"><img src="~/Assets/Images/image/icon-3.svg" alt="Reg" /></a></p>
+                    <p class='text-center'><a href="@Url.Action("Index","ForMasterYard")"><img src="~/Assets/Images/image/icon-3.svg" alt="Reg" /></a></p>
                     <h5 class="text-center orange-text">Quản lý sân online</h5>
                     <p class="text-center" style="color: #78909c">Quản lý lịch đặt đơn giản, tiếp nhận đặt sân online dễ dàng, lấp đầy sân trống</p>
                 </div>
                 <div class="col s12 m3">
-                    <p class='text-center'><a href="/chia-se-thong-tin-san-bong"><img src="~/Assets/Images/image/icon-4.svg" alt="Pr" /></a></p>
+                    <p class='text-center'><a href="#"><img src="~/Assets/Images/image/icon-4.svg" alt="Pr" /></a></p>
                     <h5 class="text-center orange-text">Quảng bá sân bóng</h5>
                     <p class="text-center" style="color: #78909c">Đăng thông tin sân bóng của bạn lên website, quảng bá hình ảnh sân bóng tốt hơn.</p>
                 </div>
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="venue_pic_district">
                                     <div class="district_div text-center">
-                                        <a class="white-text district_title" href="/san-bong/tp-ho-chi-minh/quan-thu-duc">@item.Quan</a>
+                                        <a class="white-text district_title" href="/san-bong/tp-ho-chi-minh/quan-thu-duc">@item.DISTRICT.DistrictName</a>
                                     </div>
                                 </div>
                             </div>

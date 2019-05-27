@@ -18,5 +18,6 @@ namespace sonsport.com.Common
         public const string Yard = "Yard details";
         public const string InfoCustomer = "Infomation of customer";
         public const string DicInfoOrder = "Dictionary infomation order";
+        public const string LstDistrict = "List distric of HCM city";
     }
 }

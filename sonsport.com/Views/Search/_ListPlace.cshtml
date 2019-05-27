@@ -1,0 +1,33 @@
+﻿@using Model.Context
+@model List<DIADIEMSANBONG>
+
+@if (Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="col s12 m6 l3">
+            <div class="card-panel venue_item hoverable">
+                <a href="@Url.Action("Index","PlaceYard",new { @PlaceId=item.MaDiaDiem,@strDate=""})">
+                    <img class="responsive-img" src='~/Assets/Images/image/banner-1.jpg'>
+                </a>
+                <div class="venue-details">
+                    <div>
+                        <a class="purple-text" href="#"><i class='fa fa-hashtag'></i> @item.DISTRICT.DistrictName</a>
+                    </div>
+                    <h5><a href="@Url.Action("Index","PlaceYard",new { @PlaceId=item.MaDiaDiem,@strDate=""})">@item.TenDiaDiem</a></h5>
+                    <p><i class="fa fa-map-marker" style="font-size: 1.5rem" aria-hidden="true"></i>  @item.DiaChi</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="center col s12">
+        <a id="load-more-venues" class="waves-effect waves-orange btn-flat" style="border: 1px solid #ff9800" data-remote="true" href="/san/tim?loadmore=true&amp;page=2&amp;per_page=12">Xem thêm</a>
+    </div>
+}
+else
+{
+    <div class="center col s12">
+        <h3 class="orange-text">Không tìm thấy sân bóng!</h3>
+    </div>
+}

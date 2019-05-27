@@ -29,5 +29,8 @@ namespace Business.BusinessViewModels
 
         [Display(Name = "Địa chỉ")]
         public string Address { get; set; }
+
+        [Display(Name= "Quận/Huyện")]
+        public int DistrictId { get; set; }
     }
 }

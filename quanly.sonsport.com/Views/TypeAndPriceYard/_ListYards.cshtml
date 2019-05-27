@@ -33,7 +33,7 @@
                                     <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Loại sân: @item.LOAISANBONG.TenLoaiSan</div>
                                     @if (item.IsActive != true)
                                     {
-                                        <a class="btn btn-primary btn-icon-split" onclick="ActivePlace(@item.MaSanBong)">
+                                        <a class="btn btn-primary btn-icon-split" onclick="ActiveYard(@item.MaSanBong)">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-check"></i>
                                             </span>
@@ -42,7 +42,7 @@
                                     }
                                     else
                                     {
-                                        <a class="btn btn-secondary btn-icon-split" onclick="UnActivePlace(@item.MaSanBong)">
+                                        <a class="btn btn-secondary btn-icon-split" onclick="UnActiveYard(@item.MaSanBong)">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-window-close"></i>
                                             </span>
@@ -106,6 +106,7 @@
 </div>
 
 <script src="~/Assets/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.min.js"></script>
 <script src="~/Assets/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Assets/SonSiHoJS/ssh.js"></script>
 <script>
@@ -147,7 +148,7 @@
                     }
                 });
             }
-        });  
+        });
     }
 
    function LoadRowPrice(YardId) {
@@ -164,11 +165,12 @@
         });
         }
 
-    function ActivePlace(YardId) {
+    function ActiveYard(YardId) {
         bootbox.confirm('Bạn muốn kích hoạt sân bóng này không?', (r) => {
             if (r) {
                 $.get('@Url.Action("ActiveYard","TypeAndPriceYard")?YardId=' + YardId, (response) => {
                     if (response.success) {
+                        bootbox.alert(response.message);
                         LoadYardOfPlace();
                     }
                 });
@@ -177,12 +179,12 @@
 
     }
 
-    function UnActivePlace(YardId) {
+    function UnActiveYard(YardId) {
         bootbox.confirm('Bạn muốn hủy kích hoạt sân bóng này không?', (r) => {
             if (r) {
                 $.get('@Url.Action("UnActiveYard","TypeAndPriceYard")?YardId=' + YardId, (response) => {
                     if (response.success) {
-
+                        bootbox.alert(response.message);
                         LoadYardOfPlace();
                     }
                 });

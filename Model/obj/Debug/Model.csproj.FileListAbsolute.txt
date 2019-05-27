@@ -51,11 +51,8 @@ D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.CoreComp
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.CopyComplete
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.dll
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.pdb
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.aaa.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddDataToDistrict.resources
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.GenerateResource.cache
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test.resources
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test1.resources
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test2.resources
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test3.resources
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddActive.resources
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddActiveToYard.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.RemoveQuan.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddDistricIdToCustomer.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddDistricIdToCustomer1.resources

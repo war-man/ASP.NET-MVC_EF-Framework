@@ -23,6 +23,7 @@ namespace quanly.sonsport.com.Common
         public const string MaDiaDiem = "MaDiaDiem";
         public const string TenDiaDiem = "TenDiaDiem";
         public const string MasterId = "MasterId";
+        public const string LstDistrict = "List District";
 
     }
 }

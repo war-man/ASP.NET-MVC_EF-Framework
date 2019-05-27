@@ -7,14 +7,15 @@
             </a>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
             <div class="hide-on-med-and-down" style="position: absolute; left: 70px; width: 40%;">
-                <form id="venues-info-form" action="/san/tim" accept-charset="UTF-8" method="get">
-                    <input type="text" name="q" id="search" value="" class="autocomplete" placeholder="Nhập tên, địa chỉ để tìm sân">
-                    <i class="fa fa-search" style="font-size: 1.1em;" ></i>
+                @using (Html.BeginForm("Index", "Search"))
+                {
+                    <input type="text" name="keyword" id="search" value="" class="autocomplete" placeholder="Nhập tên, địa chỉ để tìm sân">
+                    <i class="fa fa-search" style="font-size: 1.1em;"></i>
                     <input type="submit" hidden />
-                </form>
+                }
             </div>
             <ul class="nav-desktop right hide-on-med-and-down">
-                <li><a href="@Url.Action("Index","ForMasterYard")">Dành cho chủ sân</a></li>
+                <li><a href="@Url.Action("Index", "ForMasterYard")">Dành cho chủ sân</a></li>
                 @RenderPage("~/Views/Shared/_LoginPartial.cshtml")
             </ul>
         </div>

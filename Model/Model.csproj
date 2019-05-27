@@ -64,39 +64,28 @@
     <Compile Include="Context\CHUSAN_KHACHHANG.cs" />
     <Compile Include="Context\DATSAN.cs" />
     <Compile Include="Context\DIADIEMSANBONG.cs" />
+    <Compile Include="Context\DISTRICT.cs" />
     <Compile Include="Context\HINHANHDIADIEM.cs" />
     <Compile Include="Context\KHACHHANG.cs" />
     <Compile Include="Context\LOAISANBONG.cs" />
     <Compile Include="Context\NHANVIEN.cs" />
     <Compile Include="Context\SANBONG.cs" />
     <Compile Include="Context\SonSportDbContext.cs" />
-    <Compile Include="Migrations\201905231452462_aaa.cs" />
-    <Compile Include="Migrations\201905231452462_aaa.Designer.cs">
-      <DependentUpon>201905231452462_aaa.cs</DependentUpon>
+    <Compile Include="Migrations\201905270125128_AddDataToDistrict.cs" />
+    <Compile Include="Migrations\201905270125128_AddDataToDistrict.Designer.cs">
+      <DependentUpon>201905270125128_AddDataToDistrict.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905240159362_test.cs" />
-    <Compile Include="Migrations\201905240159362_test.Designer.cs">
-      <DependentUpon>201905240159362_test.cs</DependentUpon>
+    <Compile Include="Migrations\201905270205513_RemoveQuan.cs" />
+    <Compile Include="Migrations\201905270205513_RemoveQuan.Designer.cs">
+      <DependentUpon>201905270205513_RemoveQuan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905260355568_test1.cs" />
-    <Compile Include="Migrations\201905260355568_test1.Designer.cs">
-      <DependentUpon>201905260355568_test1.cs</DependentUpon>
+    <Compile Include="Migrations\201905270214235_AddDistricIdToCustomer.cs" />
+    <Compile Include="Migrations\201905270214235_AddDistricIdToCustomer.Designer.cs">
+      <DependentUpon>201905270214235_AddDistricIdToCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905260456541_test2.cs" />
-    <Compile Include="Migrations\201905260456541_test2.Designer.cs">
-      <DependentUpon>201905260456541_test2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905260504100_test3.cs" />
-    <Compile Include="Migrations\201905260504100_test3.Designer.cs">
-      <DependentUpon>201905260504100_test3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905260640097_AddActive.cs" />
-    <Compile Include="Migrations\201905260640097_AddActive.Designer.cs">
-      <DependentUpon>201905260640097_AddActive.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905260724078_AddActiveToYard.cs" />
-    <Compile Include="Migrations\201905260724078_AddActiveToYard.Designer.cs">
-      <DependentUpon>201905260724078_AddActiveToYard.cs</DependentUpon>
+    <Compile Include="Migrations\201905270216255_AddDistricIdToCustomer1.cs" />
+    <Compile Include="Migrations\201905270216255_AddDistricIdToCustomer1.Designer.cs">
+      <DependentUpon>201905270216255_AddDistricIdToCustomer1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,26 +96,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905231452462_aaa.resx">
-      <DependentUpon>201905231452462_aaa.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905270125128_AddDataToDistrict.resx">
+      <DependentUpon>201905270125128_AddDataToDistrict.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905240159362_test.resx">
-      <DependentUpon>201905240159362_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905270205513_RemoveQuan.resx">
+      <DependentUpon>201905270205513_RemoveQuan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905260355568_test1.resx">
-      <DependentUpon>201905260355568_test1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905270214235_AddDistricIdToCustomer.resx">
+      <DependentUpon>201905270214235_AddDistricIdToCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905260456541_test2.resx">
-      <DependentUpon>201905260456541_test2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905260504100_test3.resx">
-      <DependentUpon>201905260504100_test3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905260640097_AddActive.resx">
-      <DependentUpon>201905260640097_AddActive.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905260724078_AddActiveToYard.resx">
-      <DependentUpon>201905260724078_AddActiveToYard.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905270216255_AddDistricIdToCustomer1.resx">
+      <DependentUpon>201905270216255_AddDistricIdToCustomer1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2224,7 +2224,7 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_LogoutModal.cshtml" />
     <Content Include="Views\PlaceYardFootball\Index.cshtml" />
-    <Content Include="Views\PlaceYardFootball\_YardPlaceForm.cshtml" />
+    <Content Include="Views\PlaceYardFootball\_FormEditPlace.cshtml" />
     <Content Include="Views\TypeAndPriceYard\Index.cshtml" />
     <Content Include="Views\TypeAndPriceYard\_DetailsInfoPlaceYard.cshtml" />
     <Content Include="Views\TypeAndPriceYard\_ListYards.cshtml" />
@@ -2243,6 +2243,7 @@
     <Content Include="Views\Shared\_Modal.cshtml" />
     <Content Include="Views\OrderManager\_FormAddOrderDetails.cshtml" />
     <Content Include="Views\OrderManager\_FormShowEvent.cshtml" />
+    <Content Include="Views\PlaceYardFootball\_FormCreatePlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

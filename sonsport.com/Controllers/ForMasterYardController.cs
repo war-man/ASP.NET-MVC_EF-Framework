@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using sonsport.com.Common;
 namespace sonsport.com.Controllers
 {
 
@@ -29,13 +29,14 @@ namespace sonsport.com.Controllers
         }
 
         public ActionResult LoadFormRegister() {
+            ViewData[GlobalConstans.LstDistrict] = ListDistrict;
             var master = new RegisterMasterViewModels();
             return PartialView("_FormRegisterForMaster", master);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RegisterMaster(RegisterMasterViewModels model,FormCollection f)
+        public ActionResult RegisterMaster(RegisterMasterViewModels model)
         {
             if(!MasterYardBusiness.CheckEmailMaster(model.Email))
             {
@@ -63,7 +64,7 @@ namespace sonsport.com.Controllers
                         DiaChi=model.Address,
                         GioMoCua=int.Parse(model.OpenTime.Substring(0,2)),
                         GioDongCua=int.Parse(model.CloseTime.Substring(0,2)),
-                        Quan=f["DistrictName"].ToString(),
+                        DistrictId=model.DistrictId,
                         TenDiaDiem=model.PlaceName
                     }
                 }

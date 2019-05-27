@@ -7,13 +7,13 @@ namespace Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddActive : IMigrationMetadata
+    public sealed partial class AddDistricIdToCustomer : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddActive));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDistricIdToCustomer));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905260640097_AddActive"; }
+            get { return "201905270214235_AddDistricIdToCustomer"; }
         }
         
         string IMigrationMetadata.Source

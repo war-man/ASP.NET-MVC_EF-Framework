@@ -31,6 +31,7 @@ namespace sonsport.com.Controllers
 
         public ActionResult LoadFormProfile()
         {
+            ViewData[GlobalConstans.LstDistrict] = ListDistrict;
             var customer = CurrentCustomer;
             var model = new CustomerViewModels
             {
@@ -47,7 +48,8 @@ namespace sonsport.com.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateProfile(CustomerViewModels model)
         {
-            if(ModelState.IsValid)
+            ViewData[GlobalConstans.LstDistrict] = ListDistrict;
+            if (ModelState.IsValid)
             {
                 var customer = new KHACHHANG
                 {
@@ -55,7 +57,8 @@ namespace sonsport.com.Controllers
                     MaKhachHang = (int)model.MaKhachHang,
                     TenKhachHang = model.TenKhachHang,
                     Sdt = model.Sdt,
-                    Address=model.Address
+                    Address=model.Address,
+                    DistrictId=model.DistrictId
                 };
                 CustomerBusiness.UpdateCustomerProfile(customer);
                 var user = CurrentUserAccount;

@@ -58,8 +58,11 @@ namespace Business.BusinessViewModels
         public int? MaChuSan { get; set; }
 
         [Display(Name = "Quận")]
-        [StringLength(20)]
-        public string Quan { get; set; }
+        public int DistrictId { get; set; }
+
+        public string KeywordPlace { get; set; }
+
+        public string KeywordAddress { get; set; }
 
     }
 }

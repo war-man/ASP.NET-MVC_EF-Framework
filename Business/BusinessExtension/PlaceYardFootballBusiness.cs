@@ -37,11 +37,11 @@ namespace Business.BusinessExtension
                 GioDongCua = int.Parse(model.GioDongCua.Substring(0,2)),
                 GioMoCua = int.Parse(model.GioMoCua.Substring(0, 2)),
                 MoTaDiaDiem = model.MoTaDiaDiem,
-                Quan = model.Quan,
+                DistrictId = model.DistrictId,
                 Sdt1 = model.Sdt1,
                 Sdt2 = model.Sdt2,
                 TenDiaDiem = model.TenDiaDiem,
-                MaChuSan = model.MaChuSan
+                MaChuSan = model.MaChuSan,
             };
             using (dbContext = new SonSportDbContext())
             {
@@ -62,7 +62,7 @@ namespace Business.BusinessExtension
 
         public List<DIADIEMSANBONG> GetAllPlaceYardFootball()
         {
-            return dbContext.DIADIEMSANBONG.ToList();
+            return dbContext.DIADIEMSANBONG.Include(n=>n.DISTRICT).ToList();
         }
 
         public List<DIADIEMSANBONG> SearchByMaster(int? MaChuSan)
@@ -117,7 +117,7 @@ namespace Business.BusinessExtension
                 GioDongCua = int.Parse(model.GioDongCua.Substring(0, 2)),
                 GioMoCua = int.Parse(model.GioMoCua.Substring(0, 2)),
                 MoTaDiaDiem = model.MoTaDiaDiem,
-                Quan = model.Quan,
+                DistrictId = model.DistrictId,
                 Sdt1 = model.Sdt1,
                 Sdt2 = model.Sdt2,
                 TenDiaDiem = model.TenDiaDiem,

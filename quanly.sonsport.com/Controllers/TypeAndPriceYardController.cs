@@ -173,6 +173,10 @@ namespace quanly.sonsport.com.Controllers
             }
             foreach (var item in lstPrice)
             {
+                if(item.GioBatDau==bd && item.GioKetThuc==kt)
+                {
+                    return "success";
+                }
                 if (bd >= item.GioBatDau && bd < item.GioKetThuc)
                 {
                     return "Khung giờ này đã có trong hệ thống!";
@@ -227,17 +231,27 @@ namespace quanly.sonsport.com.Controllers
         {
             var Place = PlaceYardFootballBusiness.SearchInfoPlaceByYardId(YardId);
             var lstPOY = PriceOfYardFootBallBusiness.Search(YardId);
+            if(lstPOY.Count==0)
+            {
+                return Json(new { success = true, message = "Chưa có bảng giá cho sân bóng này!" }, JsonRequestBehavior.AllowGet);
+            }
             int DurationOpenClose = (int)(Place.GioDongCua - Place.GioMoCua);
             int DurationPrice = (int)(lstPOY.Max(n => n.GioKetThuc) - lstPOY.Min(n => n.GioBatDau));
             if(DurationOpenClose> DurationPrice)
             {
-                return Json(new { success = true ,message= "Bảng giá chưa đủ tất cả các khung giờ (Tính từ giờ mở của tới giờ đóng cửa của địa điểm)!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true ,message= $"Bảng giá chưa đủ tất cả các khung giờ (Tính từ giờ mở cửa ({Place.GioMoCua}:00) tới giờ đóng cửa({Place.GioDongCua}:00) của địa điểm)!" }, JsonRequestBehavior.AllowGet);
             }
+            var yard = YardFootballOfPlaceBusiness.SearchDetails(YardId);
+            yard.IsActive = true;
+            YardFootballOfPlaceBusiness.UpdateYardNew(yard);
             return Json(new { success = true,message= "Kích hoạt thành công!" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult UnActivePlace(int YardId)
+        public ActionResult UnActiveYard(int YardId)
         {
+            var yard = YardFootballOfPlaceBusiness.SearchDetails(YardId);
+            yard.IsActive = false;
+            YardFootballOfPlaceBusiness.UpdateYardNew(yard);
             return Json(new { success = true ,message= "Đã hủy kích hoạt!" }, JsonRequestBehavior.AllowGet);
         }
     }

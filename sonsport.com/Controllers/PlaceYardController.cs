@@ -33,7 +33,7 @@ namespace sonsport.com.Controllers
         {
             ViewData[GlobalConstans.Place] = PlaceYardFootballBusiness.SearchInfoPlace(PlaceId);
             ViewData[GlobalConstans.DateView] = GlobalMethod.ParseStringToDateTime(strDate);
-            ViewData[GlobalConstans.LstYardOfPlace] = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(PlaceId);
+            ViewData[GlobalConstans.LstYardOfPlace] = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(PlaceId).Where(n=>n.IsActive==true).ToList();
             ViewData[GlobalConstans.LstOrderDetailsOfYard] = OrderManagerBusiness.GetOrderDetails(null, PlaceId, null);
             ViewData[GlobalConstans.LstPriceOfYard] = PriceOfYardFootBallBusiness.Search(null);
             return View();

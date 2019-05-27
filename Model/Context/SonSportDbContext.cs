@@ -31,6 +31,7 @@ namespace Model.Context
         public virtual DbSet<LOAISANBONG> LOAISANBONG { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIEN { get; set; }
         public virtual DbSet<SANBONG> SANBONG { get; set; }
+        public virtual DbSet<DISTRICT> DISTRICT { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

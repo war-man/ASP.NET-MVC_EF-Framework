@@ -3,16 +3,16 @@ namespace Model.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class aaa : DbMigration
+    public partial class RemoveQuan : DbMigration
     {
         public override void Up()
         {
-            AlterColumn("dbo.BANGGIALOAISAN", "GiaTien", c => c.Int(nullable: false));
+            DropColumn("dbo.DIADIEMSANBONG", "Quan");
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.BANGGIALOAISAN", "GiaTien", c => c.Int());
+            AddColumn("dbo.DIADIEMSANBONG", "Quan", c => c.String(maxLength: 20));
         }
     }
 }
