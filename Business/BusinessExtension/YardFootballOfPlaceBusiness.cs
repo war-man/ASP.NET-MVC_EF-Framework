@@ -69,7 +69,8 @@ namespace Business.BusinessExtension
                 MaSanBong = (int)model.MaSanBong,
                 MaLoai = model.MaLoai,
                 TenSanBong = model.TenSanBong,
-                MaDiaDiem = model.MaDiaDiem
+                MaDiaDiem = model.MaDiaDiem,
+                IsActive=model.IsActive
             };
             using (dbContext = new SonSportDbContext())
             {

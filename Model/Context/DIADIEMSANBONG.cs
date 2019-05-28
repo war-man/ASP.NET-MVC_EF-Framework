@@ -14,6 +14,7 @@ namespace Model.Context
         {
             NHANVIEN = new HashSet<NHANVIEN>();
             SANBONG = new HashSet<SANBONG>();
+            IMAGE_OF_PLACE = new HashSet<IMAGE_OF_PLACE>();
         }
 
         [Key]
@@ -44,8 +45,6 @@ namespace Model.Context
 
         public bool CoPhiNuocUongTrenSan { get; set; }
 
-        public int? MaHinhAnh { get; set; }
-
         public int? MaChuSan { get; set; }
 
         public int? DistrictId { get; set; }
@@ -60,12 +59,13 @@ namespace Model.Context
 
         public virtual CHUSANQUANLY CHUSANQUANLY { get; set; }
 
-        public virtual HINHANHDIADIEM HINHANHDIADIEM { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NHANVIEN> NHANVIEN { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SANBONG> SANBONG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IMAGE_OF_PLACE> IMAGE_OF_PLACE { get; set; }
     }
 }

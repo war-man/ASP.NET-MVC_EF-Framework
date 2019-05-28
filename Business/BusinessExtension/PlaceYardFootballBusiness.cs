@@ -26,7 +26,7 @@ namespace Business.BusinessExtension
             }
         }
 
-        public void CreatePlace(PlaceYardViewModel model)
+        public void CreatePlace(PlaceYardViewModel model,List<FILE> lstFile)
         {
             var place = new DIADIEMSANBONG
             {
@@ -34,7 +34,7 @@ namespace Business.BusinessExtension
                 CoPhiMuonBong = model.CoPhiMuonBong,
                 CoPhiNuocUongTrenSan = model.CoPhiNuocUongTrenSan,
                 DiaChi = model.DiaChi,
-                GioDongCua = int.Parse(model.GioDongCua.Substring(0,2)),
+                GioDongCua = int.Parse(model.GioDongCua.Substring(0, 2)),
                 GioMoCua = int.Parse(model.GioMoCua.Substring(0, 2)),
                 MoTaDiaDiem = model.MoTaDiaDiem,
                 DistrictId = model.DistrictId,
@@ -42,12 +42,26 @@ namespace Business.BusinessExtension
                 Sdt2 = model.Sdt2,
                 TenDiaDiem = model.TenDiaDiem,
                 MaChuSan = model.MaChuSan,
+                IsActive = false,
+                KeywordAddress = model.KeywordAddress,
+                KeywordPlace = model.KeywordPlace
             };
             using (dbContext = new SonSportDbContext())
             {
                 dbContext.DIADIEMSANBONG.Add(place);
                 dbContext.SaveChanges();
+                if (lstFile.Count > 0 || lstFile != null)
+                {
+                    foreach (var image in lstFile)
+                    {
+                        dbContext.FILE.Add(image);
+                        dbContext.SaveChanges();
+                        dbContext.IMAGE_OF_PLACE.Add(new IMAGE_OF_PLACE { MaDiaDiem = place.MaDiaDiem, FileId = image.FileId });
+                        dbContext.SaveChanges();
+                    }
+                }
             }
+
         }
 
         public void DeletePlace(int MaDiaDiem)
@@ -62,12 +76,12 @@ namespace Business.BusinessExtension
 
         public List<DIADIEMSANBONG> GetAllPlaceYardFootball()
         {
-            return dbContext.DIADIEMSANBONG.Include(n=>n.DISTRICT).ToList();
+            return dbContext.DIADIEMSANBONG.Include(n => n.DISTRICT).ToList();
         }
 
         public List<DIADIEMSANBONG> SearchByMaster(int? MaChuSan)
         {
-            var lstPlace = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY).Include(d => d.HINHANHDIADIEM).ToList();
+            var lstPlace = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY).ToList();
             if (MaChuSan != null)
             {
                 lstPlace = lstPlace.Where(n => n.MaChuSan == MaChuSan).ToList();
@@ -81,7 +95,6 @@ namespace Business.BusinessExtension
             if (MaDiaDiem != null)
             {
                 Place = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY)
-                                                .Include(d => d.HINHANHDIADIEM)
                                                 .ToList()
                                                 .FirstOrDefault(n => n.MaDiaDiem == MaDiaDiem);
             }
@@ -121,7 +134,10 @@ namespace Business.BusinessExtension
                 Sdt1 = model.Sdt1,
                 Sdt2 = model.Sdt2,
                 TenDiaDiem = model.TenDiaDiem,
-                MaChuSan = model.MaChuSan
+                MaChuSan = model.MaChuSan,
+                KeywordAddress = model.KeywordAddress,
+                KeywordPlace = model.KeywordPlace,
+                IsActive=model.IsActive
             };
             using (dbContext = new SonSportDbContext())
             {

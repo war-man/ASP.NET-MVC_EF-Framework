@@ -9,7 +9,7 @@ namespace Business.BusinessInterface
 {
     public interface IPlaceYardFootballBusiness
     {
-        void CreatePlace(PlaceYardViewModel placeYardViewModel);
+        void CreatePlace(PlaceYardViewModel placeYardViewModel,List<FILE> lstFile);
 
         void DeletePlace(int MaDiaDiem);
 

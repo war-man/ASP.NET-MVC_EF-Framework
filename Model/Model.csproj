@@ -65,27 +65,16 @@
     <Compile Include="Context\DATSAN.cs" />
     <Compile Include="Context\DIADIEMSANBONG.cs" />
     <Compile Include="Context\DISTRICT.cs" />
-    <Compile Include="Context\HINHANHDIADIEM.cs" />
+    <Compile Include="Context\FILE.cs" />
+    <Compile Include="Context\IMAGE_OF_PLACE.cs" />
     <Compile Include="Context\KHACHHANG.cs" />
     <Compile Include="Context\LOAISANBONG.cs" />
     <Compile Include="Context\NHANVIEN.cs" />
     <Compile Include="Context\SANBONG.cs" />
     <Compile Include="Context\SonSportDbContext.cs" />
-    <Compile Include="Migrations\201905270125128_AddDataToDistrict.cs" />
-    <Compile Include="Migrations\201905270125128_AddDataToDistrict.Designer.cs">
-      <DependentUpon>201905270125128_AddDataToDistrict.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905270205513_RemoveQuan.cs" />
-    <Compile Include="Migrations\201905270205513_RemoveQuan.Designer.cs">
-      <DependentUpon>201905270205513_RemoveQuan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905270214235_AddDistricIdToCustomer.cs" />
-    <Compile Include="Migrations\201905270214235_AddDistricIdToCustomer.Designer.cs">
-      <DependentUpon>201905270214235_AddDistricIdToCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905270216255_AddDistricIdToCustomer1.cs" />
-    <Compile Include="Migrations\201905270216255_AddDistricIdToCustomer1.Designer.cs">
-      <DependentUpon>201905270216255_AddDistricIdToCustomer1.cs</DependentUpon>
+    <Compile Include="Migrations\201905271741021_test.cs" />
+    <Compile Include="Migrations\201905271741021_test.Designer.cs">
+      <DependentUpon>201905271741021_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,17 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905270125128_AddDataToDistrict.resx">
-      <DependentUpon>201905270125128_AddDataToDistrict.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905270205513_RemoveQuan.resx">
-      <DependentUpon>201905270205513_RemoveQuan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905270214235_AddDistricIdToCustomer.resx">
-      <DependentUpon>201905270214235_AddDistricIdToCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905270216255_AddDistricIdToCustomer1.resx">
-      <DependentUpon>201905270216255_AddDistricIdToCustomer1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905271741021_test.resx">
+      <DependentUpon>201905271741021_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

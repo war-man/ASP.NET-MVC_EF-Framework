@@ -96,7 +96,9 @@ namespace quanly.sonsport.com.Controllers
 
         public ActionResult LoadFormAdd(string strDate,int PlaceId)
         {
-            ViewData[GlobalConstans.ViewDataLstYardOfPlace] = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(PlaceId).Where(n=>n.IsActive==true);
+            var lstYOP = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(PlaceId);
+            lstYOP = lstYOP.Where(n => n.IsActive == true).ToList();
+            ViewData[GlobalConstans.ViewDataLstYardOfPlace] = lstYOP;
             OrderDetailsViewModels od = new OrderDetailsViewModels
             {
                 MasterId = MasterOfPlace.MaChuSan,

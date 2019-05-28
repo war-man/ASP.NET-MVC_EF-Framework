@@ -35,8 +35,15 @@
             @Html.ValidationMessageFor(n => n.Address, "", new { @class = "red-text" })
         </div>
         <div class="col s6 m4 l3 address_district">
-            @Html.LabelFor(n=>n.DistrictId,new { @class="active"})
-            @Html.DropDownListFor(n=>n.DistrictId,new SelectList(lstDistrict,"DistrictId","DistrictName","DistrictName"),new { @class="browser-default"})
+            @Html.LabelFor(n => n.DistrictId, new { @class = "active" })
+            @if (Model.DistrictId == null)
+            {
+                @Html.DropDownListFor(n => n.DistrictId, new SelectList(lstDistrict, "DistrictId", "DistrictName", "DistrictName"),"[-Lựa chọn-]", new { @class = "browser-default" })
+            }
+            else
+            {
+                @Html.DropDownListFor(n => n.DistrictId, new SelectList(lstDistrict, "DistrictId", "DistrictName", "DistrictName"), new { @class = "browser-default" })
+            }
         </div>
         <div class="col s6 m4 l3 address_city">
             <label class="active" for="city">Thành phố/Tỉnh</label>

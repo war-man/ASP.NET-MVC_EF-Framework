@@ -74,6 +74,7 @@ namespace quanly.sonsport.com.Controllers
                 MaLoai = yardDetails.MaLoai,
                 MaSanBong = yardDetails.MaSanBong,
                 TenSanBong = yardDetails.TenSanBong,
+                IsActive=yardDetails.IsActive,
             };
             return PartialView("_YardForm", yard);
         }

@@ -39,19 +39,15 @@
                 @Html.TextBoxFor(n => n.KickAtDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", @type = "date" })
                 @Html.ValidationMessageFor(n => n.KickAtDate, null, htmlAttributes: new { @class = "text-danger" })
             </div>
-            <div class="form-group col-2">
+            <div class="form-group col-3">
                 @Html.LabelFor(n => n.StartTime, htmlAttributes: new { @class = "col-form-label" })
                 @Html.TextBoxFor(n => n.StartTime, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(n => n.StartTime, null, htmlAttributes: new { @class = "text-danger" })
             </div>
-            <div class="form-group col-2">
+            <div class="form-group col-3">
                 @Html.LabelFor(n => n.EndTime, htmlAttributes: new { @class = "col-form-label" })
                 @Html.TextBoxFor(n => n.EndTime, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(n => n.EndTime, null, htmlAttributes: new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-2">
-                <label for="btnCaculator" class="col-form-label">Ước lượng </label>
-                <a id="btnCaculator" class="form-control text-white btn-success" onclick="orderManager.CaculatorPrice()"><i class="fa fa-money-bill"></i>Tính</a>
             </div>
         </div>
         <div class="row">
@@ -62,7 +58,7 @@
             </div>
             <div class="form-group col-6">
                 @Html.LabelFor(n => n.Price, htmlAttributes: new { @class = "col-form-label" })
-                @Html.TextBoxFor(n => n.Price, htmlAttributes: new { @class = "form-control"})
+                @Html.TextBoxFor(n => n.Price, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(n => n.Price, null, htmlAttributes: new { @class = "text-danger" })
             </div>
         </div>
@@ -78,15 +74,40 @@
             event.preventDefault();
             $('#form-add-od').submit();
         });
+
+        $('#StartTime').focusout(function () {
+            CaculatorPrice();
+        });
+        $('#EndTime').focusout(function () {
+            CaculatorPrice();
+        });
+
     })
+
+    function CaculatorPrice() {
+        var start = $('#StartTime').val();
+        var end = $('#EndTime').val();
+        var YardId = $("#YardId").val();
+        if (start == 0 || start == null || end == 0 || end == null || start >= end ) {
+            $('#Price').val(0);
+        }
+        else {
+            $.get('@Url.Action("CaculatorPrice","OrderManager")?start=' + start + '&end=' + end + '&YardId=' + YardId, function (r) {
+                if (r.success) {
+                    $('#Price').val(r.totalprice);
+                }
+            });
+        }
+    }
+
     function OnAddOrderSuccess(response) {
         if (!response.success) {
-             var PlaceId = $('#PlaceId').val();
+            var PlaceId = $('#PlaceId').val();
             sessionStorage.setItem('PlaceIdSelected', PlaceId);
             location.reload();
         }
         else {
-             var PlaceId = $('#PlaceId').val();
+            var PlaceId = $('#PlaceId').val();
             sessionStorage.setItem('PlaceIdSelected', PlaceId);
             location.reload();
         }

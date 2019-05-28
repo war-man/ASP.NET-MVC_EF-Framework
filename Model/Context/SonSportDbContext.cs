@@ -26,12 +26,13 @@ namespace Model.Context
         public virtual DbSet<CHUSANQUANLY> CHUSANQUANLY { get; set; }
         public virtual DbSet<DATSAN> DATSAN { get; set; }
         public virtual DbSet<DIADIEMSANBONG> DIADIEMSANBONG { get; set; }
-        public virtual DbSet<HINHANHDIADIEM> HINHANHDIADIEM { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANG { get; set; }
         public virtual DbSet<LOAISANBONG> LOAISANBONG { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIEN { get; set; }
         public virtual DbSet<SANBONG> SANBONG { get; set; }
         public virtual DbSet<DISTRICT> DISTRICT { get; set; }
+        public virtual DbSet<FILE> FILE { get; set; }
+        public virtual DbSet<IMAGE_OF_PLACE> IMAGE_OF_PLACE { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -67,6 +68,16 @@ namespace Model.Context
                 .HasMany(e => e.CHUSAN_KHACHHANG)
                 .WithRequired(e => e.KHACHHANG)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DIADIEMSANBONG>()
+                .HasMany(e => e.IMAGE_OF_PLACE)
+                .WithOptional(e => e.DIADIEMSANBONG)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<FILE>()
+                .HasMany(e => e.IMAGE_OF_PLACE)
+                .WithOptional(e => e.FILE)
+                .WillCascadeOnDelete();
         }
     }
 }

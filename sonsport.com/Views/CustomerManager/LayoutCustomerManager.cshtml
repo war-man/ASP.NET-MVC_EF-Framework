@@ -13,7 +13,7 @@
                         <div class="user-brief">
                             <a class="user-brief_avatar" href="#">
                                 <div class="sporta-avatar">
-                                    <img id="avatar" src="~/Assets/Images/image/default_user_image.png" alt="Default user image" />
+                                    <img id="avatar" src="@Url.Action("ShowAvatar","CustomerManager")" alt="Default user image" />
                                 </div>
                             </a>
 
@@ -23,7 +23,6 @@
                                     <a href="@Url.Action("UserProfile","CustomerManager")"><i class="fa fa-edit"></i> Sửa hồ sơ</a>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="row">

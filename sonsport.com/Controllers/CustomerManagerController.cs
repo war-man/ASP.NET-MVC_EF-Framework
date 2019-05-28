@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using Business.BusinessViewModels;
 using Microsoft.AspNet.Identity;
 using sonsport.com.Common;
+using System.Web;
+using System.IO;
+
 namespace sonsport.com.Controllers
 {
     public class CustomerManagerController : BaseController
@@ -39,7 +42,8 @@ namespace sonsport.com.Controllers
                 MaKhachHang = customer.MaKhachHang,
                 Sdt = customer.Sdt,
                 TenKhachHang = customer.TenKhachHang,
-                Address=customer.Address,
+                Address = customer.Address,
+                DistrictId=customer.DistrictId
             };
             return PartialView("_FormCustomerProfile", model);
         }
@@ -57,8 +61,8 @@ namespace sonsport.com.Controllers
                     MaKhachHang = (int)model.MaKhachHang,
                     TenKhachHang = model.TenKhachHang,
                     Sdt = model.Sdt,
-                    Address=model.Address,
-                    DistrictId=model.DistrictId
+                    Address = model.Address,
+                    DistrictId = model.DistrictId
                 };
                 CustomerBusiness.UpdateCustomerProfile(customer);
                 var user = CurrentUserAccount;
@@ -70,8 +74,48 @@ namespace sonsport.com.Controllers
             }
             return PartialView("_FormCustomerProfile", model);
         }
-        #endregion
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveAvatar(ImageViewModels ImageUpload)
+        {
+            if (ImageUpload != null)
+            {
+                var customer = CurrentCustomer;
+                HttpPostedFileBase imageFile = ImageUpload.imageFile;
+                MemoryStream target = new MemoryStream();
+                imageFile.InputStream.CopyTo(target);
+                byte[] imageData = target.ToArray();
+                customer.Avatar = imageData;
+                CustomerBusiness.UpdateCustomerProfile(customer);
+                return RedirectToAction("UserProfile");
+            }
+            return RedirectToAction("UserProfile");
+        }
+
+        public ActionResult ShowAvatar()
+        {
+            var default_image_path = "~/Assets/Images/image/default_user_image.png";
+            var customer = CurrentCustomer;
+            byte[] imageData;
+            if (customer != null)
+            {
+                if (customer.Avatar != null)
+                {
+                    imageData = customer.Avatar;
+                    return File(imageData, "image/jpg");
+                }
+                else
+                {
+                    imageData = GlobalMethod.FileToByteArray(default_image_path);
+                    return File(imageData, "image/jpg");
+
+                }
+            }
+            imageData = GlobalMethod.FileToByteArray(default_image_path);
+            return File(imageData, "image/jpg");
+        }
+        #endregion
 
         public ActionResult BookingOfCustomer()
         {

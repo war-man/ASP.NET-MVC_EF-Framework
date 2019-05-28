@@ -21,5 +21,7 @@ namespace Business.BusinessViewModels
 
         [Required]
         public int? MaDiaDiem { get; set; }
+
+        public bool? IsActive { get; set; }
     }
 }

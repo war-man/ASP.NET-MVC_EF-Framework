@@ -23,6 +23,7 @@ namespace quanly.sonsport.com
             container.RegisterType<IEmployeeOfPlaceBusiness, EmployeeOfPlaceBusiness>();
             container.RegisterType<IOrderManagerBusiness, OrderManagerBusiness>();
             container.RegisterType<ICustomerOfMasterBusiness, CustomerOfMasterBusiness>();
+            container.RegisterType<IFileUploadBusiness, FileUploadBusiness>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

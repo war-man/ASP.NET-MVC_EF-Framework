@@ -12,14 +12,8 @@
             <div class="profile-update">
                 <div class="row">
                     <div class="col s12 m2">
-                        <header class="profile-picture">
-                            <form class="edit_user" id="edit_user_7664" enctype="multipart/form-data" action="/users/7664/avatar_upload" accept-charset="UTF-8" method="post">
-                                <div class="avatar">
-                                    <img id="avatar" style="width: 100%" src="~/Assets/Images/image/default_user_image.png" alt="Default user image" />
-                                    <button class="btn-upload-avatar"><i class="fa fa-image fa-2x" aria-hidden="true"></i></button>
-                                    <input onchange="this.form.submit()" type="file" name="user[avatar]" id="user_avatar" />
-                                </div>
-                            </form>
+                        <header class="profile-picture" id="profile-avatar">
+                            @Html.Partial("_AvatarUpload")
                         </header>
                     </div>
                     <div class="col s12 m10">

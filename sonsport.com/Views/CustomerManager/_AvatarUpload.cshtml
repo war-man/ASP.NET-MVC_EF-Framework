@@ -1,0 +1,25 @@
+﻿@using sonsport.com.Common
+@model ImageViewModels
+<script src="~/Assets/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using (Ajax.BeginForm("SaveAvatar",
+    "CustomerManager",
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "OnUploadImageSuccess",
+        UpdateTargetId = "profile-avatar"
+    },
+    new
+    {
+        @enctype = "multipart/form-data",
+        @id = "form-upload-image"
+    }))
+{
+    @Html.AntiForgeryToken()
+    <div class="avatar">
+        <img id="avatar" style="width: 100%" src="@Url.Action("ShowAvatar","CustomerManager")" alt="Default user image" />
+        <button class="btn-upload-avatar"><i class="fa fa-image fa-2x" aria-hidden="true"></i></button>
+        @Html.TextBoxFor(n => n.imageFile, new { @type = "file", @onchange = "this.form.submit()" })
+    </div>
+}

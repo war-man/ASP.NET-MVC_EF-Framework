@@ -25,14 +25,13 @@
             HttpMethod = "POST",
             OnSuccess = "OnCreateSuccess",
             OnFailure = "OnCreateFailure"
-        }))
+        }, htmlAttributes: new { @enctype = "multipart/form-data" }))
     {
         <div class="modal-body">
             <div class="container-fluid">
-
-
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(n => n.MaChuSan)
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
                     @Html.LabelFor(n => n.TenDiaDiem, htmlAttributes: new { @class = "col-form-label" })
                     @Html.TextBoxFor(n => n.TenDiaDiem, htmlAttributes: new { @class = "form-control" })
@@ -45,15 +44,38 @@
                 </div>
 
                 <div class="row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-3">
                         @Html.LabelFor(n => n.Sdt1, htmlAttributes: new { @class = "col-form-label" })
                         @Html.TextBoxFor(n => n.Sdt1, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(n => n.Sdt1, null, htmlAttributes: new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-3">
                         @Html.LabelFor(n => n.Sdt2, htmlAttributes: new { @class = "col-form-label" })
                         @Html.TextBoxFor(n => n.Sdt2, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(n => n.Sdt2, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-3">
+                        @Html.LabelFor(n => n.GioMoCua, htmlAttributes: new { @class = "col-form-label" })
+                        @Html.TextBoxFor(n => n.GioMoCua, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(n => n.GioMoCua, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-3">
+                        @Html.LabelFor(n => n.GioDongCua, htmlAttributes: new { @class = "col-form-label" })
+                        @Html.TextBoxFor(n => n.GioDongCua, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(n => n.GioDongCua, null, htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group" id="divUploadFile">
+                    <label for="files">Chọn ảnh cho sân bóng <br /> <span class="text-warning">(*) Lưu ý: Hãy chọn 1 lúc nhiều ảnh. Nếu chọn từng ảnh 1 hệ thống sẽ up ảnh cuối cùng! </span></label><br />
+                    <span class="field-validation-error text-danger" data-valmsg-for="ListImage" data-valmsg-replace="true"></span>
+                    <div class="row">
+                        <input type="file" multiple id="files" name="ListImage" onchange="LoadFile(event)" class="form-control-file col-6" />
+                        <a href="#" onclick="Empty();" class="col-6 text-right">Xóa hết file ảnh</a>
+                    </div>
+                    <div class="row" id="listFiles">
+
                     </div>
                 </div>
 
@@ -71,19 +93,6 @@
                         <label for="city" class="col-form-label">Thành phố</label>
                         <input type="text" value="TP. Hồ Chí Minh" name="city" id="city" class="form-control" disabled />
                         @Html.ValidationMessageFor(n => n.DistrictId, null, htmlAttributes: new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-6">
-                        @Html.LabelFor(n => n.GioMoCua, htmlAttributes: new { @class = "col-form-label" })
-                        @Html.TextBoxFor(n => n.GioMoCua, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(n => n.GioMoCua, null, htmlAttributes: new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group col-6">
-                        @Html.LabelFor(n => n.GioDongCua, htmlAttributes: new { @class = "col-form-label" })
-                        @Html.TextBoxFor(n => n.GioDongCua, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(n => n.GioDongCua, null, htmlAttributes: new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -121,5 +130,24 @@
             location.reload();
         }
         $('#ModalContent').empty().html(data);
+    }
+
+    var files = [];
+
+    var LoadFile = function (event) {
+        files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            $('#listFiles').append('<img style="width:150px;height:150px;margin-top:10px;" class="col-3" src="' + URL.createObjectURL(files[i]) + '" />');
+        }
+    }
+    function Empty() {
+        var html = '<label for="files">Chọn ảnh cho sân bóng <br /> <span class="text-warning">(*) Lưu ý: Hãy chọn 1 lúc nhiều ảnh. Nếu chọn từng ảnh 1 hệ thống sẽ up ảnh cuối cùng! </span></label><br />' +
+            '<div class="row">' +
+            '<input type="file" multiple id="files" name="files" onchange="LoadFile(event)" class="form-control-file col-6" />' +
+            '<a href="#" onclick="Empty();" class="col-6 text-right">Xóa hết file ảnh</a>' +
+            '</div>' +
+            '<div class="row" id="listFiles">' +
+            '</div>';
+        $('#divUploadFile').empty().html(html);
     }
 </script>

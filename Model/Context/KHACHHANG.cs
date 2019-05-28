@@ -30,6 +30,9 @@
         public int? DistrictId { get; set; }
         public string Address { get; set; }
 
+        [Column(TypeName ="image")]
+        public byte[] Avatar { get; set; }
+
         public virtual DISTRICT DISTRICT { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

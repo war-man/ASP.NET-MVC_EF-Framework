@@ -1,6 +1,7 @@
 ﻿using Model.Context;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -151,6 +152,88 @@ namespace sonsport.com.Common
                 text = text.Replace(ListAllVNChars[i], ListAllUnsignChars[i]);
             }
             return text;
+        }
+
+        public static byte[] FileToByteArray(string _FilePath)
+        {
+            byte[] _Buffer = null;
+            System.IO.FileStream _FileStream = null;
+            System.IO.BinaryReader _BinaryReader = null;
+            try
+            {
+                // Open file for reading
+                _FileStream = new System.IO.FileStream(_FilePath, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+
+                // attach filestream to binary reader
+                _BinaryReader = new System.IO.BinaryReader(_FileStream);
+
+                // get total int length of the file
+                long _TotalBytes = new System.IO.FileInfo(_FilePath).Length;
+
+                // read entire file into buffer
+                _Buffer = _BinaryReader.ReadBytes((Int32)_TotalBytes);
+
+                return _Buffer;
+            }
+            catch (Exception _Exception)
+            {
+                // Error                
+                return null;
+            }
+            finally
+            {
+                if (_FileStream != null)
+                {
+                    _FileStream.Close();
+                    _FileStream.Dispose();
+                }
+
+                // close file reader
+                if (_BinaryReader != null)
+                {
+                    _BinaryReader.Close();
+                    _BinaryReader.Dispose();
+                }
+            }
+        }
+
+        public static byte[] StreamToByteArray(Stream _FileStream)
+        {
+            byte[] _Buffer = null;
+            System.IO.BinaryReader _BinaryReader = null;
+            try
+            {
+                // attach filestream to binary reader
+                _BinaryReader = new System.IO.BinaryReader(_FileStream);
+
+                // get total int length of the file
+                long _TotalBytes = _FileStream.Length;
+
+                // read entire file into buffer
+                _Buffer = _BinaryReader.ReadBytes((Int32)_TotalBytes);
+
+                return _Buffer;
+            }
+            catch (Exception _Exception)
+            {
+                // Error                
+                return null;
+            }
+            finally
+            {
+                if (_FileStream != null)
+                {
+                    _FileStream.Close();
+                    _FileStream.Dispose();
+                }
+
+                // close file reader
+                if (_BinaryReader != null)
+                {
+                    _BinaryReader.Close();
+                    _BinaryReader.Dispose();
+                }
+            }
         }
     }
 }

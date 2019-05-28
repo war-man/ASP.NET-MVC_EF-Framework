@@ -4,6 +4,10 @@ using quanly.sonsport.com.Common;
 using Business.BusinessInterface;
 using Business.BusinessViewModels;
 using System.Linq;
+using System.Web;
+using System.Collections.Generic;
+using System;
+using System.IO;
 
 namespace quanly.sonsport.com.Controllers
 {
@@ -13,10 +17,12 @@ namespace quanly.sonsport.com.Controllers
     {
         private readonly IPlaceYardFootballBusiness PlaceYardFootballBusiness;
         private readonly IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness;
-
-        public PlaceYardFootballController(IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness,
+        private readonly IFileUploadBusiness FileUploadBusiness;
+        public PlaceYardFootballController(IFileUploadBusiness FileUploadBusiness,
+        IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness,
         IPlaceYardFootballBusiness placeYardFootballBusiness)
         {
+            this.FileUploadBusiness = FileUploadBusiness;
             this.YardFootballOfPlaceBusiness = YardFootballOfPlaceBusiness;
             this.PlaceYardFootballBusiness = placeYardFootballBusiness;
         }
@@ -39,6 +45,7 @@ namespace quanly.sonsport.com.Controllers
 
         public ActionResult LoadFormEdit(int PlaceId)
         {
+            ViewData[GlobalConstans.LstFileImage] = FileUploadBusiness.GetAllImageOfPlace(PlaceId);
             ViewData[GlobalConstans.LstDistrict] = ListDistrict;
             DIADIEMSANBONG placeYard = PlaceYardFootballBusiness.SearchInfoPlace(PlaceId);
             var place = new PlaceYardViewModel
@@ -55,21 +62,45 @@ namespace quanly.sonsport.com.Controllers
                 Sdt1 = placeYard.Sdt1,
                 Sdt2 = placeYard.Sdt2,
                 TenDiaDiem = placeYard.TenDiaDiem,
-                MaChuSan = placeYard.MaChuSan
+                MaChuSan = placeYard.MaChuSan,
+                IsActive=placeYard.IsActive,
             };
             return PartialView("_FormEditPlace", place);
         }
         
+        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePlace(PlaceYardViewModel model)
+        public ActionResult CreatePlace(PlaceYardViewModel model,List<HttpPostedFileBase> ListImage)
         {
             ViewData[GlobalConstans.LstDistrict] = ListDistrict;
+            List<FILE> lstFile = new List<FILE>();
+            //Kiem tra dinh dang Image
+            string[] lstImageExtension = { ".JPG", ".JPEG",".PNG",".BMP",".ICO",".GIF"};
+            if(ListImage.Count>0 || ListImage !=null)
+            {
+                for (int i = 0; i < ListImage.Count; i++)
+                {
+                    var extension = Path.GetExtension(ListImage[i].FileName);
+                    if(!lstImageExtension.Contains(extension.ToUpper()))
+                    {
+                        ModelState.AddModelError("ListImage", "File ảnh không đúng định dạng!");
+                        return PartialView("_FormCreatePlace", model);
+                    }
+                    lstFile.Add(new FILE
+                    {
+                        Code = GlobalMethod.StreamToByteArray(ListImage[i].InputStream),
+                        ContentType = ListImage[i].ContentType,
+                        FileName = $"{model.TenDiaDiem}_{DateTime.Now}{Path.GetExtension(ListImage[i].FileName)}",
+                    });
+                }
+            }
             if(ModelState.IsValid)
             {
                 model.KeywordPlace = GlobalMethod.ConverVNSign(model.TenDiaDiem).ToLower();
                 model.KeywordAddress = GlobalMethod.ConverVNSign(model.DiaChi).ToLower();
-                PlaceYardFootballBusiness.CreatePlace(model);
+                PlaceYardFootballBusiness.CreatePlace(model,lstFile);
                 TempData[GlobalConstans.MessageSuccess] = "Thêm địa điểm thành công!";
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
@@ -78,8 +109,42 @@ namespace quanly.sonsport.com.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPlace(PlaceYardViewModel model)
+        public ActionResult EditPlace(PlaceYardViewModel model, List<HttpPostedFileBase> ListImage,FormCollection form)
         {
+            var lstFileOfPlace = FileUploadBusiness.GetAllImageOfPlace((int)model.MaDiaDiem);
+            var lstKeyOfForm = form.AllKeys.ToList();
+            int countKeyImage = 0;
+            foreach(var key in lstKeyOfForm)
+            {
+                if(key.StartsWith("IMAGE"))
+                {
+                    countKeyImage++;
+                }
+            }
+            int typeEditImage = 0;
+            if(countKeyImage==0)
+            {
+                //Kiểu là Xóa sạch
+                if(ListImage.Count==0 || ListImage==null)
+                {
+                    //Kiểu là xóa toàn bộ ảnh của địa điểm này
+                }
+                else
+                {
+                    //Kiểu là xóa ảnh trong db rồi thêm ảnh mới
+                }
+            }
+            else if(countKeyImage==lstFileOfPlace.Count)
+            {
+                if(ListImage.Count==0 || ListImage == null)
+                {
+                    //Kiểu là không xóa ko thêm ảnh
+                }
+                else
+                {
+                    //Kiểu là giữ nguyên ảnh trong db để thêm ảnh mới
+                }
+            }
             ViewData[GlobalConstans.LstDistrict] = ListDistrict;
             if (ModelState.IsValid)
             {

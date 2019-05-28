@@ -210,6 +210,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderManagerController.cs" />
     <Compile Include="Controllers\PlaceYardFootballController.cs" />
@@ -341,6 +342,7 @@
     <Content Include="Assets\fullcalendar-4.1.0\packages\timegrid\main.min.css" />
     <Content Include="Assets\fullcalendar-4.1.0\packages\timegrid\main.min.js" />
     <Content Include="Assets\fullcalendar-4.1.0\vendor\rrule.js" />
+    <Content Include="Assets\Images\Image\default_image.png" />
     <Content Include="Assets\Images\Image\image-1.jpg" />
     <Content Include="Assets\Scripts\tooltips.js" />
     <Content Include="Assets\SonSiHoJS\arrUtils.js" />
@@ -2247,6 +2249,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2286,7 +2289,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>11751</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44313/</IISUrl>
+          <IISUrl>https://localhost:44314/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

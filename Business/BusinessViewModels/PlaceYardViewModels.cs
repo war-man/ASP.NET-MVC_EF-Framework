@@ -4,11 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Web;
+using Model.Context;
 
 namespace Business.BusinessViewModels
 {
     public class PlaceYardViewModel
     {
+        public bool? IsActive { get; set; }
         public int? MaDiaDiem { get; set; }
 
         [Display(Name ="Tên địa điểm")]
@@ -63,6 +67,5 @@ namespace Business.BusinessViewModels
         public string KeywordPlace { get; set; }
 
         public string KeywordAddress { get; set; }
-
     }
 }

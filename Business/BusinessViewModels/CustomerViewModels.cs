@@ -31,6 +31,6 @@ namespace Business.BusinessViewModels
         public string Address { get; set; }
 
         [Display(Name= "Quận/Huyện")]
-        public int DistrictId { get; set; }
+        public int? DistrictId { get; set; }
     }
 }

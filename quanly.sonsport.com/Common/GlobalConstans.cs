@@ -24,6 +24,7 @@ namespace quanly.sonsport.com.Common
         public const string TenDiaDiem = "TenDiaDiem";
         public const string MasterId = "MasterId";
         public const string LstDistrict = "List District";
+        public const string LstFileImage = "List Image Of Place";
 
     }
 }
