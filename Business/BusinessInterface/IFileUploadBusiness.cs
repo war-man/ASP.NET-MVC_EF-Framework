@@ -12,5 +12,11 @@ namespace Business.BusinessInterface
         List<FILE> GetAllImageOfPlace(int PlaceId);
 
         FILE GetFileInfo(int FileId);
+
+        FILE GetFileInfoByPlace(int PlaceId);
+
+        void DeleteAllImageByPlaceId(int PlaceId);
+
+        void CreateImageByPlaceId(int PlaceId,List<FILE> lstImageOfPlace);
     }
 }

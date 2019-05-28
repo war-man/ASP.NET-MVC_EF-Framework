@@ -8,7 +8,14 @@
         <div class="col s12 m6 l3">
             <div class="card-panel venue_item hoverable">
                 <a href="@Url.Action("Index","PlaceYard",new { @PlaceId=item.MaDiaDiem,@strDate=""})">
-                    <img class="responsive-img" src='~/Assets/Images/image/banner-1.jpg'>
+                    @if (item.IMAGE_OF_PLACE.Where(n => n.FileId != null).ToList().Count > 0)
+                    {
+                        <img class="responsive-img" src="@Url.Action("ShowImageMainPlace","Image",new { @PlaceId=item.MaDiaDiem})" />
+                    }
+                    else
+                    {
+                        <img class="responsive-img" src="~/Assets/Images/image/default_image.png" />
+                    }
                 </a>
                 <div class="venue-details">
                     <div>

@@ -76,12 +76,12 @@ namespace Business.BusinessExtension
 
         public List<DIADIEMSANBONG> GetAllPlaceYardFootball()
         {
-            return dbContext.DIADIEMSANBONG.Include(n => n.DISTRICT).ToList();
+            return dbContext.DIADIEMSANBONG.Include(n => n.DISTRICT).Include(n=>n.IMAGE_OF_PLACE).ToList();
         }
 
         public List<DIADIEMSANBONG> SearchByMaster(int? MaChuSan)
         {
-            var lstPlace = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY).ToList();
+            var lstPlace = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY).Include(n=>n.IMAGE_OF_PLACE).ToList();
             if (MaChuSan != null)
             {
                 lstPlace = lstPlace.Where(n => n.MaChuSan == MaChuSan).ToList();
@@ -94,7 +94,7 @@ namespace Business.BusinessExtension
             DIADIEMSANBONG Place = new DIADIEMSANBONG();
             if (MaDiaDiem != null)
             {
-                Place = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY)
+                Place = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY).Include(n=>n.IMAGE_OF_PLACE)
                                                 .ToList()
                                                 .FirstOrDefault(n => n.MaDiaDiem == MaDiaDiem);
             }

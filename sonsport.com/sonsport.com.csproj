@@ -217,6 +217,7 @@
     <Compile Include="Controllers\ForMasterYardController.cs" />
     <Compile Include="Controllers\HelperPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlaceYardController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -234,6 +235,7 @@
     <Content Include="Assets\Content\Site.css" />
     <Content Include="Assets\Content\steper.css" />
     <Content Include="Assets\Images\image\avatar.png" />
+    <Content Include="Assets\Images\image\default_image.png" />
     <Content Include="Assets\Images\image\default_user_image.png" />
     <Content Include="Assets\Images\image\icon-aws.png" />
     <Content Include="Assets\Images\image\banner-1.jpg" />
@@ -374,6 +376,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\TemplateCustomer\css\fonts\fontawesome-webfont.eot" />

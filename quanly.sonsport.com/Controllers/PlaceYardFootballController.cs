@@ -121,33 +121,67 @@ namespace quanly.sonsport.com.Controllers
                     countKeyImage++;
                 }
             }
-            int typeEditImage = 0;
-            if(countKeyImage==0)
-            {
-                //Kiểu là Xóa sạch
-                if(ListImage.Count==0 || ListImage==null)
-                {
-                    //Kiểu là xóa toàn bộ ảnh của địa điểm này
-                }
-                else
-                {
-                    //Kiểu là xóa ảnh trong db rồi thêm ảnh mới
-                }
-            }
-            else if(countKeyImage==lstFileOfPlace.Count)
-            {
-                if(ListImage.Count==0 || ListImage == null)
-                {
-                    //Kiểu là không xóa ko thêm ảnh
-                }
-                else
-                {
-                    //Kiểu là giữ nguyên ảnh trong db để thêm ảnh mới
-                }
-            }
+            List<FILE> lstFile = new List<FILE>();
             ViewData[GlobalConstans.LstDistrict] = ListDistrict;
             if (ModelState.IsValid)
             {
+                if (countKeyImage == 0)
+                {
+                    //Kiểu là Xóa sạch
+                    if (ListImage == null)
+                    {
+                        //Kiểu là xóa toàn bộ ảnh của địa điểm này
+                        FileUploadBusiness.DeleteAllImageByPlaceId((int)model.MaDiaDiem);
+                    }
+                    else //Xóa xong có thêm mới
+                    {
+                        FileUploadBusiness.DeleteAllImageByPlaceId((int)model.MaDiaDiem);
+                        //Kiem tra dinh dang Image
+                        string[] lstImageExtension = { ".JPG", ".JPEG", ".PNG", ".BMP", ".ICO", ".GIF" };
+                        if (ListImage.Count > 0 || ListImage != null)
+                        {
+                            for (int i = 0; i < ListImage.Count; i++)
+                            {
+                                var extension = Path.GetExtension(ListImage[i].FileName);
+                                if (!lstImageExtension.Contains(extension.ToUpper()))
+                                {
+                                    ModelState.AddModelError("ListImage", "File ảnh không đúng định dạng!");
+                                    return PartialView("_FormCreatePlace", model);
+                                }
+                                lstFile.Add(new FILE
+                                {
+                                    Code = GlobalMethod.StreamToByteArray(ListImage[i].InputStream),
+                                    ContentType = ListImage[i].ContentType,
+                                    FileName = $"{model.TenDiaDiem}_{DateTime.Now}{Path.GetExtension(ListImage[i].FileName)}",
+                                });
+                            }
+                        }
+                        FileUploadBusiness.CreateImageByPlaceId((int)model.MaDiaDiem,lstFile);
+                    }
+                }
+                else if (countKeyImage == lstFileOfPlace.Count && ListImage.Count>0 && ListImage!=null)
+                {
+                    string[] lstImageExtension = { ".JPG", ".JPEG", ".PNG", ".BMP", ".ICO", ".GIF" };
+                    if (ListImage.Count > 0 || ListImage != null)
+                    {
+                        for (int i = 0; i < ListImage.Count; i++)
+                        {
+                            var extension = Path.GetExtension(ListImage[i].FileName);
+                            if (!lstImageExtension.Contains(extension.ToUpper()))
+                            {
+                                ModelState.AddModelError("ListImage", "File ảnh không đúng định dạng!");
+                                return PartialView("_FormCreatePlace", model);
+                            }
+                            lstFile.Add(new FILE
+                            {
+                                Code = GlobalMethod.StreamToByteArray(ListImage[i].InputStream),
+                                ContentType = ListImage[i].ContentType,
+                                FileName = $"{model.TenDiaDiem}_{DateTime.Now}{Path.GetExtension(ListImage[i].FileName)}",
+                            });
+                        }
+                    }
+                    FileUploadBusiness.CreateImageByPlaceId((int)model.MaDiaDiem, lstFile);
+                }
                 model.KeywordPlace = GlobalMethod.ConverVNSign(model.TenDiaDiem).ToLower();
                 model.KeywordAddress = GlobalMethod.ConverVNSign(model.DiaChi).ToLower();
                 PlaceYardFootballBusiness.UpdatePlace(model);

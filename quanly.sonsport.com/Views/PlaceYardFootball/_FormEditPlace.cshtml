@@ -24,7 +24,7 @@
             HttpMethod = "POST",
             OnSuccess = "OnSuccess",
             OnFailure = "OnFailure"
-        }, htmlAttributes: new { id = "form-edit-place" }))
+        }, htmlAttributes: new { @enctype = "multipart/form-data" }))
     {
         <div class="modal-body">
             <div class="container-fluid">
@@ -69,7 +69,7 @@
 
 
                 <div class="form-group" id="divUploadFile">
-                    <label for="files">Chọn ảnh cho sân bóng <br /> <span class="text-warning">(*) Lưu ý: Hãy chọn 1 lúc nhiều ảnh. Nếu chọn từng ảnh 1 hệ thống sẽ up ảnh cuối cùng! </span></label><br />
+                    <label for="files">Chọn ảnh cho sân bóng (Ảnh đầu tiên sẽ là ảnh đại diện của địa điểm) <br /> <span class="text-warning">(*) Lưu ý: Hãy chọn 1 lúc nhiều ảnh. Nếu chọn từng ảnh 1 hệ thống sẽ up ảnh cuối cùng! </span></label><br />
                     <span class="field-validation-error text-danger" data-valmsg-for="ListImage" data-valmsg-replace="true"></span>
                     <div class="row">
                         <input type="file" multiple id="files" name="ListImage" onchange="LoadFile(event)" class="form-control-file col-6" />
@@ -145,9 +145,9 @@
         }
     }
     function Empty() {
-        var html = '<label for="files">Chọn ảnh cho sân bóng <br /> <span class="text-warning">(*) Lưu ý: Hãy chọn 1 lúc nhiều ảnh. Nếu chọn từng ảnh 1 hệ thống sẽ up ảnh cuối cùng! </span></label><br />' +
+        var html = '<label for="files">Chọn ảnh cho sân bóng (Ảnh đầu tiên sẽ là ảnh đại diện của địa điểm) <br /> <span class="text-warning">(*) Lưu ý: Hãy chọn 1 lúc nhiều ảnh. Nếu chọn từng ảnh 1 hệ thống sẽ up ảnh cuối cùng! </span></label><br />' +
             '<div class="row">' +
-            '<input type="file" multiple id="files" name="files" onchange="LoadFile(event)" class="form-control-file col-6" />' +
+            '<input type="file" multiple id="files" name="ListImage" onchange="LoadFile(event)" class="form-control-file col-6" />' +
             '<a href="#" onclick="Empty();" class="col-6 text-right">Xóa hết file ảnh</a>' +
             '</div>' +
             '<div class="row" id="listFiles">' +

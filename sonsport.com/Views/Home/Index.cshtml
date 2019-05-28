@@ -65,8 +65,16 @@
                         <div class="venue_pic" style="height: 63%;">
                             <div style="height: 100%">
                                 <div class="venue_pic_cover" style="height: 93%">
-                                    <a href="/dhnonglam">
-                                        <img class="responsive-img top_venues_pic" src="~/Assets/Images/Image/image-1.jpg" />
+                                    <a href="#">
+                                        @if (item.IMAGE_OF_PLACE.Where(n => n.FileId != null).ToList().Count > 0)
+                                        {
+                                            <img class="responsive-img top_venues_pic" src="@Url.Action("ShowImageMainPlace","Image",new { @PlaceId=item.MaDiaDiem})" />
+                                        }
+                                        else
+                                        {
+                                            <img class="responsive-img top_venues_pic" src="~/Assets/Images/image/default_image.png" />
+                                        }
+
                                     </a>
                                 </div>
                                 <div class="venue_pic_district">

@@ -343,6 +343,7 @@
     <Content Include="Assets\fullcalendar-4.1.0\packages\timegrid\main.min.js" />
     <Content Include="Assets\fullcalendar-4.1.0\vendor\rrule.js" />
     <Content Include="Assets\Images\Image\default_image.png" />
+    <Content Include="Assets\Images\Image\default_user_image.png" />
     <Content Include="Assets\Images\Image\image-1.jpg" />
     <Content Include="Assets\Scripts\tooltips.js" />
     <Content Include="Assets\SonSiHoJS\arrUtils.js" />
