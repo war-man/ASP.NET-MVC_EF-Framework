@@ -72,9 +72,9 @@
     <Compile Include="Context\NHANVIEN.cs" />
     <Compile Include="Context\SANBONG.cs" />
     <Compile Include="Context\SonSportDbContext.cs" />
-    <Compile Include="Migrations\201905271741021_test.cs" />
-    <Compile Include="Migrations\201905271741021_test.Designer.cs">
-      <DependentUpon>201905271741021_test.cs</DependentUpon>
+    <Compile Include="Migrations\201905290953397_AddDataTestToDb.cs" />
+    <Compile Include="Migrations\201905290953397_AddDataTestToDb.Designer.cs">
+      <DependentUpon>201905290953397_AddDataTestToDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,8 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905271741021_test.resx">
-      <DependentUpon>201905271741021_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905290953397_AddDataTestToDb.resx">
+      <DependentUpon>201905290953397_AddDataTestToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

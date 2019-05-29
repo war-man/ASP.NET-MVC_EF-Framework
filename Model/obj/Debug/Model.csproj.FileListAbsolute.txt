@@ -51,5 +51,5 @@ D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.CoreComp
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.CopyComplete
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.dll
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.pdb
-D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.test.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddDataTestToDb.resources
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.GenerateResource.cache
