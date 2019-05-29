@@ -94,9 +94,24 @@ namespace sonsport.com.Controllers
         public ActionResult OrderYard(FormCollection form)
         {
             var Place = PlaceYardFootballBusiness.SearchInfoPlace(int.Parse(form["PlaceId"]));
+            ViewData[GlobalConstans.LstYardOfPlace] = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(Place.MaDiaDiem);
+            ViewData[GlobalConstans.DateView] = GlobalMethod.ParseToListStringDateView();
+            var OrderYard = new OrderYardViewModels
+            {
+                CreatedDate = DateTime.Now.ToString(),
+                PlaceId = Place.MaDiaDiem,
+                PlaceAddress = Place.DiaChi,
+                PlaceName = Place.TenDiaDiem,
+            };
             var Yard = YardFootballOfPlaceBusiness.SearchDetails(int.Parse(form["YardId"]));
             var lstPriceByYardId = PriceOfYardFootBallBusiness.GetPriceTableByYardId(Yard.MaSanBong);
             int start = int.Parse(form["begin_time"].Substring(0, 2));
+            var checkStartHour = DateTime.Now;
+            if (start < checkStartHour.AddHours(+5).Hour)
+            {
+                ModelState.AddModelError("Basic", "Không hỗ trợ đặt sân trước giờ thi đấu 5 tiếng. Vui lòng gọi điện cho chủ sân hoặc chọn giờ khác!");
+                return PartialView("_FormOrderYard", OrderYard);
+            }
             int end = start + int.Parse(form["how_long"]);
             CHITIETDATSAN orderDetails = new CHITIETDATSAN
             {

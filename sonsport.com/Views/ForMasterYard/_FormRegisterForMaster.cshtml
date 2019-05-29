@@ -78,22 +78,21 @@
                     </div>
                 </div>
                 <div class="row address_form">
-
+                    <div class="input-field col s6 address_street">
+                        @Html.LabelFor(n => n.Address)
+                        @Html.TextBoxFor(n => n.Address, new { @required = "required" })
+                        @Html.ValidationMessageFor(n => n.Address, null, new { @class = "red-text" })
+                    </div>
+                    <div class="col s3 m3 l3 address_district">
+                        @Html.LabelFor(n => n.DistrictId, new { @class = "active" })
+                        @Html.DropDownListFor(n => n.DistrictId, new SelectList(lstDistrict, "DistrictId", "DistrictName", "DistrictName"), new { @class = "browser-default" })
+                    </div>
                     <div class="col s3 m3 l3 address_city">
                         <label class="active" for="city">Thành phố/Tỉnh</label>
                         <select name="city" id="city" required="required" class="browser-default" disabled>
                             <option value="2">Tỉnh quảng trị</option>
                             <option selected="selected" value="1">Tp Hồ Chí Minh</option>
                         </select>
-                    </div>
-                    <div class="col s3 m3 l3 address_district">
-                        @Html.LabelFor(n=>n.DistrictId, new { @class="active"})
-                        @Html.DropDownListFor(n=>n.DistrictId,new SelectList(lstDistrict,"DistrictId","DistrictName","DistrictName"),new {@class="browser-default" })
-                    </div>
-                    <div class="input-field col s6 m9 address_street">
-                        @Html.LabelFor(n => n.Address)
-                        @Html.TextBoxFor(n => n.Address, new { @required = "required" })
-                        @Html.ValidationMessageFor(n => n.Address, null, new { @class = "red-text" })
                     </div>
                     <div class="input-field col s12">
                         @Html.ValidationSummary(true, "", new { @class = "red-text" })

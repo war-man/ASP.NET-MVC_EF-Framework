@@ -6,7 +6,10 @@
     var lstYardOfPlace = ViewData[GlobalConstans.LstYardOfPlace] as List<SANBONG>;
     var lstDateView = ViewData[GlobalConstans.DateView] as List<string>;
 }
+<script src="~/Assets/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <div class="modal-content">
     @using (Ajax.BeginForm("OrderYard", "PlaceYard", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnOrderSuccess" }))
     {
@@ -15,7 +18,7 @@
         <div class="row">
             <h5 class="text-center orange-text text-darken-1" id="PlaceName" name="PlaceName">@Model.PlaceName</h5>
             <p class="text-center" id="PlaceAddress" name="PlaceAddress">@Model.PlaceAddress</p>
-
+            @Html.ValidationMessage("Basic",new { @class="red-text"})
             <div class="col s6">
                 <label>Sân bóng</label>
                 @Html.DropDownListFor(n => n.YardId, new SelectList(lstYardOfPlace, "MaSanBong", "TenSanBong", "TenSanBong"), new { @class = "browser-default", @onchange = "LoadStartTime()" })
@@ -32,15 +35,13 @@
             </div>
             <div class="col s6 m6">
                 <label>Đặt từ</label>
-                <select name="begin_time" id="begin_time" required="required" class="browser-default">
-
-                </select>
+                <select name="begin_time" id="begin_time" required="required" class="browser-default"></select>
             </div>
             <div class="col s6 m6">
                 <label>Thời lượng</label>
                 <select name="how_long" id="how_long" required="required" class="browser-default">
                     <option selected="selected" value="1">1 Giờ</option>
-                    <option value="2">2 Giờ</option>
+                    <option value="2" disabled>2 Giờ (Updating...)</option>
                 </select>
             </div>
         </div>

@@ -122,6 +122,12 @@ namespace quanly.sonsport.com.Controllers
                 TempData[GlobalConstans.MessageFailBootBox] = Message;
                 return Json(new { success = false,message=Message });
             }
+            var checkStartHour = DateTime.Now;
+            if (start <= checkStartHour.Hour)
+            {
+                TempData[GlobalConstans.MessageFailBootBox] = "Không được đặt sân với giờ bắt đầu trong quá khứ!";
+                return Json(new { success = false, message = Message });
+            }
             ViewData[GlobalConstans.ViewDataLstYardOfPlace] = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(model.PlaceId);
             if (ModelState.IsValid)
             {
