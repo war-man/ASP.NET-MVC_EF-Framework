@@ -16,11 +16,14 @@ namespace quanly.sonsport.com.Controllers
         private readonly IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness;
         private readonly ITypeOfYardBusiness TypeOfYardBusiness;
         private readonly IPriceOfYardFootBallBusiness PriceOfYardFootBallBusiness;
-        public TypeAndPriceYardController(IPriceOfYardFootBallBusiness priceOfYardFootBallBusiness,
+        private readonly IOrderManagerBusiness OrderManagerBusiness;
+        public TypeAndPriceYardController(IOrderManagerBusiness OrderManagerBusiness,
+        IPriceOfYardFootBallBusiness priceOfYardFootBallBusiness,
             ITypeOfYardBusiness typeOfYardBusiness,
             IYardFootballOfPlaceBusiness yardFootballOfPlaceBusiness,
             IPlaceYardFootballBusiness placeYardFootballBusiness)
         {
+            this.OrderManagerBusiness = OrderManagerBusiness;
             this.PriceOfYardFootBallBusiness = priceOfYardFootBallBusiness;
             this.TypeOfYardBusiness = typeOfYardBusiness;
             this.YardFootballOfPlaceBusiness = yardFootballOfPlaceBusiness;
@@ -100,6 +103,12 @@ namespace quanly.sonsport.com.Controllers
 
         public JsonResult Delete(int YardId)
         {
+            var lstOd = OrderManagerBusiness.GetOrderDetails(null, null, YardId);
+            if(lstOd.Count>0)
+            {
+                TempData[GlobalConstans.MessageFailBootBox] = "Đang có lịch đặt tại sân bóng này. Hãy xóa hết toàn bộ lịch đặt để xóa Sân bóng!";
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
             YardFootballOfPlaceBusiness.DeleteYard(YardId);
             TempData[GlobalConstans.MessageSuccessBootBox] = "Xóa thành công!";
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -136,7 +145,7 @@ namespace quanly.sonsport.com.Controllers
             return PartialView("_RowPriceAdd", RowAddYard);
         }
 
-        private string CustomValidateInput(int? YardId,int? bd,int? kt,int? price)
+        private string CustomValidateInput(int? YardId,int? bd,int? kt,int? price,int? PriceId)
         {
             if(bd==null)
             {
@@ -160,6 +169,11 @@ namespace quanly.sonsport.com.Controllers
             }
             var Place = PlaceYardFootballBusiness.SearchInfoPlaceByYardId((int)YardId);
             var lstPrice = PriceOfYardFootBallBusiness.GetPriceTableByYardId((int)YardId);
+            BANGGIALOAISAN Price = null;
+            if(PriceId!=null)
+            {
+                Price = lstPrice.FirstOrDefault(n => n.MaBangGiaLoaiSan == PriceId);
+            }
             if(bd==kt)
             {
                 return "Thời gian bắt đầu không được bằng kết thúc";
@@ -172,19 +186,40 @@ namespace quanly.sonsport.com.Controllers
             {
                 return $"Sân bóng chỉ mở cửa từ {Place.GioMoCua} giờ đến {Place.GioDongCua} giờ";
             }
-            foreach (var item in lstPrice)
+            if(Price==null)
             {
-                if(item.GioBatDau==bd && item.GioKetThuc==kt)
+                foreach (var item in lstPrice)
                 {
-                    return "success";
+                    if (item.GioBatDau == bd && item.GioKetThuc == kt)
+                    {
+                        return "Khung giờ này đã có trong hệ thống!";
+                    }
+                    if (bd >= item.GioBatDau && bd < item.GioKetThuc)
+                    {
+                        return "Khung giờ này đã có trong hệ thống!";
+                    }
+                    if (kt > item.GioBatDau && kt <= item.GioKetThuc)
+                    {
+                        return "Khung giờ này đã có trong hệ thống!";
+                    }
                 }
-                if (bd >= item.GioBatDau && bd < item.GioKetThuc)
+            }
+            else
+            {
+                foreach (var item in lstPrice.Where(n=>n.MaBangGiaLoaiSan!=Price.MaBangGiaLoaiSan).ToList())
                 {
-                    return "Khung giờ này đã có trong hệ thống!";
-                }
-                if (kt > item.GioBatDau && kt <= item.GioKetThuc)
-                {
-                    return "Khung giờ này đã có trong hệ thống!";
+                    if (item.GioBatDau == bd && item.GioKetThuc == kt)
+                    {
+                        return "Khung giờ này đã có trong hệ thống!";
+                    }
+                    if (bd >= item.GioBatDau && bd < item.GioKetThuc)
+                    {
+                        return "Khung giờ này đã có trong hệ thống!";
+                    }
+                    if (kt > item.GioBatDau && kt <= item.GioKetThuc)
+                    {
+                        return "Khung giờ này đã có trong hệ thống!";
+                    }
                 }
             }
             return "success";
@@ -193,7 +228,7 @@ namespace quanly.sonsport.com.Controllers
         [HttpPost]
         public ActionResult CreatePrice(PriceOfYardViewModels model)
         {
-            string message = CustomValidateInput(model.MaSanBong, model.GioBatDau, model.GioKetThuc, model.GiaTien);
+            string message = CustomValidateInput(model.MaSanBong, model.GioBatDau, model.GioKetThuc, model.GiaTien,null);
             if (ModelState.IsValid)
             {
                 if(message.Equals("success"))
@@ -215,7 +250,7 @@ namespace quanly.sonsport.com.Controllers
         [HttpPost]
         public ActionResult EditPrice(PriceOfYardViewModels model)
         {
-            string message = CustomValidateInput(model.MaSanBong, model.GioBatDau, model.GioKetThuc, model.GiaTien);
+            string message = CustomValidateInput(model.MaSanBong, model.GioBatDau, model.GioKetThuc, model.GiaTien,model.MaBangGiaLoaiSan);
             if (ModelState.IsValid)
             {
                 if (message.Equals("success"))
@@ -250,6 +285,11 @@ namespace quanly.sonsport.com.Controllers
 
         public ActionResult UnActiveYard(int YardId)
         {
+            var Place = PlaceYardFootballBusiness.SearchInfoPlaceByYardId(YardId);
+            if(Place.IsActive==true)
+            {
+                return Json(new { success = true, message = "Bạn chưa hủy kích hoạt địa điểm!" }, JsonRequestBehavior.AllowGet);
+            }
             var yard = YardFootballOfPlaceBusiness.SearchDetails(YardId);
             yard.IsActive = false;
             YardFootballOfPlaceBusiness.UpdateYardNew(yard);

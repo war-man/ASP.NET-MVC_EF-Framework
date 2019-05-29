@@ -52,26 +52,52 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-right">
-                            <a class="btn btn-info btn-icon-split" onclick="ShowPriceTable(@item.MaSanBong)">
-                                <span class="icon text-white-50">
-                                    <i class="fa fa-money-check"></i>
-                                </span>
-                                <span class="text text-white">Bảng giá</span>
-                            </a>
-                            <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="@item.MaSanBong" class="btn btn-success btn-icon-split">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-edit"></i>
-                                </span>
-                                <span class="text text-white">Sửa</span>
-                            </a>
-                            <a class="btn btn-danger btn-icon-split" onclick="DeleteConfirm(@item.MaSanBong)">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                                <span class="text text-white">Xóa</span>
-                            </a>
-                        </div>
+                        @if (item.IsActive == false)
+                        {
+                            <div class="card-footer text-right">
+                                <a class="btn btn-info btn-icon-split" onclick="ShowPriceTable(@item.MaSanBong)">
+                                    <span class="icon text-white-50">
+                                        <i class="fa fa-money-check"></i>
+                                    </span>
+                                    <span class="text text-white">Bảng giá</span>
+                                </a>
+                                <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="@item.MaSanBong" class="btn btn-success btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+                                    <span class="text text-white">Sửa</span>
+                                </a>
+                                <a class="btn btn-danger btn-icon-split" onclick="DeleteConfirm(@item.MaSanBong)">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text text-white">Xóa</span>
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card-footer text-right">
+                                <a class="btn btn-info btn-icon-split disabled" onclick="ShowPriceTable(@item.MaSanBong)">
+                                    <span class="icon text-white-50">
+                                        <i class="fa fa-money-check"></i>
+                                    </span>
+                                    <span class="text text-white">Bảng giá</span>
+                                </a>
+                                <a data-toggle="modal" data-target="#AddOrEditModal" data-whatever="@item.MaSanBong" class="btn btn-success btn-icon-split disabled">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+                                    <span class="text text-white">Sửa</span>
+                                </a>
+                                <a class="btn btn-danger btn-icon-split disabled" onclick="DeleteConfirm(@item.MaSanBong)">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text text-white">Xóa</span>
+                                </a>
+                            </div>
+                        }
                     </div>
                 }
             </div>
@@ -138,7 +164,7 @@
     });
 
     function DeleteConfirm(id) {
-        bootbox.confirm('Bạn có chắc muốn xóa ko?', function (result) {
+        bootbox.confirm('Đễ xóa được Sân bóng bạn phải xóa tất cả lịch đặt của sân. Bạn có chắc muốn xóa không?', function (result) {
             if (result) {
                 $.get('@Url.Action("Delete","TypeAndPriceYard")?YardId=' + id, function (success) {
                     if (success) {

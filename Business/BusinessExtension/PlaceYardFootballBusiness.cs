@@ -94,7 +94,7 @@ namespace Business.BusinessExtension
             DIADIEMSANBONG Place = new DIADIEMSANBONG();
             if (MaDiaDiem != null)
             {
-                Place = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY).Include(n=>n.IMAGE_OF_PLACE)
+                Place = dbContext.DIADIEMSANBONG.Include(d => d.CHUSANQUANLY).Include(n=>n.IMAGE_OF_PLACE).Include(n=>n.NHANVIEN).Include(n=>n.SANBONG)
                                                 .ToList()
                                                 .FirstOrDefault(n => n.MaDiaDiem == MaDiaDiem);
             }

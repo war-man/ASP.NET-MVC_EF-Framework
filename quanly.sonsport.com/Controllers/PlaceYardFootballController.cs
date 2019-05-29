@@ -18,10 +18,13 @@ namespace quanly.sonsport.com.Controllers
         private readonly IPlaceYardFootballBusiness PlaceYardFootballBusiness;
         private readonly IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness;
         private readonly IFileUploadBusiness FileUploadBusiness;
-        public PlaceYardFootballController(IFileUploadBusiness FileUploadBusiness,
+        private readonly IEmployeeOfPlaceBusiness EmployeeOfPlaceBusiness;
+        public PlaceYardFootballController(IEmployeeOfPlaceBusiness EmployeeOfPlaceBusiness,
+        IFileUploadBusiness FileUploadBusiness,
         IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness,
         IPlaceYardFootballBusiness placeYardFootballBusiness)
         {
+            this.EmployeeOfPlaceBusiness = EmployeeOfPlaceBusiness;
             this.FileUploadBusiness = FileUploadBusiness;
             this.YardFootballOfPlaceBusiness = YardFootballOfPlaceBusiness;
             this.PlaceYardFootballBusiness = placeYardFootballBusiness;
@@ -68,8 +71,6 @@ namespace quanly.sonsport.com.Controllers
             return PartialView("_FormEditPlace", place);
         }
         
-        
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreatePlace(PlaceYardViewModel model,List<HttpPostedFileBase> ListImage)
@@ -78,7 +79,7 @@ namespace quanly.sonsport.com.Controllers
             List<FILE> lstFile = new List<FILE>();
             //Kiem tra dinh dang Image
             string[] lstImageExtension = { ".JPG", ".JPEG",".PNG",".BMP",".ICO",".GIF"};
-            if(ListImage.Count>0 || ListImage !=null)
+            if(ListImage !=null)
             {
                 for (int i = 0; i < ListImage.Count; i++)
                 {
@@ -98,6 +99,11 @@ namespace quanly.sonsport.com.Controllers
             }
             if(ModelState.IsValid)
             {
+                if(int.Parse(model.GioMoCua.Split(':')[0])>= int.Parse(model.GioDongCua.Split(':')[0]))
+                {
+                    ModelState.AddModelError("GioDongCua", "Giờ mở của không được lớn hơn hoặc bằng giờ đóng cửa");
+                    return PartialView("_FormCreatePlace", model);
+                }
                 model.KeywordPlace = GlobalMethod.ConverVNSign(model.TenDiaDiem).ToLower();
                 model.KeywordAddress = GlobalMethod.ConverVNSign(model.DiaChi).ToLower();
                 PlaceYardFootballBusiness.CreatePlace(model,lstFile);
@@ -111,6 +117,7 @@ namespace quanly.sonsport.com.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditPlace(PlaceYardViewModel model, List<HttpPostedFileBase> ListImage,FormCollection form)
         {
+            ViewData[GlobalConstans.LstFileImage] = FileUploadBusiness.GetAllImageOfPlace((int)model.MaDiaDiem);
             var lstFileOfPlace = FileUploadBusiness.GetAllImageOfPlace((int)model.MaDiaDiem);
             var lstKeyOfForm = form.AllKeys.ToList();
             int countKeyImage = 0;
@@ -122,9 +129,15 @@ namespace quanly.sonsport.com.Controllers
                 }
             }
             List<FILE> lstFile = new List<FILE>();
+            if(ListImage!=null)
             ViewData[GlobalConstans.LstDistrict] = ListDistrict;
             if (ModelState.IsValid)
             {
+                if (int.Parse(model.GioMoCua.Split(':')[0]) >= int.Parse(model.GioDongCua.Split(':')[0]))
+                {
+                    ModelState.AddModelError("GioDongCua", "Giờ mở của không được lớn hơn hoặc bằng giờ đóng cửa");
+                    return PartialView("_FormEditPlace", model);
+                }
                 if (countKeyImage == 0)
                 {
                     //Kiểu là Xóa sạch
@@ -159,18 +172,23 @@ namespace quanly.sonsport.com.Controllers
                         FileUploadBusiness.CreateImageByPlaceId((int)model.MaDiaDiem,lstFile);
                     }
                 }
-                else if (countKeyImage == lstFileOfPlace.Count && ListImage.Count>0 && ListImage!=null)
+                else if (countKeyImage == lstFileOfPlace.Count && ListImage!=null)
                 {
                     string[] lstImageExtension = { ".JPG", ".JPEG", ".PNG", ".BMP", ".ICO", ".GIF" };
                     if (ListImage.Count > 0 || ListImage != null)
                     {
+                        if(ListImage.Count>4)
+                        {
+                            ModelState.AddModelError("ListImage", "Số lượng hình ảnh không được lớn hơn 5!");
+                            return PartialView("_FormEditPlace", model);
+                        }
                         for (int i = 0; i < ListImage.Count; i++)
                         {
                             var extension = Path.GetExtension(ListImage[i].FileName);
                             if (!lstImageExtension.Contains(extension.ToUpper()))
                             {
                                 ModelState.AddModelError("ListImage", "File ảnh không đúng định dạng!");
-                                return PartialView("_FormCreatePlace", model);
+                                return PartialView("_FormEditPlace", model);
                             }
                             lstFile.Add(new FILE
                             {
@@ -193,6 +211,18 @@ namespace quanly.sonsport.com.Controllers
 
         public JsonResult Delete(int PlaceId)
         {
+            var lstEmpByPlaceId = EmployeeOfPlaceBusiness.SearchEmployeeByPlaceId(PlaceId);
+            if(lstEmpByPlaceId.Count>0)
+            {
+                TempData[GlobalConstans.MessageFailBootBox] = "Bạn chưa xóa Nhân viên của địa điểm này!";
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            var lstYardByPlace = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(PlaceId);
+            if(lstYardByPlace!=null)
+            {
+                TempData[GlobalConstans.MessageFailBootBox] = "Bạn chưa xóa Sân bóng của địa điểm này!";
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
             PlaceYardFootballBusiness.DeletePlace(PlaceId);
             TempData[GlobalConstans.MessageSuccess] = "Xóa thành công!";
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -217,6 +247,16 @@ namespace quanly.sonsport.com.Controllers
 
         public ActionResult UnActivePlace(int PlaceId)
         {
+            var Place = PlaceYardFootballBusiness.SearchInfoPlace(PlaceId);
+            var lstYardOfPlace = YardFootballOfPlaceBusiness.GetAllYardFooballByPlace(PlaceId);
+            foreach(var y in lstYardOfPlace)
+            {
+                if(y.IsActive==true)
+                {
+                    y.IsActive = false;
+                    YardFootballOfPlaceBusiness.UpdateYardNew(y);
+                }
+            }
             PlaceYardFootballBusiness.UnActivePlace(PlaceId);
             TempData[GlobalConstans.MessageSuccess] = "Hủy kích hoạt sân bóng thành công!";
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);

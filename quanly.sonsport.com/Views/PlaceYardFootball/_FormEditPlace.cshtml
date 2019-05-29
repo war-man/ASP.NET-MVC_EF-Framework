@@ -76,7 +76,7 @@
                         <a href="#" onclick="Empty();" class="col-6 text-right">Xóa hết file ảnh</a>
                     </div>
                     <div class="row" id="listFiles">
-                        @if (lstImage.Count > 0 || lstImage != null)
+                        @if (lstImage != null)
                         {
                             foreach (var image in lstImage)
                             {
@@ -134,7 +134,11 @@
             location.reload();
         }
         $('#ModalContent').empty().html(data);
-        }
+    }
+
+    function OnFailure(er) {
+        window.open(er);
+    }
 
     var files = [];
 

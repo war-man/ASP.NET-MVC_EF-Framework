@@ -105,6 +105,7 @@ namespace quanly.sonsport.com.Controllers
                 if(model.MaNhanVien.Equals(0))
                 {
                     model.MaChuSan = MasterOfPlace.MaChuSan;
+                    model.IsHaveAccount = false;
                     EmployeeOfPlaceBusiness.CreateEmployee(model);
                     TempData[GlobalConstans.MessageSuccess] = "Thêm nhân viên thành công!";
                     return Json(new { success=true},JsonRequestBehavior.AllowGet);

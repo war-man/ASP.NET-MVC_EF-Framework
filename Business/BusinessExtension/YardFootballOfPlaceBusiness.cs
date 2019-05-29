@@ -21,7 +21,8 @@ namespace Business.BusinessExtension
             {
                 MaLoai = model.MaLoai, 
                 TenSanBong= model.TenSanBong,
-                MaDiaDiem= model.MaDiaDiem
+                MaDiaDiem= model.MaDiaDiem,
+                IsActive=false
             };
             using (dbContext = new SonSportDbContext())
             {
@@ -57,7 +58,7 @@ namespace Business.BusinessExtension
 
         public SANBONG SearchDetails(int? YardId)
         {
-            var Yard = dbContext.SANBONG.FirstOrDefault(n => n.MaSanBong == YardId);
+            var Yard = dbContext.SANBONG.Include(n=>n.BANGGIALOAISAN).FirstOrDefault(n => n.MaSanBong == YardId);
             return Yard;
         }
 

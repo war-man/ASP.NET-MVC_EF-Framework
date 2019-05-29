@@ -64,18 +64,36 @@
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <a data-toggle="modal" data-target="#SonSiHoModal" onclick="ShowModalEdit(@item.MaDiaDiem)" class="btn btn-success btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-edit"></i>
-                            </span>
-                            <span class="text text-white">Sửa</span>
-                        </a>
-                        <a onclick="DeleteConfirm(@item.MaDiaDiem)" class="btn btn-danger btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-trash"></i>
-                            </span>
-                            <span class="text text-white">Xóa</span>
-                        </a>
+                        @if (item.IsActive == true)
+                        {
+                            <a data-toggle="modal" data-target="#SonSiHoModal" onclick="ShowModalEdit(@item.MaDiaDiem)" class="btn btn-success btn-icon-split disabled">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                                <span class="text text-white">Sửa</span>
+                            </a>
+                            <a onclick="DeleteConfirm(@item.MaDiaDiem)" class="btn btn-danger btn-icon-split disabled">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                                <span class="text text-white">Xóa</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a data-toggle="modal" data-target="#SonSiHoModal" onclick="ShowModalEdit(@item.MaDiaDiem)" class="btn btn-success btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                                <span class="text text-white">Sửa</span>
+                            </a>
+                            <a onclick="DeleteConfirm(@item.MaDiaDiem)" class="btn btn-danger btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                                <span class="text text-white">Xóa</span>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>
@@ -119,7 +137,7 @@ else
     });
 
     function DeleteConfirm(id) {
-        bootbox.confirm('Bạn có chắc muốn xóa ko?', function (result) {
+        bootbox.confirm('Để xóa địa điểm này bạn phải xóa tất cả nhân viên,sân bóng và lịch đặt sân của địa điểm này! </br> Bạn vẫn muốn xóa chứ???', function (result) {
             if (result) {
                 $.get('@Url.Action("Delete","PlaceYardFootball")?PlaceId=' + id, function (success) {
                     if (success) {

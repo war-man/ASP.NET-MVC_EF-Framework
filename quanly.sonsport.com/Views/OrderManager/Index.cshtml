@@ -25,7 +25,14 @@
         <option value="0">Chọn địa điểm...</option>
         @foreach (var item in lstPlace)
         {
-            <option value="@item.MaDiaDiem">@item.TenDiaDiem</option>
+            if (item.IsActive == true)
+            {
+                <option value="@item.MaDiaDiem">@item.TenDiaDiem</option>
+            }
+            else
+            {
+                <option value="@item.MaDiaDiem" disabled class="text-warning">@item.TenDiaDiem (Chưa kích hoạt sân bóng)</option>
+            }
         }
     </select>
 </div>
