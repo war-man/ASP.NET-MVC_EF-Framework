@@ -24,6 +24,7 @@ namespace sonsport.com
             container.RegisterType<IPriceOfYardFootBallBusiness,PriceOfYardFootBallBusiness>();
             container.RegisterType<ICustomerBusiness, CustomerBusiness>();
             container.RegisterType<IFileUploadBusiness, FileUploadBusiness>();
+            container.RegisterType<IReportBusiness,ReportBusiness>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

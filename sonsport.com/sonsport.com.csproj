@@ -256,6 +256,7 @@
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Content\bootstrap.min.css" />
     <Content Include="Assets\Images\image\search_banner.jpg" />
+    <Content Include="Assets\Images\image\shorcut-icon.ico" />
     <Content Include="Assets\TemplateCustomer\chusan.html" />
     <Content Include="Assets\TemplateCustomer\css\font-awesome4.7\font-awesome.css" />
     <Content Include="Assets\TemplateCustomer\css\font-awesome4.7\font-awesome.min.css" />
@@ -373,6 +374,7 @@
     <Content Include="Views\CustomerManager\_FormCustomerProfile.cshtml" />
     <Content Include="Views\Search\_ListPlace.cshtml" />
     <Content Include="Views\CustomerManager\_AvatarUpload.cshtml" />
+    <Content Include="Views\PlaceYard\_FormReportSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

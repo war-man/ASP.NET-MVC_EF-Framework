@@ -155,6 +155,11 @@ namespace quanly.sonsport.com.Controllers
                         {
                             for (int i = 0; i < ListImage.Count; i++)
                             {
+                                if (ListImage.Count > 4)
+                                {
+                                    ModelState.AddModelError("ListImage", "Số lượng hình ảnh không được lớn hơn 5!");
+                                    return PartialView("_FormEditPlace", model);
+                                }
                                 var extension = Path.GetExtension(ListImage[i].FileName);
                                 if (!lstImageExtension.Contains(extension.ToUpper()))
                                 {
@@ -177,7 +182,7 @@ namespace quanly.sonsport.com.Controllers
                     string[] lstImageExtension = { ".JPG", ".JPEG", ".PNG", ".BMP", ".ICO", ".GIF" };
                     if (ListImage.Count > 0 || ListImage != null)
                     {
-                        if(ListImage.Count>4)
+                        if(ListImage.Count+countKeyImage >4)
                         {
                             ModelState.AddModelError("ListImage", "Số lượng hình ảnh không được lớn hơn 5!");
                             return PartialView("_FormEditPlace", model);

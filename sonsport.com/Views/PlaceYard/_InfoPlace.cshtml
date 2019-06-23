@@ -71,7 +71,8 @@
 
 <script>
     function ShowModalReport() {
-        $.get('@Url.Action("LoadFormReport","PlaceYard")', (response) => {
+        var PlaceId = '@Model.MaDiaDiem';
+        $.get('@Url.Action("LoadFormReport","PlaceYard")?PlaceId='+PlaceId, (response) => {
             $('#report_venue_modal').empty().html(response);
         })
     }

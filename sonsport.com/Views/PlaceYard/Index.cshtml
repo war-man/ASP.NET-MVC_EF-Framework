@@ -43,12 +43,25 @@
                     <p>Sân này chưa có đánh giá nào</p>
                 </div>
 
-
                 <div class="col s12">
                     <ul class="tabs">
                         <li class="tab normal_case"><a href="#venue_gallery">Hình ảnh</a></li>
                     </ul>
                 </div>
+                @if (Place.IMAGE_OF_PLACE.Where(n=>n.FileId!=null).ToList().Count>0)
+                {
+                    <div id="venue_gallery" class="col s12">
+                        <p>Sân bóng @Place.TenDiaDiem</p>
+                        <div class="my-gallery">
+                            <figure itemprop="associatedMedia">
+                                <a href="#" itemprop="contentUrl" data-size="1024x1024">
+                                    <img src="@Url.Action("ShowImageMainPlace","Image",new { @PlaceId=Place.MaDiaDiem})" itemprop="thumbnail" alt="Image description" />
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                }
+
 
                 <div id="venue_gallery" class="col s12">
                     <p>Là sân 7 người, chuyên dùng để đào tạo và huấn luyện. Để đặt sân thường phải làm hợp đồng.</p>

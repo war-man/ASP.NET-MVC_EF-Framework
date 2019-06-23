@@ -17,18 +17,21 @@ namespace sonsport.com.Controllers
         private readonly IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness;
         private readonly IOrderManagerBusiness OrderManagerBusiness;
         private readonly IPriceOfYardFootBallBusiness PriceOfYardFootBallBusiness;
-
-        public PlaceYardController(IPriceOfYardFootBallBusiness PriceOfYardFootBallBusiness,
+        private readonly IReportBusiness ReportBusiness;
+        public PlaceYardController(IReportBusiness ReportBusiness,
+        IPriceOfYardFootBallBusiness PriceOfYardFootBallBusiness,
         IOrderManagerBusiness OrderManagerBusiness,
         IYardFootballOfPlaceBusiness YardFootballOfPlaceBusiness,
         IPlaceYardFootballBusiness PlaceYardFootballBusiness)
         {
+            this.ReportBusiness = ReportBusiness;
             this.PlaceYardFootballBusiness = PlaceYardFootballBusiness;
             this.YardFootballOfPlaceBusiness = YardFootballOfPlaceBusiness;
             this.OrderManagerBusiness = OrderManagerBusiness;
             this.PriceOfYardFootBallBusiness = PriceOfYardFootBallBusiness;
         }
         // GET: PlaceYard
+        [Route("san-bong")]
         public ActionResult Index(int PlaceId, string strDate=null)
         {
             ViewData[GlobalConstans.Place] = PlaceYardFootballBusiness.SearchInfoPlace(PlaceId);
@@ -39,9 +42,21 @@ namespace sonsport.com.Controllers
             return View();
         }
 
-        public ActionResult LoadFormReport()
+        public ActionResult LoadFormReport(int PlaceId)
         {
-            return PartialView("_FormReport");
+            return PartialView("_FormReport",new REPORT { MaKhachHang = CurrentCustomer.MaKhachHang,MaDiaDiem=PlaceId});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateReport(REPORT model)
+        {
+            if(ModelState.IsValid)
+            {
+                ReportBusiness.CreateReport(model);
+                return PartialView("_FormReportSuccess");
+            }
+            return PartialView("_FormReport", model);
         }
 
         public ActionResult LoadFormOrderYard(int PlaceId)
@@ -156,5 +171,6 @@ namespace sonsport.com.Controllers
             OrderManagerBusiness.CreateOrderDetails(orderDetails);
             return PartialView("_OrderSuccess");
         }
+
     }
 }

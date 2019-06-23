@@ -70,11 +70,32 @@
     <Compile Include="Context\KHACHHANG.cs" />
     <Compile Include="Context\LOAISANBONG.cs" />
     <Compile Include="Context\NHANVIEN.cs" />
+    <Compile Include="Context\REPORT.cs" />
     <Compile Include="Context\SANBONG.cs" />
     <Compile Include="Context\SonSportDbContext.cs" />
     <Compile Include="Migrations\201905290953397_AddDataTestToDb.cs" />
     <Compile Include="Migrations\201905290953397_AddDataTestToDb.Designer.cs">
       <DependentUpon>201905290953397_AddDataTestToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300722368_Repost.cs" />
+    <Compile Include="Migrations\201905300722368_Repost.Designer.cs">
+      <DependentUpon>201905300722368_Repost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300735416_AddMaKhachHangToReport.cs" />
+    <Compile Include="Migrations\201905300735416_AddMaKhachHangToReport.Designer.cs">
+      <DependentUpon>201905300735416_AddMaKhachHangToReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300755418_AddMaChuSanToReport.cs" />
+    <Compile Include="Migrations\201905300755418_AddMaChuSanToReport.Designer.cs">
+      <DependentUpon>201905300755418_AddMaChuSanToReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300758093_AddMaDiaDiemToReport.cs" />
+    <Compile Include="Migrations\201905300758093_AddMaDiaDiemToReport.Designer.cs">
+      <DependentUpon>201905300758093_AddMaDiaDiemToReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300803319_AddMaDiaDiemToReport2.cs" />
+    <Compile Include="Migrations\201905300803319_AddMaDiaDiemToReport2.Designer.cs">
+      <DependentUpon>201905300803319_AddMaDiaDiemToReport2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +108,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905290953397_AddDataTestToDb.resx">
       <DependentUpon>201905290953397_AddDataTestToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300722368_Repost.resx">
+      <DependentUpon>201905300722368_Repost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300735416_AddMaKhachHangToReport.resx">
+      <DependentUpon>201905300735416_AddMaKhachHangToReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300755418_AddMaChuSanToReport.resx">
+      <DependentUpon>201905300755418_AddMaChuSanToReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300758093_AddMaDiaDiemToReport.resx">
+      <DependentUpon>201905300758093_AddMaDiaDiemToReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300803319_AddMaDiaDiemToReport2.resx">
+      <DependentUpon>201905300803319_AddMaDiaDiemToReport2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,9 +1,19 @@
-﻿<div class="modal-content">
+﻿@using Model.Context
+@model REPORT
+<script src="~/Assets/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+<script src="~/Assets/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Assets/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<div class="modal-content">
     <h5>Báo lỗi địa điểm</h5>
-    <form class="new_venue_report" id="new_venue_report" action="/venue_reports" accept-charset="UTF-8" data-remote="true" method="post">
-        <input name="utf8" type="hidden" value="&#x2713;" />
-        <textarea class="materialize-textarea" name="venue_report[reason]" id="venue_report_reason"></textarea>
-        <input type="hidden" value="84" name="venue_report[venue_id]" id="venue_report_venue_id" />
-        <input type="submit" name="commit" value="Gửi thông tin" class="btn" data-disable-with="Gửi thông tin" />
-    </form>
+    @using (Ajax.BeginForm("CreateReport", "PlaceYard", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", UpdateTargetId = "report_venue_modal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(n => n.MaKhachHang)
+        @Html.HiddenFor(n => n.MaDiaDiem)
+        @Html.TextAreaFor(n => n.Description, new { @class = "materialize-textarea" })
+        @Html.ValidationMessageFor(n => n.Description, "", new { @class = "red-text" })
+        <br />
+        <input type="submit" value="Gửi thông tin" class="btn" data-disable-with="Gửi thông tin" />
+    }
 </div>

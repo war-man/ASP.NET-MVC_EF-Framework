@@ -33,6 +33,7 @@ namespace Model.Context
         public virtual DbSet<DISTRICT> DISTRICT { get; set; }
         public virtual DbSet<FILE> FILE { get; set; }
         public virtual DbSet<IMAGE_OF_PLACE> IMAGE_OF_PLACE { get; set; }
+        public virtual DbSet<REPORT> REPORT { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

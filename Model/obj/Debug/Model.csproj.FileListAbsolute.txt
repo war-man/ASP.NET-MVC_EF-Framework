@@ -53,3 +53,8 @@ D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.dll
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.pdb
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddDataTestToDb.resources
 D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.csproj.GenerateResource.cache
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.Repost.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddMaKhachHangToReport.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddMaChuSanToReport.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddMaDiaDiemToReport.resources
+D:\Respositories\WebsiteHiringFootballYard\Model\obj\Debug\Model.Migrations.AddMaDiaDiemToReport2.resources
