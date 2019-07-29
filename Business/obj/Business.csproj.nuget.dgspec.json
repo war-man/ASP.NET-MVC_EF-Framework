@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj": {}
+    "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Business\\Business.csproj": {}
   },
   "projects": {
-    "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj": {
+    "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj",
+        "projectUniqueName": "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\Business.csproj",
+        "projectPath": "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Business\\Business.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Business\\obj\\",
+        "outputPath": "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj": {
-                "projectPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj"
+              "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Model\\Model.csproj": {
+                "projectPath": "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Model\\Model.csproj"
               }
             }
           }
@@ -65,12 +65,12 @@
         }
       }
     },
-    "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj": {
+    "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj",
+        "projectUniqueName": "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "D:\\Respositories\\WebsiteHiringFootballYard\\Model\\Model.csproj"
+        "projectPath": "D:\\Source-Clone\\WebsiteHiringFootballYard-Clone\\Model\\Model.csproj"
       },
       "frameworks": {
         "net472": {}
